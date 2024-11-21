@@ -9,6 +9,7 @@ import { LoaderIcon } from '@root/icons/LoaderIcon/index.js'
 import { PlusIcon } from '@root/icons/PlusIcon/index.js'
 import { SearchIcon } from '@root/icons/SearchIcon/index.js'
 import { Page } from '@root/payload-types.js'
+import { CopyIcon } from '@icons/CopyIcon/index.js'
 // eslint-disable-next-line import/no-cycle
 import { LinkType, Reference } from '../CMSLink/index.js'
 
@@ -24,13 +25,14 @@ export type ButtonProps = HTMLAttributes<HTMLButtonElement> & {
     | 'success'
     | 'warning'
     | null
+  customId?: string | null
   el?: 'button' | 'link' | 'a' | 'div'
   href?: string | null
   newTab?: boolean | null
   label?: string | null
   labelStyle?: 'mono' | 'regular'
   labelClassName?: string
-  icon?: false | 'arrow' | 'search' | 'github' | 'plus' | 'loading'
+  icon?: false | 'arrow' | 'search' | 'github' | 'plus' | 'loading' | 'copy'
   iconSize?: 'large' | 'medium' | 'small' | undefined
   fullWidth?: boolean
   mobileFullWidth?: boolean
@@ -71,6 +73,7 @@ const icons = {
   github: GitHubIcon,
   plus: PlusIcon,
   loading: LoaderIcon,
+  copy: CopyIcon,
 }
 
 type GenerateSlugType = {
@@ -254,6 +257,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) =>
     size = 'default',
     disabled,
     href: hrefFromProps,
+    id,
     url,
     hideBorders,
     hideHorizontalBorders,
@@ -338,6 +342,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) =>
           onMouseLeave={() => {
             setIsHovered(false)
           }}
+          id={id}
         >
           <ButtonContent {...props} />
         </a>
@@ -363,6 +368,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) =>
           setIsHovered(false)
         }}
         disabled={disabled}
+        id={id}
       >
         <ButtonContent appearance={appearance} {...props} />
       </Element>

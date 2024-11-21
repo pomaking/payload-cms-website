@@ -31,17 +31,50 @@ export interface Config {
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
   };
+  collectionsJoins: {};
+  collectionsSelect: {
+    'case-studies': CaseStudiesSelect<false> | CaseStudiesSelect<true>;
+    'community-help': CommunityHelpSelect<false> | CommunityHelpSelect<true>;
+    docs: DocsSelect<false> | DocsSelect<true>;
+    media: MediaSelect<false> | MediaSelect<true>;
+    pages: PagesSelect<false> | PagesSelect<true>;
+    industries: IndustriesSelect<false> | IndustriesSelect<true>;
+    specialties: SpecialtiesSelect<false> | SpecialtiesSelect<true>;
+    regions: RegionsSelect<false> | RegionsSelect<true>;
+    budgets: BudgetsSelect<false> | BudgetsSelect<true>;
+    posts: PostsSelect<false> | PostsSelect<true>;
+    'reusable-content': ReusableContentSelect<false> | ReusableContentSelect<true>;
+    users: UsersSelect<false> | UsersSelect<true>;
+    partners: PartnersSelect<false> | PartnersSelect<true>;
+    forms: FormsSelect<false> | FormsSelect<true>;
+    'form-submissions': FormSubmissionsSelect<false> | FormSubmissionsSelect<true>;
+    redirects: RedirectsSelect<false> | RedirectsSelect<true>;
+    'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
+    'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
+    'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
+  };
   db: {
     defaultIDType: string;
   };
   globals: {
     footer: Footer;
     'main-menu': MainMenu;
+    'get-started': GetStarted;
     'partner-program': PartnerProgram;
+  };
+  globalsSelect: {
+    footer: FooterSelect<false> | FooterSelect<true>;
+    'main-menu': MainMenuSelect<false> | MainMenuSelect<true>;
+    'get-started': GetStartedSelect<false> | GetStartedSelect<true>;
+    'partner-program': PartnerProgramSelect<false> | PartnerProgramSelect<true>;
   };
   locale: null;
   user: User & {
     collection: 'users';
+  };
+  jobs: {
+    tasks: unknown;
+    workflows: unknown;
   };
 }
 export interface UserAuthOperations {
@@ -93,6 +126,7 @@ export interface CaseStudy {
             calloutFields: {
               settings?: {
                 theme?: ('light' | 'dark') | null;
+                background?: ('solid' | 'transparent' | 'gradientUp' | 'gradientDown') | null;
               };
               richText: {
                 root: {
@@ -127,6 +161,7 @@ export interface CaseStudy {
             ctaFields: {
               settings?: {
                 theme?: ('light' | 'dark') | null;
+                background?: ('solid' | 'transparent' | 'gradientUp' | 'gradientDown') | null;
               };
               style?: ('buttons' | 'banner') | null;
               richText: {
@@ -144,6 +179,7 @@ export interface CaseStudy {
                 };
                 [k: string]: unknown;
               };
+              commandLine?: string | null;
               links?:
                 | {
                     type?: ('link' | 'npmCta') | null;
@@ -168,6 +204,7 @@ export interface CaseStudy {
                           } | null);
                       url?: string | null;
                       label: string;
+                      customId?: string | null;
                     };
                     id?: string | null;
                   }[]
@@ -190,8 +227,10 @@ export interface CaseStudy {
                     } | null);
                 url?: string | null;
                 label: string;
+                customId?: string | null;
               };
               bannerImage?: (string | null) | Media;
+              gradientBackground?: boolean | null;
             };
             id?: string | null;
             blockName?: string | null;
@@ -201,6 +240,7 @@ export interface CaseStudy {
             cardGridFields: {
               settings?: {
                 theme?: ('light' | 'dark') | null;
+                background?: ('solid' | 'transparent' | 'gradientUp' | 'gradientDown') | null;
               };
               richText: {
                 root: {
@@ -237,6 +277,7 @@ export interface CaseStudy {
                           } | null);
                       url?: string | null;
                       label: string;
+                      customId?: string | null;
                     };
                     id?: string | null;
                   }[]
@@ -264,6 +305,7 @@ export interface CaseStudy {
                             value: string | CaseStudy;
                           } | null);
                       url?: string | null;
+                      customId?: string | null;
                     };
                     id?: string | null;
                   }[]
@@ -277,6 +319,7 @@ export interface CaseStudy {
             caseStudyCardFields?: {
               settings?: {
                 theme?: ('light' | 'dark') | null;
+                background?: ('solid' | 'transparent' | 'gradientUp' | 'gradientDown') | null;
               };
               pixels?: boolean | null;
               cards?:
@@ -309,6 +352,7 @@ export interface CaseStudy {
             caseStudiesHighlightFields: {
               settings?: {
                 theme?: ('light' | 'dark') | null;
+                background?: ('solid' | 'transparent' | 'gradientUp' | 'gradientDown') | null;
               };
               richText: {
                 root: {
@@ -335,6 +379,7 @@ export interface CaseStudy {
             caseStudyParallaxFields?: {
               settings?: {
                 theme?: ('light' | 'dark') | null;
+                background?: ('solid' | 'transparent' | 'gradientUp' | 'gradientDown') | null;
               };
               items?:
                 | {
@@ -361,6 +406,7 @@ export interface CaseStudy {
             codeFeatureFields: {
               settings?: {
                 theme?: ('light' | 'dark') | null;
+                background?: ('solid' | 'transparent' | 'gradientUp' | 'gradientDown') | null;
               };
               forceDarkBackground?: boolean | null;
               alignment?: ('contentCode' | 'codeContent') | null;
@@ -400,6 +446,7 @@ export interface CaseStudy {
                           } | null);
                       url?: string | null;
                       label: string;
+                      customId?: string | null;
                     };
                     id?: string | null;
                   }[]
@@ -447,6 +494,7 @@ export interface CaseStudy {
                                 } | null);
                             url?: string | null;
                             label: string;
+                            customId?: string | null;
                           };
                           id?: string | null;
                         }[]
@@ -463,6 +511,7 @@ export interface CaseStudy {
             contentFields: {
               settings?: {
                 theme?: ('light' | 'dark') | null;
+                background?: ('solid' | 'transparent' | 'gradientUp' | 'gradientDown') | null;
               };
               useLeadingHeader?: boolean | null;
               leadingHeader?: {
@@ -535,6 +584,7 @@ export interface CaseStudy {
             contentGridFields?: {
               settings?: {
                 theme?: ('light' | 'dark') | null;
+                background?: ('solid' | 'transparent' | 'gradientUp' | 'gradientDown') | null;
               };
               style?: ('gridBelow' | 'sideBySide') | null;
               showNumbers?: boolean | null;
@@ -573,6 +623,7 @@ export interface CaseStudy {
                           } | null);
                       url?: string | null;
                       label: string;
+                      customId?: string | null;
                     };
                     id?: string | null;
                   }[]
@@ -606,6 +657,7 @@ export interface CaseStudy {
             formFields: {
               settings?: {
                 theme?: ('light' | 'dark') | null;
+                background?: ('solid' | 'transparent' | 'gradientUp' | 'gradientDown') | null;
               };
               richText: {
                 root: {
@@ -632,7 +684,9 @@ export interface CaseStudy {
             hoverCardsFields: {
               settings?: {
                 theme?: ('light' | 'dark') | null;
+                background?: ('solid' | 'transparent' | 'gradientUp' | 'gradientDown') | null;
               };
+              hideBackground?: boolean | null;
               richText: {
                 root: {
                   type: string;
@@ -669,6 +723,7 @@ export interface CaseStudy {
                             value: string | CaseStudy;
                           } | null);
                       url?: string | null;
+                      customId?: string | null;
                     };
                     id?: string | null;
                   }[]
@@ -682,6 +737,7 @@ export interface CaseStudy {
             hoverHighlightsFields: {
               settings?: {
                 theme?: ('light' | 'dark') | null;
+                background?: ('solid' | 'transparent' | 'gradientUp' | 'gradientDown') | null;
               };
               beforeHighlights?: string | null;
               highlights?:
@@ -708,6 +764,7 @@ export interface CaseStudy {
                             value: string | CaseStudy;
                           } | null);
                       url?: string | null;
+                      customId?: string | null;
                     };
                     id?: string | null;
                   }[]
@@ -731,6 +788,7 @@ export interface CaseStudy {
                     } | null);
                 url?: string | null;
                 label: string;
+                customId?: string | null;
               };
             };
             id?: string | null;
@@ -741,6 +799,7 @@ export interface CaseStudy {
             linkGridFields?: {
               settings?: {
                 theme?: ('light' | 'dark') | null;
+                background?: ('solid' | 'transparent' | 'gradientUp' | 'gradientDown') | null;
               };
               links?:
                 | {
@@ -762,6 +821,7 @@ export interface CaseStudy {
                           } | null);
                       url?: string | null;
                       label: string;
+                      customId?: string | null;
                     };
                     id?: string | null;
                   }[]
@@ -775,6 +835,7 @@ export interface CaseStudy {
             logoGridFields: {
               settings?: {
                 theme?: ('light' | 'dark') | null;
+                background?: ('solid' | 'transparent' | 'gradientUp' | 'gradientDown') | null;
               };
               richText: {
                 root: {
@@ -810,6 +871,7 @@ export interface CaseStudy {
                     } | null);
                 url?: string | null;
                 label: string;
+                customId?: string | null;
               };
               logos?:
                 | {
@@ -826,6 +888,7 @@ export interface CaseStudy {
             mediaBlockFields: {
               settings?: {
                 theme?: ('light' | 'dark') | null;
+                background?: ('solid' | 'transparent' | 'gradientUp' | 'gradientDown') | null;
               };
               position?: ('default' | 'wide') | null;
               media: string | Media;
@@ -853,6 +916,7 @@ export interface CaseStudy {
             mediaContentFields: {
               settings?: {
                 theme?: ('light' | 'dark') | null;
+                background?: ('solid' | 'transparent' | 'gradientUp' | 'gradientDown') | null;
               };
               alignment?: ('contentMedia' | 'mediaContent') | null;
               mediaWidth?: ('stretch' | 'fit') | null;
@@ -890,6 +954,7 @@ export interface CaseStudy {
                     } | null);
                 url?: string | null;
                 label: string;
+                customId?: string | null;
               };
               images?:
                 | {
@@ -906,6 +971,7 @@ export interface CaseStudy {
             mediaContentAccordionFields?: {
               settings?: {
                 theme?: ('light' | 'dark') | null;
+                background?: ('solid' | 'transparent' | 'gradientUp' | 'gradientDown') | null;
               };
               alignment?: ('contentMedia' | 'mediaContent') | null;
               leader?: string | null;
@@ -949,6 +1015,7 @@ export interface CaseStudy {
                           } | null);
                       url?: string | null;
                       label: string;
+                      customId?: string | null;
                     };
                     media: string | Media;
                     id?: string | null;
@@ -963,6 +1030,7 @@ export interface CaseStudy {
             pricingFields?: {
               settings?: {
                 theme?: ('light' | 'dark') | null;
+                background?: ('solid' | 'transparent' | 'gradientUp' | 'gradientDown') | null;
               };
               plans?:
                 | {
@@ -991,6 +1059,7 @@ export interface CaseStudy {
                           } | null);
                       url?: string | null;
                       label: string;
+                      customId?: string | null;
                     };
                     features?:
                       | {
@@ -1012,6 +1081,7 @@ export interface CaseStudy {
             reusableContentBlockFields: {
               settings?: {
                 theme?: ('light' | 'dark') | null;
+                background?: ('solid' | 'transparent' | 'gradientUp' | 'gradientDown') | null;
               };
               reusableContent: string | ReusableContent;
               customId?: string | null;
@@ -1024,12 +1094,75 @@ export interface CaseStudy {
             sliderFields: {
               settings?: {
                 theme?: ('light' | 'dark') | null;
+                background?: ('solid' | 'transparent' | 'gradientUp' | 'gradientDown') | null;
               };
+              introContent?: {
+                root: {
+                  type: string;
+                  children: {
+                    type: string;
+                    version: number;
+                    [k: string]: unknown;
+                  }[];
+                  direction: ('ltr' | 'rtl') | null;
+                  format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                  indent: number;
+                  version: number;
+                };
+                [k: string]: unknown;
+              } | null;
+              links?:
+                | {
+                    link: {
+                      type?: ('reference' | 'custom') | null;
+                      newTab?: boolean | null;
+                      reference?:
+                        | ({
+                            relationTo: 'pages';
+                            value: string | Page;
+                          } | null)
+                        | ({
+                            relationTo: 'posts';
+                            value: string | Post;
+                          } | null)
+                        | ({
+                            relationTo: 'case-studies';
+                            value: string | CaseStudy;
+                          } | null);
+                      url?: string | null;
+                      label: string;
+                      customId?: string | null;
+                      appearance?: ('default' | 'primary' | 'secondary') | null;
+                    };
+                    id?: string | null;
+                  }[]
+                | null;
               quoteSlides: {
-                leader?: string | null;
                 quote: string;
                 author: string;
                 role?: string | null;
+                logo?: (string | null) | Media;
+                enableLink?: boolean | null;
+                link?: {
+                  type?: ('reference' | 'custom') | null;
+                  newTab?: boolean | null;
+                  reference?:
+                    | ({
+                        relationTo: 'pages';
+                        value: string | Page;
+                      } | null)
+                    | ({
+                        relationTo: 'posts';
+                        value: string | Post;
+                      } | null)
+                    | ({
+                        relationTo: 'case-studies';
+                        value: string | CaseStudy;
+                      } | null);
+                  url?: string | null;
+                  label: string;
+                  customId?: string | null;
+                };
                 id?: string | null;
               }[];
             };
@@ -1041,6 +1174,7 @@ export interface CaseStudy {
             statementFields: {
               settings?: {
                 theme?: ('light' | 'dark') | null;
+                background?: ('solid' | 'transparent' | 'gradientUp' | 'gradientDown') | null;
               };
               richText: {
                 root: {
@@ -1077,6 +1211,7 @@ export interface CaseStudy {
                           } | null);
                       url?: string | null;
                       label: string;
+                      customId?: string | null;
                     };
                     id?: string | null;
                   }[]
@@ -1092,357 +1227,12 @@ export interface CaseStudy {
             blockName?: string | null;
             blockType: 'statement';
           }
-        | {
-            stepsFields: {
-              settings?: {
-                theme?: ('light' | 'dark') | null;
-              };
-              steps: {
-                layout?:
-                  | (
-                      | {
-                          codeFeatureFields: {
-                            settings?: {
-                              theme?: ('light' | 'dark') | null;
-                            };
-                            forceDarkBackground?: boolean | null;
-                            alignment?: ('contentCode' | 'codeContent') | null;
-                            heading?: string | null;
-                            richText: {
-                              root: {
-                                type: string;
-                                children: {
-                                  type: string;
-                                  version: number;
-                                  [k: string]: unknown;
-                                }[];
-                                direction: ('ltr' | 'rtl') | null;
-                                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-                                indent: number;
-                                version: number;
-                              };
-                              [k: string]: unknown;
-                            };
-                            links?:
-                              | {
-                                  link: {
-                                    type?: ('reference' | 'custom') | null;
-                                    newTab?: boolean | null;
-                                    reference?:
-                                      | ({
-                                          relationTo: 'pages';
-                                          value: string | Page;
-                                        } | null)
-                                      | ({
-                                          relationTo: 'posts';
-                                          value: string | Post;
-                                        } | null)
-                                      | ({
-                                          relationTo: 'case-studies';
-                                          value: string | CaseStudy;
-                                        } | null);
-                                    url?: string | null;
-                                    label: string;
-                                  };
-                                  id?: string | null;
-                                }[]
-                              | null;
-                            codeTabs?:
-                              | {
-                                  language?: ('none' | 'js' | 'ts') | null;
-                                  label: string;
-                                  code: string;
-                                  codeBlips?:
-                                    | {
-                                        row: number;
-                                        label: string;
-                                        feature: {
-                                          root: {
-                                            type: string;
-                                            children: {
-                                              type: string;
-                                              version: number;
-                                              [k: string]: unknown;
-                                            }[];
-                                            direction: ('ltr' | 'rtl') | null;
-                                            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-                                            indent: number;
-                                            version: number;
-                                          };
-                                          [k: string]: unknown;
-                                        };
-                                        enableLink?: boolean | null;
-                                        link?: {
-                                          type?: ('reference' | 'custom') | null;
-                                          newTab?: boolean | null;
-                                          reference?:
-                                            | ({
-                                                relationTo: 'pages';
-                                                value: string | Page;
-                                              } | null)
-                                            | ({
-                                                relationTo: 'posts';
-                                                value: string | Post;
-                                              } | null)
-                                            | ({
-                                                relationTo: 'case-studies';
-                                                value: string | CaseStudy;
-                                              } | null);
-                                          url?: string | null;
-                                          label: string;
-                                        };
-                                        id?: string | null;
-                                      }[]
-                                    | null;
-                                  id?: string | null;
-                                }[]
-                              | null;
-                          };
-                          id?: string | null;
-                          blockName?: string | null;
-                          blockType: 'codeFeature';
-                        }
-                      | {
-                          contentFields: {
-                            settings?: {
-                              theme?: ('light' | 'dark') | null;
-                            };
-                            useLeadingHeader?: boolean | null;
-                            leadingHeader?: {
-                              root: {
-                                type: string;
-                                children: {
-                                  type: string;
-                                  version: number;
-                                  [k: string]: unknown;
-                                }[];
-                                direction: ('ltr' | 'rtl') | null;
-                                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-                                indent: number;
-                                version: number;
-                              };
-                              [k: string]: unknown;
-                            } | null;
-                            layout?:
-                              | ('oneColumn' | 'twoColumns' | 'twoThirdsOneThird' | 'halfAndHalf' | 'threeColumns')
-                              | null;
-                            columnOne: {
-                              root: {
-                                type: string;
-                                children: {
-                                  type: string;
-                                  version: number;
-                                  [k: string]: unknown;
-                                }[];
-                                direction: ('ltr' | 'rtl') | null;
-                                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-                                indent: number;
-                                version: number;
-                              };
-                              [k: string]: unknown;
-                            };
-                            columnTwo?: {
-                              root: {
-                                type: string;
-                                children: {
-                                  type: string;
-                                  version: number;
-                                  [k: string]: unknown;
-                                }[];
-                                direction: ('ltr' | 'rtl') | null;
-                                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-                                indent: number;
-                                version: number;
-                              };
-                              [k: string]: unknown;
-                            } | null;
-                            columnThree?: {
-                              root: {
-                                type: string;
-                                children: {
-                                  type: string;
-                                  version: number;
-                                  [k: string]: unknown;
-                                }[];
-                                direction: ('ltr' | 'rtl') | null;
-                                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-                                indent: number;
-                                version: number;
-                              };
-                              [k: string]: unknown;
-                            } | null;
-                          };
-                          id?: string | null;
-                          blockName?: string | null;
-                          blockType: 'content';
-                        }
-                      | {
-                          hoverHighlightsFields: {
-                            settings?: {
-                              theme?: ('light' | 'dark') | null;
-                            };
-                            beforeHighlights?: string | null;
-                            highlights?:
-                              | {
-                                  text: string;
-                                  media?: {
-                                    top?: (string | null) | Media;
-                                    bottom?: (string | null) | Media;
-                                  };
-                                  link?: {
-                                    type?: ('reference' | 'custom') | null;
-                                    newTab?: boolean | null;
-                                    reference?:
-                                      | ({
-                                          relationTo: 'pages';
-                                          value: string | Page;
-                                        } | null)
-                                      | ({
-                                          relationTo: 'posts';
-                                          value: string | Post;
-                                        } | null)
-                                      | ({
-                                          relationTo: 'case-studies';
-                                          value: string | CaseStudy;
-                                        } | null);
-                                    url?: string | null;
-                                  };
-                                  id?: string | null;
-                                }[]
-                              | null;
-                            afterHighlights?: string | null;
-                            link: {
-                              type?: ('reference' | 'custom') | null;
-                              newTab?: boolean | null;
-                              reference?:
-                                | ({
-                                    relationTo: 'pages';
-                                    value: string | Page;
-                                  } | null)
-                                | ({
-                                    relationTo: 'posts';
-                                    value: string | Post;
-                                  } | null)
-                                | ({
-                                    relationTo: 'case-studies';
-                                    value: string | CaseStudy;
-                                  } | null);
-                              url?: string | null;
-                              label: string;
-                            };
-                          };
-                          id?: string | null;
-                          blockName?: string | null;
-                          blockType: 'hoverHighlights';
-                        }
-                      | {
-                          stickyHighlightsFields?: {
-                            settings?: {
-                              theme?: ('light' | 'dark') | null;
-                            };
-                            highlights?:
-                              | {
-                                  richText: {
-                                    root: {
-                                      type: string;
-                                      children: {
-                                        type: string;
-                                        version: number;
-                                        [k: string]: unknown;
-                                      }[];
-                                      direction: ('ltr' | 'rtl') | null;
-                                      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-                                      indent: number;
-                                      version: number;
-                                    };
-                                    [k: string]: unknown;
-                                  };
-                                  enableLink?: boolean | null;
-                                  link?: {
-                                    type?: ('reference' | 'custom') | null;
-                                    newTab?: boolean | null;
-                                    reference?:
-                                      | ({
-                                          relationTo: 'pages';
-                                          value: string | Page;
-                                        } | null)
-                                      | ({
-                                          relationTo: 'posts';
-                                          value: string | Post;
-                                        } | null)
-                                      | ({
-                                          relationTo: 'case-studies';
-                                          value: string | CaseStudy;
-                                        } | null);
-                                    url?: string | null;
-                                    label: string;
-                                  };
-                                  type?: ('code' | 'media') | null;
-                                  code?: string | null;
-                                  codeBlips?:
-                                    | {
-                                        row: number;
-                                        label: string;
-                                        feature: {
-                                          root: {
-                                            type: string;
-                                            children: {
-                                              type: string;
-                                              version: number;
-                                              [k: string]: unknown;
-                                            }[];
-                                            direction: ('ltr' | 'rtl') | null;
-                                            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-                                            indent: number;
-                                            version: number;
-                                          };
-                                          [k: string]: unknown;
-                                        };
-                                        enableLink?: boolean | null;
-                                        link?: {
-                                          type?: ('reference' | 'custom') | null;
-                                          newTab?: boolean | null;
-                                          reference?:
-                                            | ({
-                                                relationTo: 'pages';
-                                                value: string | Page;
-                                              } | null)
-                                            | ({
-                                                relationTo: 'posts';
-                                                value: string | Post;
-                                              } | null)
-                                            | ({
-                                                relationTo: 'case-studies';
-                                                value: string | CaseStudy;
-                                              } | null);
-                                          url?: string | null;
-                                          label: string;
-                                        };
-                                        id?: string | null;
-                                      }[]
-                                    | null;
-                                  media?: (string | null) | Media;
-                                  id?: string | null;
-                                }[]
-                              | null;
-                          };
-                          id?: string | null;
-                          blockName?: string | null;
-                          blockType: 'stickyHighlights';
-                        }
-                    )[]
-                  | null;
-                id?: string | null;
-              }[];
-            };
-            id?: string | null;
-            blockName?: string | null;
-            blockType: 'steps';
-          }
+        | StepsBlock
         | {
             stickyHighlightsFields?: {
               settings?: {
                 theme?: ('light' | 'dark') | null;
+                background?: ('solid' | 'transparent' | 'gradientUp' | 'gradientDown') | null;
               };
               highlights?:
                 | {
@@ -1480,6 +1270,7 @@ export interface CaseStudy {
                           } | null);
                       url?: string | null;
                       label: string;
+                      customId?: string | null;
                     };
                     type?: ('code' | 'media') | null;
                     code?: string | null;
@@ -1521,6 +1312,7 @@ export interface CaseStudy {
                                 } | null);
                             url?: string | null;
                             label: string;
+                            customId?: string | null;
                           };
                           id?: string | null;
                         }[]
@@ -1579,7 +1371,16 @@ export interface Page {
   fullTitle?: string | null;
   noindex?: boolean | null;
   hero: {
-    type: 'default' | 'contentMedia' | 'centeredContent' | 'form' | 'home' | 'livestream' | 'gradient' | 'three';
+    type:
+      | 'default'
+      | 'contentMedia'
+      | 'centeredContent'
+      | 'form'
+      | 'home'
+      | 'homeNew'
+      | 'livestream'
+      | 'gradient'
+      | 'three';
     fullBackground?: boolean | null;
     theme?: ('light' | 'dark') | null;
     enableBreadcrumbsBar?: boolean | null;
@@ -1603,6 +1404,7 @@ export interface Page {
                 } | null);
             url?: string | null;
             label: string;
+            customId?: string | null;
           };
           id?: string | null;
         }[]
@@ -1654,6 +1456,7 @@ export interface Page {
           } | null);
       url?: string | null;
       label: string;
+      customId?: string | null;
     };
     richText?: {
       root: {
@@ -1687,7 +1490,11 @@ export interface Page {
     } | null;
     primaryButtons?:
       | {
-          link: {
+          type?: ('link' | 'npmCta') | null;
+          npmCta?: {
+            label: string;
+          };
+          link?: {
             type?: ('reference' | 'custom') | null;
             newTab?: boolean | null;
             reference?:
@@ -1705,6 +1512,7 @@ export interface Page {
                 } | null);
             url?: string | null;
             label: string;
+            customId?: string | null;
           };
           id?: string | null;
         }[]
@@ -1759,6 +1567,7 @@ export interface Page {
                 } | null);
             url?: string | null;
             label: string;
+            customId?: string | null;
             appearance?: ('default' | 'primary' | 'secondary') | null;
           };
           id?: string | null;
@@ -1790,6 +1599,7 @@ export interface Page {
                     } | null);
                 url?: string | null;
                 label: string;
+                customId?: string | null;
                 appearance?: ('default' | 'primary' | 'secondary') | null;
               };
               id?: string | null;
@@ -1824,6 +1634,7 @@ export interface Page {
                 } | null);
             url?: string | null;
             label: string;
+            customId?: string | null;
           };
           id?: string | null;
         }[]
@@ -1834,6 +1645,7 @@ export interface Page {
           id?: string | null;
         }[]
       | null;
+    enableMedia?: boolean | null;
     media?: (string | null) | Media;
     secondaryMedia?: (string | null) | Media;
     featureVideo?: (string | null) | Media;
@@ -1844,12 +1656,29 @@ export interface Page {
           id?: string | null;
         }[]
       | null;
+    logoShowcaseLabel?: {
+      root: {
+        type: string;
+        children: {
+          type: string;
+          version: number;
+          [k: string]: unknown;
+        }[];
+        direction: ('ltr' | 'rtl') | null;
+        format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+        indent: number;
+        version: number;
+      };
+      [k: string]: unknown;
+    } | null;
+    logoShowcase?: (string | Media)[] | null;
   };
   layout: (
     | {
         calloutFields: {
           settings?: {
             theme?: ('light' | 'dark') | null;
+            background?: ('solid' | 'transparent' | 'gradientUp' | 'gradientDown') | null;
           };
           richText: {
             root: {
@@ -1884,6 +1713,7 @@ export interface Page {
         ctaFields: {
           settings?: {
             theme?: ('light' | 'dark') | null;
+            background?: ('solid' | 'transparent' | 'gradientUp' | 'gradientDown') | null;
           };
           style?: ('buttons' | 'banner') | null;
           richText: {
@@ -1901,6 +1731,7 @@ export interface Page {
             };
             [k: string]: unknown;
           };
+          commandLine?: string | null;
           links?:
             | {
                 type?: ('link' | 'npmCta') | null;
@@ -1925,6 +1756,7 @@ export interface Page {
                       } | null);
                   url?: string | null;
                   label: string;
+                  customId?: string | null;
                 };
                 id?: string | null;
               }[]
@@ -1947,8 +1779,10 @@ export interface Page {
                 } | null);
             url?: string | null;
             label: string;
+            customId?: string | null;
           };
           bannerImage?: (string | null) | Media;
+          gradientBackground?: boolean | null;
         };
         id?: string | null;
         blockName?: string | null;
@@ -1958,6 +1792,7 @@ export interface Page {
         cardGridFields: {
           settings?: {
             theme?: ('light' | 'dark') | null;
+            background?: ('solid' | 'transparent' | 'gradientUp' | 'gradientDown') | null;
           };
           richText: {
             root: {
@@ -1994,6 +1829,7 @@ export interface Page {
                       } | null);
                   url?: string | null;
                   label: string;
+                  customId?: string | null;
                 };
                 id?: string | null;
               }[]
@@ -2021,6 +1857,7 @@ export interface Page {
                         value: string | CaseStudy;
                       } | null);
                   url?: string | null;
+                  customId?: string | null;
                 };
                 id?: string | null;
               }[]
@@ -2034,6 +1871,7 @@ export interface Page {
         caseStudyCardFields?: {
           settings?: {
             theme?: ('light' | 'dark') | null;
+            background?: ('solid' | 'transparent' | 'gradientUp' | 'gradientDown') | null;
           };
           pixels?: boolean | null;
           cards?:
@@ -2066,6 +1904,7 @@ export interface Page {
         caseStudiesHighlightFields: {
           settings?: {
             theme?: ('light' | 'dark') | null;
+            background?: ('solid' | 'transparent' | 'gradientUp' | 'gradientDown') | null;
           };
           richText: {
             root: {
@@ -2092,6 +1931,7 @@ export interface Page {
         caseStudyParallaxFields?: {
           settings?: {
             theme?: ('light' | 'dark') | null;
+            background?: ('solid' | 'transparent' | 'gradientUp' | 'gradientDown') | null;
           };
           items?:
             | {
@@ -2118,6 +1958,7 @@ export interface Page {
         codeFeatureFields: {
           settings?: {
             theme?: ('light' | 'dark') | null;
+            background?: ('solid' | 'transparent' | 'gradientUp' | 'gradientDown') | null;
           };
           forceDarkBackground?: boolean | null;
           alignment?: ('contentCode' | 'codeContent') | null;
@@ -2157,6 +1998,7 @@ export interface Page {
                       } | null);
                   url?: string | null;
                   label: string;
+                  customId?: string | null;
                 };
                 id?: string | null;
               }[]
@@ -2204,6 +2046,7 @@ export interface Page {
                             } | null);
                         url?: string | null;
                         label: string;
+                        customId?: string | null;
                       };
                       id?: string | null;
                     }[]
@@ -2220,6 +2063,7 @@ export interface Page {
         contentFields: {
           settings?: {
             theme?: ('light' | 'dark') | null;
+            background?: ('solid' | 'transparent' | 'gradientUp' | 'gradientDown') | null;
           };
           useLeadingHeader?: boolean | null;
           leadingHeader?: {
@@ -2292,6 +2136,7 @@ export interface Page {
         contentGridFields?: {
           settings?: {
             theme?: ('light' | 'dark') | null;
+            background?: ('solid' | 'transparent' | 'gradientUp' | 'gradientDown') | null;
           };
           style?: ('gridBelow' | 'sideBySide') | null;
           showNumbers?: boolean | null;
@@ -2330,6 +2175,7 @@ export interface Page {
                       } | null);
                   url?: string | null;
                   label: string;
+                  customId?: string | null;
                 };
                 id?: string | null;
               }[]
@@ -2363,6 +2209,7 @@ export interface Page {
         formFields: {
           settings?: {
             theme?: ('light' | 'dark') | null;
+            background?: ('solid' | 'transparent' | 'gradientUp' | 'gradientDown') | null;
           };
           richText: {
             root: {
@@ -2389,7 +2236,9 @@ export interface Page {
         hoverCardsFields: {
           settings?: {
             theme?: ('light' | 'dark') | null;
+            background?: ('solid' | 'transparent' | 'gradientUp' | 'gradientDown') | null;
           };
+          hideBackground?: boolean | null;
           richText: {
             root: {
               type: string;
@@ -2426,6 +2275,7 @@ export interface Page {
                         value: string | CaseStudy;
                       } | null);
                   url?: string | null;
+                  customId?: string | null;
                 };
                 id?: string | null;
               }[]
@@ -2439,6 +2289,7 @@ export interface Page {
         hoverHighlightsFields: {
           settings?: {
             theme?: ('light' | 'dark') | null;
+            background?: ('solid' | 'transparent' | 'gradientUp' | 'gradientDown') | null;
           };
           beforeHighlights?: string | null;
           highlights?:
@@ -2465,6 +2316,7 @@ export interface Page {
                         value: string | CaseStudy;
                       } | null);
                   url?: string | null;
+                  customId?: string | null;
                 };
                 id?: string | null;
               }[]
@@ -2488,6 +2340,7 @@ export interface Page {
                 } | null);
             url?: string | null;
             label: string;
+            customId?: string | null;
           };
         };
         id?: string | null;
@@ -2498,6 +2351,7 @@ export interface Page {
         linkGridFields?: {
           settings?: {
             theme?: ('light' | 'dark') | null;
+            background?: ('solid' | 'transparent' | 'gradientUp' | 'gradientDown') | null;
           };
           links?:
             | {
@@ -2519,6 +2373,7 @@ export interface Page {
                       } | null);
                   url?: string | null;
                   label: string;
+                  customId?: string | null;
                 };
                 id?: string | null;
               }[]
@@ -2532,6 +2387,7 @@ export interface Page {
         logoGridFields: {
           settings?: {
             theme?: ('light' | 'dark') | null;
+            background?: ('solid' | 'transparent' | 'gradientUp' | 'gradientDown') | null;
           };
           richText: {
             root: {
@@ -2567,6 +2423,7 @@ export interface Page {
                 } | null);
             url?: string | null;
             label: string;
+            customId?: string | null;
           };
           logos?:
             | {
@@ -2583,6 +2440,7 @@ export interface Page {
         mediaBlockFields: {
           settings?: {
             theme?: ('light' | 'dark') | null;
+            background?: ('solid' | 'transparent' | 'gradientUp' | 'gradientDown') | null;
           };
           position?: ('default' | 'wide') | null;
           media: string | Media;
@@ -2610,6 +2468,7 @@ export interface Page {
         mediaContentFields: {
           settings?: {
             theme?: ('light' | 'dark') | null;
+            background?: ('solid' | 'transparent' | 'gradientUp' | 'gradientDown') | null;
           };
           alignment?: ('contentMedia' | 'mediaContent') | null;
           mediaWidth?: ('stretch' | 'fit') | null;
@@ -2647,6 +2506,7 @@ export interface Page {
                 } | null);
             url?: string | null;
             label: string;
+            customId?: string | null;
           };
           images?:
             | {
@@ -2663,6 +2523,7 @@ export interface Page {
         mediaContentAccordionFields?: {
           settings?: {
             theme?: ('light' | 'dark') | null;
+            background?: ('solid' | 'transparent' | 'gradientUp' | 'gradientDown') | null;
           };
           alignment?: ('contentMedia' | 'mediaContent') | null;
           leader?: string | null;
@@ -2706,6 +2567,7 @@ export interface Page {
                       } | null);
                   url?: string | null;
                   label: string;
+                  customId?: string | null;
                 };
                 media: string | Media;
                 id?: string | null;
@@ -2720,6 +2582,7 @@ export interface Page {
         pricingFields?: {
           settings?: {
             theme?: ('light' | 'dark') | null;
+            background?: ('solid' | 'transparent' | 'gradientUp' | 'gradientDown') | null;
           };
           plans?:
             | {
@@ -2748,6 +2611,7 @@ export interface Page {
                       } | null);
                   url?: string | null;
                   label: string;
+                  customId?: string | null;
                 };
                 features?:
                   | {
@@ -2769,6 +2633,7 @@ export interface Page {
         reusableContentBlockFields: {
           settings?: {
             theme?: ('light' | 'dark') | null;
+            background?: ('solid' | 'transparent' | 'gradientUp' | 'gradientDown') | null;
           };
           reusableContent: string | ReusableContent;
           customId?: string | null;
@@ -2781,12 +2646,75 @@ export interface Page {
         sliderFields: {
           settings?: {
             theme?: ('light' | 'dark') | null;
+            background?: ('solid' | 'transparent' | 'gradientUp' | 'gradientDown') | null;
           };
+          introContent?: {
+            root: {
+              type: string;
+              children: {
+                type: string;
+                version: number;
+                [k: string]: unknown;
+              }[];
+              direction: ('ltr' | 'rtl') | null;
+              format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+              indent: number;
+              version: number;
+            };
+            [k: string]: unknown;
+          } | null;
+          links?:
+            | {
+                link: {
+                  type?: ('reference' | 'custom') | null;
+                  newTab?: boolean | null;
+                  reference?:
+                    | ({
+                        relationTo: 'pages';
+                        value: string | Page;
+                      } | null)
+                    | ({
+                        relationTo: 'posts';
+                        value: string | Post;
+                      } | null)
+                    | ({
+                        relationTo: 'case-studies';
+                        value: string | CaseStudy;
+                      } | null);
+                  url?: string | null;
+                  label: string;
+                  customId?: string | null;
+                  appearance?: ('default' | 'primary' | 'secondary') | null;
+                };
+                id?: string | null;
+              }[]
+            | null;
           quoteSlides: {
-            leader?: string | null;
             quote: string;
             author: string;
             role?: string | null;
+            logo?: (string | null) | Media;
+            enableLink?: boolean | null;
+            link?: {
+              type?: ('reference' | 'custom') | null;
+              newTab?: boolean | null;
+              reference?:
+                | ({
+                    relationTo: 'pages';
+                    value: string | Page;
+                  } | null)
+                | ({
+                    relationTo: 'posts';
+                    value: string | Post;
+                  } | null)
+                | ({
+                    relationTo: 'case-studies';
+                    value: string | CaseStudy;
+                  } | null);
+              url?: string | null;
+              label: string;
+              customId?: string | null;
+            };
             id?: string | null;
           }[];
         };
@@ -2798,6 +2726,7 @@ export interface Page {
         statementFields: {
           settings?: {
             theme?: ('light' | 'dark') | null;
+            background?: ('solid' | 'transparent' | 'gradientUp' | 'gradientDown') | null;
           };
           richText: {
             root: {
@@ -2834,6 +2763,7 @@ export interface Page {
                       } | null);
                   url?: string | null;
                   label: string;
+                  customId?: string | null;
                 };
                 id?: string | null;
               }[]
@@ -2849,357 +2779,12 @@ export interface Page {
         blockName?: string | null;
         blockType: 'statement';
       }
-    | {
-        stepsFields: {
-          settings?: {
-            theme?: ('light' | 'dark') | null;
-          };
-          steps: {
-            layout?:
-              | (
-                  | {
-                      codeFeatureFields: {
-                        settings?: {
-                          theme?: ('light' | 'dark') | null;
-                        };
-                        forceDarkBackground?: boolean | null;
-                        alignment?: ('contentCode' | 'codeContent') | null;
-                        heading?: string | null;
-                        richText: {
-                          root: {
-                            type: string;
-                            children: {
-                              type: string;
-                              version: number;
-                              [k: string]: unknown;
-                            }[];
-                            direction: ('ltr' | 'rtl') | null;
-                            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-                            indent: number;
-                            version: number;
-                          };
-                          [k: string]: unknown;
-                        };
-                        links?:
-                          | {
-                              link: {
-                                type?: ('reference' | 'custom') | null;
-                                newTab?: boolean | null;
-                                reference?:
-                                  | ({
-                                      relationTo: 'pages';
-                                      value: string | Page;
-                                    } | null)
-                                  | ({
-                                      relationTo: 'posts';
-                                      value: string | Post;
-                                    } | null)
-                                  | ({
-                                      relationTo: 'case-studies';
-                                      value: string | CaseStudy;
-                                    } | null);
-                                url?: string | null;
-                                label: string;
-                              };
-                              id?: string | null;
-                            }[]
-                          | null;
-                        codeTabs?:
-                          | {
-                              language?: ('none' | 'js' | 'ts') | null;
-                              label: string;
-                              code: string;
-                              codeBlips?:
-                                | {
-                                    row: number;
-                                    label: string;
-                                    feature: {
-                                      root: {
-                                        type: string;
-                                        children: {
-                                          type: string;
-                                          version: number;
-                                          [k: string]: unknown;
-                                        }[];
-                                        direction: ('ltr' | 'rtl') | null;
-                                        format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-                                        indent: number;
-                                        version: number;
-                                      };
-                                      [k: string]: unknown;
-                                    };
-                                    enableLink?: boolean | null;
-                                    link?: {
-                                      type?: ('reference' | 'custom') | null;
-                                      newTab?: boolean | null;
-                                      reference?:
-                                        | ({
-                                            relationTo: 'pages';
-                                            value: string | Page;
-                                          } | null)
-                                        | ({
-                                            relationTo: 'posts';
-                                            value: string | Post;
-                                          } | null)
-                                        | ({
-                                            relationTo: 'case-studies';
-                                            value: string | CaseStudy;
-                                          } | null);
-                                      url?: string | null;
-                                      label: string;
-                                    };
-                                    id?: string | null;
-                                  }[]
-                                | null;
-                              id?: string | null;
-                            }[]
-                          | null;
-                      };
-                      id?: string | null;
-                      blockName?: string | null;
-                      blockType: 'codeFeature';
-                    }
-                  | {
-                      contentFields: {
-                        settings?: {
-                          theme?: ('light' | 'dark') | null;
-                        };
-                        useLeadingHeader?: boolean | null;
-                        leadingHeader?: {
-                          root: {
-                            type: string;
-                            children: {
-                              type: string;
-                              version: number;
-                              [k: string]: unknown;
-                            }[];
-                            direction: ('ltr' | 'rtl') | null;
-                            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-                            indent: number;
-                            version: number;
-                          };
-                          [k: string]: unknown;
-                        } | null;
-                        layout?:
-                          | ('oneColumn' | 'twoColumns' | 'twoThirdsOneThird' | 'halfAndHalf' | 'threeColumns')
-                          | null;
-                        columnOne: {
-                          root: {
-                            type: string;
-                            children: {
-                              type: string;
-                              version: number;
-                              [k: string]: unknown;
-                            }[];
-                            direction: ('ltr' | 'rtl') | null;
-                            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-                            indent: number;
-                            version: number;
-                          };
-                          [k: string]: unknown;
-                        };
-                        columnTwo?: {
-                          root: {
-                            type: string;
-                            children: {
-                              type: string;
-                              version: number;
-                              [k: string]: unknown;
-                            }[];
-                            direction: ('ltr' | 'rtl') | null;
-                            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-                            indent: number;
-                            version: number;
-                          };
-                          [k: string]: unknown;
-                        } | null;
-                        columnThree?: {
-                          root: {
-                            type: string;
-                            children: {
-                              type: string;
-                              version: number;
-                              [k: string]: unknown;
-                            }[];
-                            direction: ('ltr' | 'rtl') | null;
-                            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-                            indent: number;
-                            version: number;
-                          };
-                          [k: string]: unknown;
-                        } | null;
-                      };
-                      id?: string | null;
-                      blockName?: string | null;
-                      blockType: 'content';
-                    }
-                  | {
-                      hoverHighlightsFields: {
-                        settings?: {
-                          theme?: ('light' | 'dark') | null;
-                        };
-                        beforeHighlights?: string | null;
-                        highlights?:
-                          | {
-                              text: string;
-                              media?: {
-                                top?: (string | null) | Media;
-                                bottom?: (string | null) | Media;
-                              };
-                              link?: {
-                                type?: ('reference' | 'custom') | null;
-                                newTab?: boolean | null;
-                                reference?:
-                                  | ({
-                                      relationTo: 'pages';
-                                      value: string | Page;
-                                    } | null)
-                                  | ({
-                                      relationTo: 'posts';
-                                      value: string | Post;
-                                    } | null)
-                                  | ({
-                                      relationTo: 'case-studies';
-                                      value: string | CaseStudy;
-                                    } | null);
-                                url?: string | null;
-                              };
-                              id?: string | null;
-                            }[]
-                          | null;
-                        afterHighlights?: string | null;
-                        link: {
-                          type?: ('reference' | 'custom') | null;
-                          newTab?: boolean | null;
-                          reference?:
-                            | ({
-                                relationTo: 'pages';
-                                value: string | Page;
-                              } | null)
-                            | ({
-                                relationTo: 'posts';
-                                value: string | Post;
-                              } | null)
-                            | ({
-                                relationTo: 'case-studies';
-                                value: string | CaseStudy;
-                              } | null);
-                          url?: string | null;
-                          label: string;
-                        };
-                      };
-                      id?: string | null;
-                      blockName?: string | null;
-                      blockType: 'hoverHighlights';
-                    }
-                  | {
-                      stickyHighlightsFields?: {
-                        settings?: {
-                          theme?: ('light' | 'dark') | null;
-                        };
-                        highlights?:
-                          | {
-                              richText: {
-                                root: {
-                                  type: string;
-                                  children: {
-                                    type: string;
-                                    version: number;
-                                    [k: string]: unknown;
-                                  }[];
-                                  direction: ('ltr' | 'rtl') | null;
-                                  format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-                                  indent: number;
-                                  version: number;
-                                };
-                                [k: string]: unknown;
-                              };
-                              enableLink?: boolean | null;
-                              link?: {
-                                type?: ('reference' | 'custom') | null;
-                                newTab?: boolean | null;
-                                reference?:
-                                  | ({
-                                      relationTo: 'pages';
-                                      value: string | Page;
-                                    } | null)
-                                  | ({
-                                      relationTo: 'posts';
-                                      value: string | Post;
-                                    } | null)
-                                  | ({
-                                      relationTo: 'case-studies';
-                                      value: string | CaseStudy;
-                                    } | null);
-                                url?: string | null;
-                                label: string;
-                              };
-                              type?: ('code' | 'media') | null;
-                              code?: string | null;
-                              codeBlips?:
-                                | {
-                                    row: number;
-                                    label: string;
-                                    feature: {
-                                      root: {
-                                        type: string;
-                                        children: {
-                                          type: string;
-                                          version: number;
-                                          [k: string]: unknown;
-                                        }[];
-                                        direction: ('ltr' | 'rtl') | null;
-                                        format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-                                        indent: number;
-                                        version: number;
-                                      };
-                                      [k: string]: unknown;
-                                    };
-                                    enableLink?: boolean | null;
-                                    link?: {
-                                      type?: ('reference' | 'custom') | null;
-                                      newTab?: boolean | null;
-                                      reference?:
-                                        | ({
-                                            relationTo: 'pages';
-                                            value: string | Page;
-                                          } | null)
-                                        | ({
-                                            relationTo: 'posts';
-                                            value: string | Post;
-                                          } | null)
-                                        | ({
-                                            relationTo: 'case-studies';
-                                            value: string | CaseStudy;
-                                          } | null);
-                                      url?: string | null;
-                                      label: string;
-                                    };
-                                    id?: string | null;
-                                  }[]
-                                | null;
-                              media?: (string | null) | Media;
-                              id?: string | null;
-                            }[]
-                          | null;
-                      };
-                      id?: string | null;
-                      blockName?: string | null;
-                      blockType: 'stickyHighlights';
-                    }
-                )[]
-              | null;
-            id?: string | null;
-          }[];
-        };
-        id?: string | null;
-        blockName?: string | null;
-        blockType: 'steps';
-      }
+    | StepsBlock
     | {
         stickyHighlightsFields?: {
           settings?: {
             theme?: ('light' | 'dark') | null;
+            background?: ('solid' | 'transparent' | 'gradientUp' | 'gradientDown') | null;
           };
           highlights?:
             | {
@@ -3237,6 +2822,7 @@ export interface Page {
                       } | null);
                   url?: string | null;
                   label: string;
+                  customId?: string | null;
                 };
                 type?: ('code' | 'media') | null;
                 code?: string | null;
@@ -3278,6 +2864,7 @@ export interface Page {
                             } | null);
                         url?: string | null;
                         label: string;
+                        customId?: string | null;
                       };
                       id?: string | null;
                     }[]
@@ -3320,6 +2907,8 @@ export interface Post {
   id: string;
   title: string;
   image: string | Media;
+  useVideo?: boolean | null;
+  videoUrl?: string | null;
   excerpt: {
     root: {
       type: string;
@@ -3340,6 +2929,7 @@ export interface Post {
         bannerFields: {
           settings?: {
             theme?: ('light' | 'dark') | null;
+            background?: ('solid' | 'transparent' | 'gradientUp' | 'gradientDown') | null;
           };
           type?: ('default' | 'success' | 'warning' | 'error') | null;
           addCheckmark?: boolean | null;
@@ -3367,6 +2957,7 @@ export interface Post {
         blogContentFields: {
           settings?: {
             theme?: ('light' | 'dark') | null;
+            background?: ('solid' | 'transparent' | 'gradientUp' | 'gradientDown') | null;
           };
           richText: {
             root: {
@@ -3392,6 +2983,7 @@ export interface Post {
         codeFields: {
           settings?: {
             theme?: ('light' | 'dark') | null;
+            background?: ('solid' | 'transparent' | 'gradientUp' | 'gradientDown') | null;
           };
           language?: ('none' | 'js' | 'ts') | null;
           code: string;
@@ -3433,6 +3025,7 @@ export interface Post {
                       } | null);
                   url?: string | null;
                   label: string;
+                  customId?: string | null;
                 };
                 id?: string | null;
               }[]
@@ -3446,6 +3039,7 @@ export interface Post {
         blogMarkdownFields: {
           settings?: {
             theme?: ('light' | 'dark') | null;
+            background?: ('solid' | 'transparent' | 'gradientUp' | 'gradientDown') | null;
           };
           markdown: string;
         };
@@ -3457,6 +3051,7 @@ export interface Post {
         mediaBlockFields: {
           settings?: {
             theme?: ('light' | 'dark') | null;
+            background?: ('solid' | 'transparent' | 'gradientUp' | 'gradientDown') | null;
           };
           position?: ('default' | 'wide') | null;
           media: string | Media;
@@ -3484,6 +3079,7 @@ export interface Post {
         reusableContentBlockFields: {
           settings?: {
             theme?: ('light' | 'dark') | null;
+            background?: ('solid' | 'transparent' | 'gradientUp' | 'gradientDown') | null;
           };
           reusableContent: string | ReusableContent;
           customId?: string | null;
@@ -3533,6 +3129,7 @@ export interface ReusableContent {
         bannerFields: {
           settings?: {
             theme?: ('light' | 'dark') | null;
+            background?: ('solid' | 'transparent' | 'gradientUp' | 'gradientDown') | null;
           };
           type?: ('default' | 'success' | 'warning' | 'error') | null;
           addCheckmark?: boolean | null;
@@ -3560,6 +3157,7 @@ export interface ReusableContent {
         blogContentFields: {
           settings?: {
             theme?: ('light' | 'dark') | null;
+            background?: ('solid' | 'transparent' | 'gradientUp' | 'gradientDown') | null;
           };
           richText: {
             root: {
@@ -3585,6 +3183,7 @@ export interface ReusableContent {
         blogMarkdownFields: {
           settings?: {
             theme?: ('light' | 'dark') | null;
+            background?: ('solid' | 'transparent' | 'gradientUp' | 'gradientDown') | null;
           };
           markdown: string;
         };
@@ -3596,6 +3195,7 @@ export interface ReusableContent {
         calloutFields: {
           settings?: {
             theme?: ('light' | 'dark') | null;
+            background?: ('solid' | 'transparent' | 'gradientUp' | 'gradientDown') | null;
           };
           richText: {
             root: {
@@ -3630,6 +3230,7 @@ export interface ReusableContent {
         ctaFields: {
           settings?: {
             theme?: ('light' | 'dark') | null;
+            background?: ('solid' | 'transparent' | 'gradientUp' | 'gradientDown') | null;
           };
           style?: ('buttons' | 'banner') | null;
           richText: {
@@ -3647,6 +3248,7 @@ export interface ReusableContent {
             };
             [k: string]: unknown;
           };
+          commandLine?: string | null;
           links?:
             | {
                 type?: ('link' | 'npmCta') | null;
@@ -3671,6 +3273,7 @@ export interface ReusableContent {
                       } | null);
                   url?: string | null;
                   label: string;
+                  customId?: string | null;
                 };
                 id?: string | null;
               }[]
@@ -3693,8 +3296,10 @@ export interface ReusableContent {
                 } | null);
             url?: string | null;
             label: string;
+            customId?: string | null;
           };
           bannerImage?: (string | null) | Media;
+          gradientBackground?: boolean | null;
         };
         id?: string | null;
         blockName?: string | null;
@@ -3704,6 +3309,7 @@ export interface ReusableContent {
         cardGridFields: {
           settings?: {
             theme?: ('light' | 'dark') | null;
+            background?: ('solid' | 'transparent' | 'gradientUp' | 'gradientDown') | null;
           };
           richText: {
             root: {
@@ -3740,6 +3346,7 @@ export interface ReusableContent {
                       } | null);
                   url?: string | null;
                   label: string;
+                  customId?: string | null;
                 };
                 id?: string | null;
               }[]
@@ -3767,6 +3374,7 @@ export interface ReusableContent {
                         value: string | CaseStudy;
                       } | null);
                   url?: string | null;
+                  customId?: string | null;
                 };
                 id?: string | null;
               }[]
@@ -3780,6 +3388,7 @@ export interface ReusableContent {
         caseStudyCardFields?: {
           settings?: {
             theme?: ('light' | 'dark') | null;
+            background?: ('solid' | 'transparent' | 'gradientUp' | 'gradientDown') | null;
           };
           pixels?: boolean | null;
           cards?:
@@ -3812,6 +3421,7 @@ export interface ReusableContent {
         caseStudiesHighlightFields: {
           settings?: {
             theme?: ('light' | 'dark') | null;
+            background?: ('solid' | 'transparent' | 'gradientUp' | 'gradientDown') | null;
           };
           richText: {
             root: {
@@ -3838,6 +3448,7 @@ export interface ReusableContent {
         caseStudyParallaxFields?: {
           settings?: {
             theme?: ('light' | 'dark') | null;
+            background?: ('solid' | 'transparent' | 'gradientUp' | 'gradientDown') | null;
           };
           items?:
             | {
@@ -3864,6 +3475,7 @@ export interface ReusableContent {
         codeFields: {
           settings?: {
             theme?: ('light' | 'dark') | null;
+            background?: ('solid' | 'transparent' | 'gradientUp' | 'gradientDown') | null;
           };
           language?: ('none' | 'js' | 'ts') | null;
           code: string;
@@ -3905,6 +3517,7 @@ export interface ReusableContent {
                       } | null);
                   url?: string | null;
                   label: string;
+                  customId?: string | null;
                 };
                 id?: string | null;
               }[]
@@ -3918,6 +3531,7 @@ export interface ReusableContent {
         codeFeatureFields: {
           settings?: {
             theme?: ('light' | 'dark') | null;
+            background?: ('solid' | 'transparent' | 'gradientUp' | 'gradientDown') | null;
           };
           forceDarkBackground?: boolean | null;
           alignment?: ('contentCode' | 'codeContent') | null;
@@ -3957,6 +3571,7 @@ export interface ReusableContent {
                       } | null);
                   url?: string | null;
                   label: string;
+                  customId?: string | null;
                 };
                 id?: string | null;
               }[]
@@ -4004,6 +3619,7 @@ export interface ReusableContent {
                             } | null);
                         url?: string | null;
                         label: string;
+                        customId?: string | null;
                       };
                       id?: string | null;
                     }[]
@@ -4020,6 +3636,7 @@ export interface ReusableContent {
         contentFields: {
           settings?: {
             theme?: ('light' | 'dark') | null;
+            background?: ('solid' | 'transparent' | 'gradientUp' | 'gradientDown') | null;
           };
           useLeadingHeader?: boolean | null;
           leadingHeader?: {
@@ -4092,6 +3709,7 @@ export interface ReusableContent {
         contentGridFields?: {
           settings?: {
             theme?: ('light' | 'dark') | null;
+            background?: ('solid' | 'transparent' | 'gradientUp' | 'gradientDown') | null;
           };
           style?: ('gridBelow' | 'sideBySide') | null;
           showNumbers?: boolean | null;
@@ -4130,6 +3748,7 @@ export interface ReusableContent {
                       } | null);
                   url?: string | null;
                   label: string;
+                  customId?: string | null;
                 };
                 id?: string | null;
               }[]
@@ -4164,6 +3783,7 @@ export interface ReusableContent {
         formFields: {
           settings?: {
             theme?: ('light' | 'dark') | null;
+            background?: ('solid' | 'transparent' | 'gradientUp' | 'gradientDown') | null;
           };
           richText: {
             root: {
@@ -4190,7 +3810,9 @@ export interface ReusableContent {
         hoverCardsFields: {
           settings?: {
             theme?: ('light' | 'dark') | null;
+            background?: ('solid' | 'transparent' | 'gradientUp' | 'gradientDown') | null;
           };
+          hideBackground?: boolean | null;
           richText: {
             root: {
               type: string;
@@ -4227,6 +3849,7 @@ export interface ReusableContent {
                         value: string | CaseStudy;
                       } | null);
                   url?: string | null;
+                  customId?: string | null;
                 };
                 id?: string | null;
               }[]
@@ -4240,6 +3863,7 @@ export interface ReusableContent {
         hoverHighlightsFields: {
           settings?: {
             theme?: ('light' | 'dark') | null;
+            background?: ('solid' | 'transparent' | 'gradientUp' | 'gradientDown') | null;
           };
           beforeHighlights?: string | null;
           highlights?:
@@ -4266,6 +3890,7 @@ export interface ReusableContent {
                         value: string | CaseStudy;
                       } | null);
                   url?: string | null;
+                  customId?: string | null;
                 };
                 id?: string | null;
               }[]
@@ -4289,6 +3914,7 @@ export interface ReusableContent {
                 } | null);
             url?: string | null;
             label: string;
+            customId?: string | null;
           };
         };
         id?: string | null;
@@ -4299,6 +3925,7 @@ export interface ReusableContent {
         linkGridFields?: {
           settings?: {
             theme?: ('light' | 'dark') | null;
+            background?: ('solid' | 'transparent' | 'gradientUp' | 'gradientDown') | null;
           };
           links?:
             | {
@@ -4320,6 +3947,7 @@ export interface ReusableContent {
                       } | null);
                   url?: string | null;
                   label: string;
+                  customId?: string | null;
                 };
                 id?: string | null;
               }[]
@@ -4333,6 +3961,7 @@ export interface ReusableContent {
         logoGridFields: {
           settings?: {
             theme?: ('light' | 'dark') | null;
+            background?: ('solid' | 'transparent' | 'gradientUp' | 'gradientDown') | null;
           };
           richText: {
             root: {
@@ -4368,6 +3997,7 @@ export interface ReusableContent {
                 } | null);
             url?: string | null;
             label: string;
+            customId?: string | null;
           };
           logos?:
             | {
@@ -4384,6 +4014,7 @@ export interface ReusableContent {
         mediaBlockFields: {
           settings?: {
             theme?: ('light' | 'dark') | null;
+            background?: ('solid' | 'transparent' | 'gradientUp' | 'gradientDown') | null;
           };
           position?: ('default' | 'wide') | null;
           media: string | Media;
@@ -4411,6 +4042,7 @@ export interface ReusableContent {
         mediaContentFields: {
           settings?: {
             theme?: ('light' | 'dark') | null;
+            background?: ('solid' | 'transparent' | 'gradientUp' | 'gradientDown') | null;
           };
           alignment?: ('contentMedia' | 'mediaContent') | null;
           mediaWidth?: ('stretch' | 'fit') | null;
@@ -4448,6 +4080,7 @@ export interface ReusableContent {
                 } | null);
             url?: string | null;
             label: string;
+            customId?: string | null;
           };
           images?:
             | {
@@ -4464,6 +4097,7 @@ export interface ReusableContent {
         mediaContentAccordionFields?: {
           settings?: {
             theme?: ('light' | 'dark') | null;
+            background?: ('solid' | 'transparent' | 'gradientUp' | 'gradientDown') | null;
           };
           alignment?: ('contentMedia' | 'mediaContent') | null;
           leader?: string | null;
@@ -4507,6 +4141,7 @@ export interface ReusableContent {
                       } | null);
                   url?: string | null;
                   label: string;
+                  customId?: string | null;
                 };
                 media: string | Media;
                 id?: string | null;
@@ -4521,6 +4156,7 @@ export interface ReusableContent {
         pricingFields?: {
           settings?: {
             theme?: ('light' | 'dark') | null;
+            background?: ('solid' | 'transparent' | 'gradientUp' | 'gradientDown') | null;
           };
           plans?:
             | {
@@ -4549,6 +4185,7 @@ export interface ReusableContent {
                       } | null);
                   url?: string | null;
                   label: string;
+                  customId?: string | null;
                 };
                 features?:
                   | {
@@ -4570,12 +4207,75 @@ export interface ReusableContent {
         sliderFields: {
           settings?: {
             theme?: ('light' | 'dark') | null;
+            background?: ('solid' | 'transparent' | 'gradientUp' | 'gradientDown') | null;
           };
+          introContent?: {
+            root: {
+              type: string;
+              children: {
+                type: string;
+                version: number;
+                [k: string]: unknown;
+              }[];
+              direction: ('ltr' | 'rtl') | null;
+              format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+              indent: number;
+              version: number;
+            };
+            [k: string]: unknown;
+          } | null;
+          links?:
+            | {
+                link: {
+                  type?: ('reference' | 'custom') | null;
+                  newTab?: boolean | null;
+                  reference?:
+                    | ({
+                        relationTo: 'pages';
+                        value: string | Page;
+                      } | null)
+                    | ({
+                        relationTo: 'posts';
+                        value: string | Post;
+                      } | null)
+                    | ({
+                        relationTo: 'case-studies';
+                        value: string | CaseStudy;
+                      } | null);
+                  url?: string | null;
+                  label: string;
+                  customId?: string | null;
+                  appearance?: ('default' | 'primary' | 'secondary') | null;
+                };
+                id?: string | null;
+              }[]
+            | null;
           quoteSlides: {
-            leader?: string | null;
             quote: string;
             author: string;
             role?: string | null;
+            logo?: (string | null) | Media;
+            enableLink?: boolean | null;
+            link?: {
+              type?: ('reference' | 'custom') | null;
+              newTab?: boolean | null;
+              reference?:
+                | ({
+                    relationTo: 'pages';
+                    value: string | Page;
+                  } | null)
+                | ({
+                    relationTo: 'posts';
+                    value: string | Post;
+                  } | null)
+                | ({
+                    relationTo: 'case-studies';
+                    value: string | CaseStudy;
+                  } | null);
+              url?: string | null;
+              label: string;
+              customId?: string | null;
+            };
             id?: string | null;
           }[];
         };
@@ -4587,6 +4287,7 @@ export interface ReusableContent {
         statementFields: {
           settings?: {
             theme?: ('light' | 'dark') | null;
+            background?: ('solid' | 'transparent' | 'gradientUp' | 'gradientDown') | null;
           };
           richText: {
             root: {
@@ -4623,6 +4324,7 @@ export interface ReusableContent {
                       } | null);
                   url?: string | null;
                   label: string;
+                  customId?: string | null;
                 };
                 id?: string | null;
               }[]
@@ -4638,357 +4340,12 @@ export interface ReusableContent {
         blockName?: string | null;
         blockType: 'statement';
       }
-    | {
-        stepsFields: {
-          settings?: {
-            theme?: ('light' | 'dark') | null;
-          };
-          steps: {
-            layout?:
-              | (
-                  | {
-                      codeFeatureFields: {
-                        settings?: {
-                          theme?: ('light' | 'dark') | null;
-                        };
-                        forceDarkBackground?: boolean | null;
-                        alignment?: ('contentCode' | 'codeContent') | null;
-                        heading?: string | null;
-                        richText: {
-                          root: {
-                            type: string;
-                            children: {
-                              type: string;
-                              version: number;
-                              [k: string]: unknown;
-                            }[];
-                            direction: ('ltr' | 'rtl') | null;
-                            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-                            indent: number;
-                            version: number;
-                          };
-                          [k: string]: unknown;
-                        };
-                        links?:
-                          | {
-                              link: {
-                                type?: ('reference' | 'custom') | null;
-                                newTab?: boolean | null;
-                                reference?:
-                                  | ({
-                                      relationTo: 'pages';
-                                      value: string | Page;
-                                    } | null)
-                                  | ({
-                                      relationTo: 'posts';
-                                      value: string | Post;
-                                    } | null)
-                                  | ({
-                                      relationTo: 'case-studies';
-                                      value: string | CaseStudy;
-                                    } | null);
-                                url?: string | null;
-                                label: string;
-                              };
-                              id?: string | null;
-                            }[]
-                          | null;
-                        codeTabs?:
-                          | {
-                              language?: ('none' | 'js' | 'ts') | null;
-                              label: string;
-                              code: string;
-                              codeBlips?:
-                                | {
-                                    row: number;
-                                    label: string;
-                                    feature: {
-                                      root: {
-                                        type: string;
-                                        children: {
-                                          type: string;
-                                          version: number;
-                                          [k: string]: unknown;
-                                        }[];
-                                        direction: ('ltr' | 'rtl') | null;
-                                        format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-                                        indent: number;
-                                        version: number;
-                                      };
-                                      [k: string]: unknown;
-                                    };
-                                    enableLink?: boolean | null;
-                                    link?: {
-                                      type?: ('reference' | 'custom') | null;
-                                      newTab?: boolean | null;
-                                      reference?:
-                                        | ({
-                                            relationTo: 'pages';
-                                            value: string | Page;
-                                          } | null)
-                                        | ({
-                                            relationTo: 'posts';
-                                            value: string | Post;
-                                          } | null)
-                                        | ({
-                                            relationTo: 'case-studies';
-                                            value: string | CaseStudy;
-                                          } | null);
-                                      url?: string | null;
-                                      label: string;
-                                    };
-                                    id?: string | null;
-                                  }[]
-                                | null;
-                              id?: string | null;
-                            }[]
-                          | null;
-                      };
-                      id?: string | null;
-                      blockName?: string | null;
-                      blockType: 'codeFeature';
-                    }
-                  | {
-                      contentFields: {
-                        settings?: {
-                          theme?: ('light' | 'dark') | null;
-                        };
-                        useLeadingHeader?: boolean | null;
-                        leadingHeader?: {
-                          root: {
-                            type: string;
-                            children: {
-                              type: string;
-                              version: number;
-                              [k: string]: unknown;
-                            }[];
-                            direction: ('ltr' | 'rtl') | null;
-                            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-                            indent: number;
-                            version: number;
-                          };
-                          [k: string]: unknown;
-                        } | null;
-                        layout?:
-                          | ('oneColumn' | 'twoColumns' | 'twoThirdsOneThird' | 'halfAndHalf' | 'threeColumns')
-                          | null;
-                        columnOne: {
-                          root: {
-                            type: string;
-                            children: {
-                              type: string;
-                              version: number;
-                              [k: string]: unknown;
-                            }[];
-                            direction: ('ltr' | 'rtl') | null;
-                            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-                            indent: number;
-                            version: number;
-                          };
-                          [k: string]: unknown;
-                        };
-                        columnTwo?: {
-                          root: {
-                            type: string;
-                            children: {
-                              type: string;
-                              version: number;
-                              [k: string]: unknown;
-                            }[];
-                            direction: ('ltr' | 'rtl') | null;
-                            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-                            indent: number;
-                            version: number;
-                          };
-                          [k: string]: unknown;
-                        } | null;
-                        columnThree?: {
-                          root: {
-                            type: string;
-                            children: {
-                              type: string;
-                              version: number;
-                              [k: string]: unknown;
-                            }[];
-                            direction: ('ltr' | 'rtl') | null;
-                            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-                            indent: number;
-                            version: number;
-                          };
-                          [k: string]: unknown;
-                        } | null;
-                      };
-                      id?: string | null;
-                      blockName?: string | null;
-                      blockType: 'content';
-                    }
-                  | {
-                      hoverHighlightsFields: {
-                        settings?: {
-                          theme?: ('light' | 'dark') | null;
-                        };
-                        beforeHighlights?: string | null;
-                        highlights?:
-                          | {
-                              text: string;
-                              media?: {
-                                top?: (string | null) | Media;
-                                bottom?: (string | null) | Media;
-                              };
-                              link?: {
-                                type?: ('reference' | 'custom') | null;
-                                newTab?: boolean | null;
-                                reference?:
-                                  | ({
-                                      relationTo: 'pages';
-                                      value: string | Page;
-                                    } | null)
-                                  | ({
-                                      relationTo: 'posts';
-                                      value: string | Post;
-                                    } | null)
-                                  | ({
-                                      relationTo: 'case-studies';
-                                      value: string | CaseStudy;
-                                    } | null);
-                                url?: string | null;
-                              };
-                              id?: string | null;
-                            }[]
-                          | null;
-                        afterHighlights?: string | null;
-                        link: {
-                          type?: ('reference' | 'custom') | null;
-                          newTab?: boolean | null;
-                          reference?:
-                            | ({
-                                relationTo: 'pages';
-                                value: string | Page;
-                              } | null)
-                            | ({
-                                relationTo: 'posts';
-                                value: string | Post;
-                              } | null)
-                            | ({
-                                relationTo: 'case-studies';
-                                value: string | CaseStudy;
-                              } | null);
-                          url?: string | null;
-                          label: string;
-                        };
-                      };
-                      id?: string | null;
-                      blockName?: string | null;
-                      blockType: 'hoverHighlights';
-                    }
-                  | {
-                      stickyHighlightsFields?: {
-                        settings?: {
-                          theme?: ('light' | 'dark') | null;
-                        };
-                        highlights?:
-                          | {
-                              richText: {
-                                root: {
-                                  type: string;
-                                  children: {
-                                    type: string;
-                                    version: number;
-                                    [k: string]: unknown;
-                                  }[];
-                                  direction: ('ltr' | 'rtl') | null;
-                                  format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-                                  indent: number;
-                                  version: number;
-                                };
-                                [k: string]: unknown;
-                              };
-                              enableLink?: boolean | null;
-                              link?: {
-                                type?: ('reference' | 'custom') | null;
-                                newTab?: boolean | null;
-                                reference?:
-                                  | ({
-                                      relationTo: 'pages';
-                                      value: string | Page;
-                                    } | null)
-                                  | ({
-                                      relationTo: 'posts';
-                                      value: string | Post;
-                                    } | null)
-                                  | ({
-                                      relationTo: 'case-studies';
-                                      value: string | CaseStudy;
-                                    } | null);
-                                url?: string | null;
-                                label: string;
-                              };
-                              type?: ('code' | 'media') | null;
-                              code?: string | null;
-                              codeBlips?:
-                                | {
-                                    row: number;
-                                    label: string;
-                                    feature: {
-                                      root: {
-                                        type: string;
-                                        children: {
-                                          type: string;
-                                          version: number;
-                                          [k: string]: unknown;
-                                        }[];
-                                        direction: ('ltr' | 'rtl') | null;
-                                        format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-                                        indent: number;
-                                        version: number;
-                                      };
-                                      [k: string]: unknown;
-                                    };
-                                    enableLink?: boolean | null;
-                                    link?: {
-                                      type?: ('reference' | 'custom') | null;
-                                      newTab?: boolean | null;
-                                      reference?:
-                                        | ({
-                                            relationTo: 'pages';
-                                            value: string | Page;
-                                          } | null)
-                                        | ({
-                                            relationTo: 'posts';
-                                            value: string | Post;
-                                          } | null)
-                                        | ({
-                                            relationTo: 'case-studies';
-                                            value: string | CaseStudy;
-                                          } | null);
-                                      url?: string | null;
-                                      label: string;
-                                    };
-                                    id?: string | null;
-                                  }[]
-                                | null;
-                              media?: (string | null) | Media;
-                              id?: string | null;
-                            }[]
-                          | null;
-                      };
-                      id?: string | null;
-                      blockName?: string | null;
-                      blockType: 'stickyHighlights';
-                    }
-                )[]
-              | null;
-            id?: string | null;
-          }[];
-        };
-        id?: string | null;
-        blockName?: string | null;
-        blockType: 'steps';
-      }
+    | StepsBlock
     | {
         stickyHighlightsFields?: {
           settings?: {
             theme?: ('light' | 'dark') | null;
+            background?: ('solid' | 'transparent' | 'gradientUp' | 'gradientDown') | null;
           };
           highlights?:
             | {
@@ -5026,6 +4383,7 @@ export interface ReusableContent {
                       } | null);
                   url?: string | null;
                   label: string;
+                  customId?: string | null;
                 };
                 type?: ('code' | 'media') | null;
                 code?: string | null;
@@ -5067,6 +4425,7 @@ export interface ReusableContent {
                             } | null);
                         url?: string | null;
                         label: string;
+                        customId?: string | null;
                       };
                       id?: string | null;
                     }[]
@@ -5312,6 +4671,40 @@ export interface Form {
   hubSpotFormID?: string | null;
   updatedAt: string;
   createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "StepsBlock".
+ */
+export interface StepsBlock {
+  stepsFields: {
+    settings?: {
+      theme?: ('light' | 'dark') | null;
+      background?: ('solid' | 'transparent' | 'gradientUp' | 'gradientDown') | null;
+    };
+    steps: {
+      content: {
+        root: {
+          type: string;
+          children: {
+            type: string;
+            version: number;
+            [k: string]: unknown;
+          }[];
+          direction: ('ltr' | 'rtl') | null;
+          format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+          indent: number;
+          version: number;
+        };
+        [k: string]: unknown;
+      };
+      media?: (string | null) | Media;
+      id?: string | null;
+    }[];
+  };
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'steps';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -5687,6 +5080,3396 @@ export interface PayloadMigration {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "case-studies_select".
+ */
+export interface CaseStudiesSelect<T extends boolean = true> {
+  title?: T;
+  introContent?: T;
+  industry?: T;
+  useCase?: T;
+  featuredImage?: T;
+  layout?:
+    | T
+    | {
+        callout?:
+          | T
+          | {
+              calloutFields?:
+                | T
+                | {
+                    settings?:
+                      | T
+                      | {
+                          theme?: T;
+                          background?: T;
+                        };
+                    richText?: T;
+                    logo?: T;
+                    author?: T;
+                    role?: T;
+                    images?:
+                      | T
+                      | {
+                          image?: T;
+                          id?: T;
+                        };
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        cta?:
+          | T
+          | {
+              ctaFields?:
+                | T
+                | {
+                    settings?:
+                      | T
+                      | {
+                          theme?: T;
+                          background?: T;
+                        };
+                    style?: T;
+                    richText?: T;
+                    commandLine?: T;
+                    links?:
+                      | T
+                      | {
+                          type?: T;
+                          npmCta?:
+                            | T
+                            | {
+                                label?: T;
+                              };
+                          link?:
+                            | T
+                            | {
+                                type?: T;
+                                newTab?: T;
+                                reference?: T;
+                                url?: T;
+                                label?: T;
+                                customId?: T;
+                              };
+                          id?: T;
+                        };
+                    bannerLink?:
+                      | T
+                      | {
+                          type?: T;
+                          newTab?: T;
+                          reference?: T;
+                          url?: T;
+                          label?: T;
+                          customId?: T;
+                        };
+                    bannerImage?: T;
+                    gradientBackground?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        cardGrid?:
+          | T
+          | {
+              cardGridFields?:
+                | T
+                | {
+                    settings?:
+                      | T
+                      | {
+                          theme?: T;
+                          background?: T;
+                        };
+                    richText?: T;
+                    links?:
+                      | T
+                      | {
+                          link?:
+                            | T
+                            | {
+                                type?: T;
+                                newTab?: T;
+                                reference?: T;
+                                url?: T;
+                                label?: T;
+                                customId?: T;
+                              };
+                          id?: T;
+                        };
+                    revealDescription?: T;
+                    cards?:
+                      | T
+                      | {
+                          title?: T;
+                          description?: T;
+                          enableLink?: T;
+                          link?:
+                            | T
+                            | {
+                                type?: T;
+                                newTab?: T;
+                                reference?: T;
+                                url?: T;
+                                customId?: T;
+                              };
+                          id?: T;
+                        };
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        caseStudyCards?:
+          | T
+          | {
+              caseStudyCardFields?:
+                | T
+                | {
+                    settings?:
+                      | T
+                      | {
+                          theme?: T;
+                          background?: T;
+                        };
+                    pixels?: T;
+                    cards?:
+                      | T
+                      | {
+                          richText?: T;
+                          caseStudy?: T;
+                          id?: T;
+                        };
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        caseStudiesHighlight?:
+          | T
+          | {
+              caseStudiesHighlightFields?:
+                | T
+                | {
+                    settings?:
+                      | T
+                      | {
+                          theme?: T;
+                          background?: T;
+                        };
+                    richText?: T;
+                    caseStudies?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        caseStudyParallax?:
+          | T
+          | {
+              caseStudyParallaxFields?:
+                | T
+                | {
+                    settings?:
+                      | T
+                      | {
+                          theme?: T;
+                          background?: T;
+                        };
+                    items?:
+                      | T
+                      | {
+                          quote?: T;
+                          author?: T;
+                          logo?: T;
+                          images?:
+                            | T
+                            | {
+                                image?: T;
+                                id?: T;
+                              };
+                          tabLabel?: T;
+                          caseStudy?: T;
+                          id?: T;
+                        };
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        codeFeature?:
+          | T
+          | {
+              codeFeatureFields?:
+                | T
+                | {
+                    settings?:
+                      | T
+                      | {
+                          theme?: T;
+                          background?: T;
+                        };
+                    forceDarkBackground?: T;
+                    alignment?: T;
+                    heading?: T;
+                    richText?: T;
+                    links?:
+                      | T
+                      | {
+                          link?:
+                            | T
+                            | {
+                                type?: T;
+                                newTab?: T;
+                                reference?: T;
+                                url?: T;
+                                label?: T;
+                                customId?: T;
+                              };
+                          id?: T;
+                        };
+                    codeTabs?:
+                      | T
+                      | {
+                          language?: T;
+                          label?: T;
+                          code?: T;
+                          codeBlips?:
+                            | T
+                            | {
+                                row?: T;
+                                label?: T;
+                                feature?: T;
+                                enableLink?: T;
+                                link?:
+                                  | T
+                                  | {
+                                      type?: T;
+                                      newTab?: T;
+                                      reference?: T;
+                                      url?: T;
+                                      label?: T;
+                                      customId?: T;
+                                    };
+                                id?: T;
+                              };
+                          id?: T;
+                        };
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        content?:
+          | T
+          | {
+              contentFields?:
+                | T
+                | {
+                    settings?:
+                      | T
+                      | {
+                          theme?: T;
+                          background?: T;
+                        };
+                    useLeadingHeader?: T;
+                    leadingHeader?: T;
+                    layout?: T;
+                    columnOne?: T;
+                    columnTwo?: T;
+                    columnThree?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        contentGrid?:
+          | T
+          | {
+              contentGridFields?:
+                | T
+                | {
+                    settings?:
+                      | T
+                      | {
+                          theme?: T;
+                          background?: T;
+                        };
+                    style?: T;
+                    showNumbers?: T;
+                    content?: T;
+                    links?:
+                      | T
+                      | {
+                          link?:
+                            | T
+                            | {
+                                type?: T;
+                                newTab?: T;
+                                reference?: T;
+                                url?: T;
+                                label?: T;
+                                customId?: T;
+                              };
+                          id?: T;
+                        };
+                    cells?:
+                      | T
+                      | {
+                          content?: T;
+                          id?: T;
+                        };
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        form?:
+          | T
+          | {
+              formFields?:
+                | T
+                | {
+                    settings?:
+                      | T
+                      | {
+                          theme?: T;
+                          background?: T;
+                        };
+                    richText?: T;
+                    form?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        hoverCards?:
+          | T
+          | {
+              hoverCardsFields?:
+                | T
+                | {
+                    settings?:
+                      | T
+                      | {
+                          theme?: T;
+                          background?: T;
+                        };
+                    hideBackground?: T;
+                    richText?: T;
+                    cards?:
+                      | T
+                      | {
+                          title?: T;
+                          description?: T;
+                          link?:
+                            | T
+                            | {
+                                type?: T;
+                                newTab?: T;
+                                reference?: T;
+                                url?: T;
+                                customId?: T;
+                              };
+                          id?: T;
+                        };
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        hoverHighlights?:
+          | T
+          | {
+              hoverHighlightsFields?:
+                | T
+                | {
+                    settings?:
+                      | T
+                      | {
+                          theme?: T;
+                          background?: T;
+                        };
+                    beforeHighlights?: T;
+                    highlights?:
+                      | T
+                      | {
+                          text?: T;
+                          media?:
+                            | T
+                            | {
+                                top?: T;
+                                bottom?: T;
+                              };
+                          link?:
+                            | T
+                            | {
+                                type?: T;
+                                newTab?: T;
+                                reference?: T;
+                                url?: T;
+                                customId?: T;
+                              };
+                          id?: T;
+                        };
+                    afterHighlights?: T;
+                    link?:
+                      | T
+                      | {
+                          type?: T;
+                          newTab?: T;
+                          reference?: T;
+                          url?: T;
+                          label?: T;
+                          customId?: T;
+                        };
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        linkGrid?:
+          | T
+          | {
+              linkGridFields?:
+                | T
+                | {
+                    settings?:
+                      | T
+                      | {
+                          theme?: T;
+                          background?: T;
+                        };
+                    links?:
+                      | T
+                      | {
+                          link?:
+                            | T
+                            | {
+                                type?: T;
+                                newTab?: T;
+                                reference?: T;
+                                url?: T;
+                                label?: T;
+                                customId?: T;
+                              };
+                          id?: T;
+                        };
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        logoGrid?:
+          | T
+          | {
+              logoGridFields?:
+                | T
+                | {
+                    settings?:
+                      | T
+                      | {
+                          theme?: T;
+                          background?: T;
+                        };
+                    richText?: T;
+                    enableLink?: T;
+                    link?:
+                      | T
+                      | {
+                          type?: T;
+                          newTab?: T;
+                          reference?: T;
+                          url?: T;
+                          label?: T;
+                          customId?: T;
+                        };
+                    logos?:
+                      | T
+                      | {
+                          logoMedia?: T;
+                          id?: T;
+                        };
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        mediaBlock?:
+          | T
+          | {
+              mediaBlockFields?:
+                | T
+                | {
+                    settings?:
+                      | T
+                      | {
+                          theme?: T;
+                          background?: T;
+                        };
+                    position?: T;
+                    media?: T;
+                    caption?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        mediaContent?:
+          | T
+          | {
+              mediaContentFields?:
+                | T
+                | {
+                    settings?:
+                      | T
+                      | {
+                          theme?: T;
+                          background?: T;
+                        };
+                    alignment?: T;
+                    mediaWidth?: T;
+                    richText?: T;
+                    enableLink?: T;
+                    link?:
+                      | T
+                      | {
+                          type?: T;
+                          newTab?: T;
+                          reference?: T;
+                          url?: T;
+                          label?: T;
+                          customId?: T;
+                        };
+                    images?:
+                      | T
+                      | {
+                          image?: T;
+                          id?: T;
+                        };
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        mediaContentAccordion?:
+          | T
+          | {
+              mediaContentAccordionFields?:
+                | T
+                | {
+                    settings?:
+                      | T
+                      | {
+                          theme?: T;
+                          background?: T;
+                        };
+                    alignment?: T;
+                    leader?: T;
+                    heading?: T;
+                    accordion?:
+                      | T
+                      | {
+                          position?: T;
+                          background?: T;
+                          mediaLabel?: T;
+                          mediaDescription?: T;
+                          enableLink?: T;
+                          link?:
+                            | T
+                            | {
+                                type?: T;
+                                newTab?: T;
+                                reference?: T;
+                                url?: T;
+                                label?: T;
+                                customId?: T;
+                              };
+                          media?: T;
+                          id?: T;
+                        };
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        pricing?:
+          | T
+          | {
+              pricingFields?:
+                | T
+                | {
+                    settings?:
+                      | T
+                      | {
+                          theme?: T;
+                          background?: T;
+                        };
+                    plans?:
+                      | T
+                      | {
+                          name?: T;
+                          hasPrice?: T;
+                          enableCreatePayload?: T;
+                          price?: T;
+                          title?: T;
+                          description?: T;
+                          enableLink?: T;
+                          link?:
+                            | T
+                            | {
+                                type?: T;
+                                newTab?: T;
+                                reference?: T;
+                                url?: T;
+                                label?: T;
+                                customId?: T;
+                              };
+                          features?:
+                            | T
+                            | {
+                                icon?: T;
+                                feature?: T;
+                                id?: T;
+                              };
+                          id?: T;
+                        };
+                    disclaimer?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        reusableContentBlock?:
+          | T
+          | {
+              reusableContentBlockFields?:
+                | T
+                | {
+                    settings?:
+                      | T
+                      | {
+                          theme?: T;
+                          background?: T;
+                        };
+                    reusableContent?: T;
+                    customId?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        slider?:
+          | T
+          | {
+              sliderFields?:
+                | T
+                | {
+                    settings?:
+                      | T
+                      | {
+                          theme?: T;
+                          background?: T;
+                        };
+                    introContent?: T;
+                    links?:
+                      | T
+                      | {
+                          link?:
+                            | T
+                            | {
+                                type?: T;
+                                newTab?: T;
+                                reference?: T;
+                                url?: T;
+                                label?: T;
+                                customId?: T;
+                                appearance?: T;
+                              };
+                          id?: T;
+                        };
+                    quoteSlides?:
+                      | T
+                      | {
+                          quote?: T;
+                          author?: T;
+                          role?: T;
+                          logo?: T;
+                          enableLink?: T;
+                          link?:
+                            | T
+                            | {
+                                type?: T;
+                                newTab?: T;
+                                reference?: T;
+                                url?: T;
+                                label?: T;
+                                customId?: T;
+                              };
+                          id?: T;
+                        };
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        statement?:
+          | T
+          | {
+              statementFields?:
+                | T
+                | {
+                    settings?:
+                      | T
+                      | {
+                          theme?: T;
+                          background?: T;
+                        };
+                    richText?: T;
+                    links?:
+                      | T
+                      | {
+                          link?:
+                            | T
+                            | {
+                                type?: T;
+                                newTab?: T;
+                                reference?: T;
+                                url?: T;
+                                label?: T;
+                                customId?: T;
+                              };
+                          id?: T;
+                        };
+                    assetType?: T;
+                    media?: T;
+                    code?: T;
+                    mediaWidth?: T;
+                    backgroundGlow?: T;
+                    assetCaption?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        steps?:
+          | T
+          | {
+              stepsFields?:
+                | T
+                | {
+                    settings?:
+                      | T
+                      | {
+                          theme?: T;
+                          background?: T;
+                        };
+                    steps?:
+                      | T
+                      | {
+                          content?: T;
+                          media?: T;
+                          id?: T;
+                        };
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        stickyHighlights?:
+          | T
+          | {
+              stickyHighlightsFields?:
+                | T
+                | {
+                    settings?:
+                      | T
+                      | {
+                          theme?: T;
+                          background?: T;
+                        };
+                    highlights?:
+                      | T
+                      | {
+                          richText?: T;
+                          enableLink?: T;
+                          link?:
+                            | T
+                            | {
+                                type?: T;
+                                newTab?: T;
+                                reference?: T;
+                                url?: T;
+                                label?: T;
+                                customId?: T;
+                              };
+                          type?: T;
+                          code?: T;
+                          codeBlips?:
+                            | T
+                            | {
+                                row?: T;
+                                label?: T;
+                                feature?: T;
+                                enableLink?: T;
+                                link?:
+                                  | T
+                                  | {
+                                      type?: T;
+                                      newTab?: T;
+                                      reference?: T;
+                                      url?: T;
+                                      label?: T;
+                                      customId?: T;
+                                    };
+                                id?: T;
+                              };
+                          media?: T;
+                          id?: T;
+                        };
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        exampleTabs?:
+          | T
+          | {
+              content?: T;
+              tabs?:
+                | T
+                | {
+                    label?: T;
+                    content?: T;
+                    examples?:
+                      | T
+                      | {
+                          CodeExampleBlock?:
+                            | T
+                            | {
+                                code?: T;
+                                id?: T;
+                                blockName?: T;
+                              };
+                          MediaExampleBlock?:
+                            | T
+                            | {
+                                media?: T;
+                                id?: T;
+                                blockName?: T;
+                              };
+                        };
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+      };
+  slug?: T;
+  url?: T;
+  meta?:
+    | T
+    | {
+        overview?: T;
+        title?: T;
+        description?: T;
+        image?: T;
+        preview?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  _status?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "community-help_select".
+ */
+export interface CommunityHelpSelect<T extends boolean = true> {
+  title?: T;
+  communityHelpType?: T;
+  githubID?: T;
+  discordID?: T;
+  communityHelpJSON?: T;
+  introDescription?: T;
+  slug?: T;
+  helpful?: T;
+  relatedDocs?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "docs_select".
+ */
+export interface DocsSelect<T extends boolean = true> {
+  title?: T;
+  description?: T;
+  keywords?: T;
+  headings?: T;
+  content?: T;
+  path?: T;
+  topic?: T;
+  slug?: T;
+  label?: T;
+  order?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "media_select".
+ */
+export interface MediaSelect<T extends boolean = true> {
+  alt?: T;
+  darkModeFallback?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  url?: T;
+  thumbnailURL?: T;
+  filename?: T;
+  mimeType?: T;
+  filesize?: T;
+  width?: T;
+  height?: T;
+  focalX?: T;
+  focalY?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "pages_select".
+ */
+export interface PagesSelect<T extends boolean = true> {
+  title?: T;
+  fullTitle?: T;
+  noindex?: T;
+  hero?:
+    | T
+    | {
+        type?: T;
+        fullBackground?: T;
+        theme?: T;
+        enableBreadcrumbsBar?: T;
+        breadcrumbsBarLinks?:
+          | T
+          | {
+              link?:
+                | T
+                | {
+                    type?: T;
+                    newTab?: T;
+                    reference?: T;
+                    url?: T;
+                    label?: T;
+                    customId?: T;
+                  };
+              id?: T;
+            };
+        livestream?:
+          | T
+          | {
+              id?: T;
+              date?: T;
+              hideBreadcrumbs?: T;
+              richText?: T;
+              guests?:
+                | T
+                | {
+                    name?: T;
+                    link?: T;
+                    image?: T;
+                    id?: T;
+                  };
+            };
+        enableAnnouncement?: T;
+        announcementLink?:
+          | T
+          | {
+              type?: T;
+              newTab?: T;
+              reference?: T;
+              url?: T;
+              label?: T;
+              customId?: T;
+            };
+        richText?: T;
+        description?: T;
+        primaryButtons?:
+          | T
+          | {
+              type?: T;
+              npmCta?:
+                | T
+                | {
+                    label?: T;
+                  };
+              link?:
+                | T
+                | {
+                    type?: T;
+                    newTab?: T;
+                    reference?: T;
+                    url?: T;
+                    label?: T;
+                    customId?: T;
+                  };
+              id?: T;
+            };
+        secondaryHeading?: T;
+        secondaryDescription?: T;
+        links?:
+          | T
+          | {
+              link?:
+                | T
+                | {
+                    type?: T;
+                    newTab?: T;
+                    reference?: T;
+                    url?: T;
+                    label?: T;
+                    customId?: T;
+                    appearance?: T;
+                  };
+              id?: T;
+            };
+        threeCTA?: T;
+        newsletter?:
+          | T
+          | {
+              placeholder?: T;
+              description?: T;
+            };
+        buttons?:
+          | T
+          | {
+              link?:
+                | T
+                | {
+                    link?:
+                      | T
+                      | {
+                          type?: T;
+                          newTab?: T;
+                          reference?: T;
+                          url?: T;
+                          label?: T;
+                          customId?: T;
+                          appearance?: T;
+                        };
+                    id?: T;
+                    blockName?: T;
+                  };
+              command?:
+                | T
+                | {
+                    command?: T;
+                    id?: T;
+                    blockName?: T;
+                  };
+            };
+        secondaryButtons?:
+          | T
+          | {
+              link?:
+                | T
+                | {
+                    type?: T;
+                    newTab?: T;
+                    reference?: T;
+                    url?: T;
+                    label?: T;
+                    customId?: T;
+                  };
+              id?: T;
+            };
+        images?:
+          | T
+          | {
+              image?: T;
+              id?: T;
+            };
+        enableMedia?: T;
+        media?: T;
+        secondaryMedia?: T;
+        featureVideo?: T;
+        form?: T;
+        logos?:
+          | T
+          | {
+              logoMedia?: T;
+              id?: T;
+            };
+        logoShowcaseLabel?: T;
+        logoShowcase?: T;
+      };
+  layout?:
+    | T
+    | {
+        callout?:
+          | T
+          | {
+              calloutFields?:
+                | T
+                | {
+                    settings?:
+                      | T
+                      | {
+                          theme?: T;
+                          background?: T;
+                        };
+                    richText?: T;
+                    logo?: T;
+                    author?: T;
+                    role?: T;
+                    images?:
+                      | T
+                      | {
+                          image?: T;
+                          id?: T;
+                        };
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        cta?:
+          | T
+          | {
+              ctaFields?:
+                | T
+                | {
+                    settings?:
+                      | T
+                      | {
+                          theme?: T;
+                          background?: T;
+                        };
+                    style?: T;
+                    richText?: T;
+                    commandLine?: T;
+                    links?:
+                      | T
+                      | {
+                          type?: T;
+                          npmCta?:
+                            | T
+                            | {
+                                label?: T;
+                              };
+                          link?:
+                            | T
+                            | {
+                                type?: T;
+                                newTab?: T;
+                                reference?: T;
+                                url?: T;
+                                label?: T;
+                                customId?: T;
+                              };
+                          id?: T;
+                        };
+                    bannerLink?:
+                      | T
+                      | {
+                          type?: T;
+                          newTab?: T;
+                          reference?: T;
+                          url?: T;
+                          label?: T;
+                          customId?: T;
+                        };
+                    bannerImage?: T;
+                    gradientBackground?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        cardGrid?:
+          | T
+          | {
+              cardGridFields?:
+                | T
+                | {
+                    settings?:
+                      | T
+                      | {
+                          theme?: T;
+                          background?: T;
+                        };
+                    richText?: T;
+                    links?:
+                      | T
+                      | {
+                          link?:
+                            | T
+                            | {
+                                type?: T;
+                                newTab?: T;
+                                reference?: T;
+                                url?: T;
+                                label?: T;
+                                customId?: T;
+                              };
+                          id?: T;
+                        };
+                    revealDescription?: T;
+                    cards?:
+                      | T
+                      | {
+                          title?: T;
+                          description?: T;
+                          enableLink?: T;
+                          link?:
+                            | T
+                            | {
+                                type?: T;
+                                newTab?: T;
+                                reference?: T;
+                                url?: T;
+                                customId?: T;
+                              };
+                          id?: T;
+                        };
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        caseStudyCards?:
+          | T
+          | {
+              caseStudyCardFields?:
+                | T
+                | {
+                    settings?:
+                      | T
+                      | {
+                          theme?: T;
+                          background?: T;
+                        };
+                    pixels?: T;
+                    cards?:
+                      | T
+                      | {
+                          richText?: T;
+                          caseStudy?: T;
+                          id?: T;
+                        };
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        caseStudiesHighlight?:
+          | T
+          | {
+              caseStudiesHighlightFields?:
+                | T
+                | {
+                    settings?:
+                      | T
+                      | {
+                          theme?: T;
+                          background?: T;
+                        };
+                    richText?: T;
+                    caseStudies?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        caseStudyParallax?:
+          | T
+          | {
+              caseStudyParallaxFields?:
+                | T
+                | {
+                    settings?:
+                      | T
+                      | {
+                          theme?: T;
+                          background?: T;
+                        };
+                    items?:
+                      | T
+                      | {
+                          quote?: T;
+                          author?: T;
+                          logo?: T;
+                          images?:
+                            | T
+                            | {
+                                image?: T;
+                                id?: T;
+                              };
+                          tabLabel?: T;
+                          caseStudy?: T;
+                          id?: T;
+                        };
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        codeFeature?:
+          | T
+          | {
+              codeFeatureFields?:
+                | T
+                | {
+                    settings?:
+                      | T
+                      | {
+                          theme?: T;
+                          background?: T;
+                        };
+                    forceDarkBackground?: T;
+                    alignment?: T;
+                    heading?: T;
+                    richText?: T;
+                    links?:
+                      | T
+                      | {
+                          link?:
+                            | T
+                            | {
+                                type?: T;
+                                newTab?: T;
+                                reference?: T;
+                                url?: T;
+                                label?: T;
+                                customId?: T;
+                              };
+                          id?: T;
+                        };
+                    codeTabs?:
+                      | T
+                      | {
+                          language?: T;
+                          label?: T;
+                          code?: T;
+                          codeBlips?:
+                            | T
+                            | {
+                                row?: T;
+                                label?: T;
+                                feature?: T;
+                                enableLink?: T;
+                                link?:
+                                  | T
+                                  | {
+                                      type?: T;
+                                      newTab?: T;
+                                      reference?: T;
+                                      url?: T;
+                                      label?: T;
+                                      customId?: T;
+                                    };
+                                id?: T;
+                              };
+                          id?: T;
+                        };
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        content?:
+          | T
+          | {
+              contentFields?:
+                | T
+                | {
+                    settings?:
+                      | T
+                      | {
+                          theme?: T;
+                          background?: T;
+                        };
+                    useLeadingHeader?: T;
+                    leadingHeader?: T;
+                    layout?: T;
+                    columnOne?: T;
+                    columnTwo?: T;
+                    columnThree?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        contentGrid?:
+          | T
+          | {
+              contentGridFields?:
+                | T
+                | {
+                    settings?:
+                      | T
+                      | {
+                          theme?: T;
+                          background?: T;
+                        };
+                    style?: T;
+                    showNumbers?: T;
+                    content?: T;
+                    links?:
+                      | T
+                      | {
+                          link?:
+                            | T
+                            | {
+                                type?: T;
+                                newTab?: T;
+                                reference?: T;
+                                url?: T;
+                                label?: T;
+                                customId?: T;
+                              };
+                          id?: T;
+                        };
+                    cells?:
+                      | T
+                      | {
+                          content?: T;
+                          id?: T;
+                        };
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        form?:
+          | T
+          | {
+              formFields?:
+                | T
+                | {
+                    settings?:
+                      | T
+                      | {
+                          theme?: T;
+                          background?: T;
+                        };
+                    richText?: T;
+                    form?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        hoverCards?:
+          | T
+          | {
+              hoverCardsFields?:
+                | T
+                | {
+                    settings?:
+                      | T
+                      | {
+                          theme?: T;
+                          background?: T;
+                        };
+                    hideBackground?: T;
+                    richText?: T;
+                    cards?:
+                      | T
+                      | {
+                          title?: T;
+                          description?: T;
+                          link?:
+                            | T
+                            | {
+                                type?: T;
+                                newTab?: T;
+                                reference?: T;
+                                url?: T;
+                                customId?: T;
+                              };
+                          id?: T;
+                        };
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        hoverHighlights?:
+          | T
+          | {
+              hoverHighlightsFields?:
+                | T
+                | {
+                    settings?:
+                      | T
+                      | {
+                          theme?: T;
+                          background?: T;
+                        };
+                    beforeHighlights?: T;
+                    highlights?:
+                      | T
+                      | {
+                          text?: T;
+                          media?:
+                            | T
+                            | {
+                                top?: T;
+                                bottom?: T;
+                              };
+                          link?:
+                            | T
+                            | {
+                                type?: T;
+                                newTab?: T;
+                                reference?: T;
+                                url?: T;
+                                customId?: T;
+                              };
+                          id?: T;
+                        };
+                    afterHighlights?: T;
+                    link?:
+                      | T
+                      | {
+                          type?: T;
+                          newTab?: T;
+                          reference?: T;
+                          url?: T;
+                          label?: T;
+                          customId?: T;
+                        };
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        linkGrid?:
+          | T
+          | {
+              linkGridFields?:
+                | T
+                | {
+                    settings?:
+                      | T
+                      | {
+                          theme?: T;
+                          background?: T;
+                        };
+                    links?:
+                      | T
+                      | {
+                          link?:
+                            | T
+                            | {
+                                type?: T;
+                                newTab?: T;
+                                reference?: T;
+                                url?: T;
+                                label?: T;
+                                customId?: T;
+                              };
+                          id?: T;
+                        };
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        logoGrid?:
+          | T
+          | {
+              logoGridFields?:
+                | T
+                | {
+                    settings?:
+                      | T
+                      | {
+                          theme?: T;
+                          background?: T;
+                        };
+                    richText?: T;
+                    enableLink?: T;
+                    link?:
+                      | T
+                      | {
+                          type?: T;
+                          newTab?: T;
+                          reference?: T;
+                          url?: T;
+                          label?: T;
+                          customId?: T;
+                        };
+                    logos?:
+                      | T
+                      | {
+                          logoMedia?: T;
+                          id?: T;
+                        };
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        mediaBlock?:
+          | T
+          | {
+              mediaBlockFields?:
+                | T
+                | {
+                    settings?:
+                      | T
+                      | {
+                          theme?: T;
+                          background?: T;
+                        };
+                    position?: T;
+                    media?: T;
+                    caption?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        mediaContent?:
+          | T
+          | {
+              mediaContentFields?:
+                | T
+                | {
+                    settings?:
+                      | T
+                      | {
+                          theme?: T;
+                          background?: T;
+                        };
+                    alignment?: T;
+                    mediaWidth?: T;
+                    richText?: T;
+                    enableLink?: T;
+                    link?:
+                      | T
+                      | {
+                          type?: T;
+                          newTab?: T;
+                          reference?: T;
+                          url?: T;
+                          label?: T;
+                          customId?: T;
+                        };
+                    images?:
+                      | T
+                      | {
+                          image?: T;
+                          id?: T;
+                        };
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        mediaContentAccordion?:
+          | T
+          | {
+              mediaContentAccordionFields?:
+                | T
+                | {
+                    settings?:
+                      | T
+                      | {
+                          theme?: T;
+                          background?: T;
+                        };
+                    alignment?: T;
+                    leader?: T;
+                    heading?: T;
+                    accordion?:
+                      | T
+                      | {
+                          position?: T;
+                          background?: T;
+                          mediaLabel?: T;
+                          mediaDescription?: T;
+                          enableLink?: T;
+                          link?:
+                            | T
+                            | {
+                                type?: T;
+                                newTab?: T;
+                                reference?: T;
+                                url?: T;
+                                label?: T;
+                                customId?: T;
+                              };
+                          media?: T;
+                          id?: T;
+                        };
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        pricing?:
+          | T
+          | {
+              pricingFields?:
+                | T
+                | {
+                    settings?:
+                      | T
+                      | {
+                          theme?: T;
+                          background?: T;
+                        };
+                    plans?:
+                      | T
+                      | {
+                          name?: T;
+                          hasPrice?: T;
+                          enableCreatePayload?: T;
+                          price?: T;
+                          title?: T;
+                          description?: T;
+                          enableLink?: T;
+                          link?:
+                            | T
+                            | {
+                                type?: T;
+                                newTab?: T;
+                                reference?: T;
+                                url?: T;
+                                label?: T;
+                                customId?: T;
+                              };
+                          features?:
+                            | T
+                            | {
+                                icon?: T;
+                                feature?: T;
+                                id?: T;
+                              };
+                          id?: T;
+                        };
+                    disclaimer?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        reusableContentBlock?:
+          | T
+          | {
+              reusableContentBlockFields?:
+                | T
+                | {
+                    settings?:
+                      | T
+                      | {
+                          theme?: T;
+                          background?: T;
+                        };
+                    reusableContent?: T;
+                    customId?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        slider?:
+          | T
+          | {
+              sliderFields?:
+                | T
+                | {
+                    settings?:
+                      | T
+                      | {
+                          theme?: T;
+                          background?: T;
+                        };
+                    introContent?: T;
+                    links?:
+                      | T
+                      | {
+                          link?:
+                            | T
+                            | {
+                                type?: T;
+                                newTab?: T;
+                                reference?: T;
+                                url?: T;
+                                label?: T;
+                                customId?: T;
+                                appearance?: T;
+                              };
+                          id?: T;
+                        };
+                    quoteSlides?:
+                      | T
+                      | {
+                          quote?: T;
+                          author?: T;
+                          role?: T;
+                          logo?: T;
+                          enableLink?: T;
+                          link?:
+                            | T
+                            | {
+                                type?: T;
+                                newTab?: T;
+                                reference?: T;
+                                url?: T;
+                                label?: T;
+                                customId?: T;
+                              };
+                          id?: T;
+                        };
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        statement?:
+          | T
+          | {
+              statementFields?:
+                | T
+                | {
+                    settings?:
+                      | T
+                      | {
+                          theme?: T;
+                          background?: T;
+                        };
+                    richText?: T;
+                    links?:
+                      | T
+                      | {
+                          link?:
+                            | T
+                            | {
+                                type?: T;
+                                newTab?: T;
+                                reference?: T;
+                                url?: T;
+                                label?: T;
+                                customId?: T;
+                              };
+                          id?: T;
+                        };
+                    assetType?: T;
+                    media?: T;
+                    code?: T;
+                    mediaWidth?: T;
+                    backgroundGlow?: T;
+                    assetCaption?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        steps?:
+          | T
+          | {
+              stepsFields?:
+                | T
+                | {
+                    settings?:
+                      | T
+                      | {
+                          theme?: T;
+                          background?: T;
+                        };
+                    steps?:
+                      | T
+                      | {
+                          content?: T;
+                          media?: T;
+                          id?: T;
+                        };
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        stickyHighlights?:
+          | T
+          | {
+              stickyHighlightsFields?:
+                | T
+                | {
+                    settings?:
+                      | T
+                      | {
+                          theme?: T;
+                          background?: T;
+                        };
+                    highlights?:
+                      | T
+                      | {
+                          richText?: T;
+                          enableLink?: T;
+                          link?:
+                            | T
+                            | {
+                                type?: T;
+                                newTab?: T;
+                                reference?: T;
+                                url?: T;
+                                label?: T;
+                                customId?: T;
+                              };
+                          type?: T;
+                          code?: T;
+                          codeBlips?:
+                            | T
+                            | {
+                                row?: T;
+                                label?: T;
+                                feature?: T;
+                                enableLink?: T;
+                                link?:
+                                  | T
+                                  | {
+                                      type?: T;
+                                      newTab?: T;
+                                      reference?: T;
+                                      url?: T;
+                                      label?: T;
+                                      customId?: T;
+                                    };
+                                id?: T;
+                              };
+                          media?: T;
+                          id?: T;
+                        };
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        exampleTabs?:
+          | T
+          | {
+              content?: T;
+              tabs?:
+                | T
+                | {
+                    label?: T;
+                    content?: T;
+                    examples?:
+                      | T
+                      | {
+                          CodeExampleBlock?:
+                            | T
+                            | {
+                                code?: T;
+                                id?: T;
+                                blockName?: T;
+                              };
+                          MediaExampleBlock?:
+                            | T
+                            | {
+                                media?: T;
+                                id?: T;
+                                blockName?: T;
+                              };
+                        };
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+      };
+  slug?: T;
+  meta?:
+    | T
+    | {
+        overview?: T;
+        title?: T;
+        description?: T;
+        image?: T;
+        preview?: T;
+      };
+  parent?: T;
+  breadcrumbs?:
+    | T
+    | {
+        doc?: T;
+        url?: T;
+        label?: T;
+        id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  _status?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "industries_select".
+ */
+export interface IndustriesSelect<T extends boolean = true> {
+  name?: T;
+  value?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "specialties_select".
+ */
+export interface SpecialtiesSelect<T extends boolean = true> {
+  name?: T;
+  value?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "regions_select".
+ */
+export interface RegionsSelect<T extends boolean = true> {
+  name?: T;
+  value?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "budgets_select".
+ */
+export interface BudgetsSelect<T extends boolean = true> {
+  name?: T;
+  value?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "posts_select".
+ */
+export interface PostsSelect<T extends boolean = true> {
+  title?: T;
+  image?: T;
+  useVideo?: T;
+  videoUrl?: T;
+  excerpt?: T;
+  content?:
+    | T
+    | {
+        banner?:
+          | T
+          | {
+              bannerFields?:
+                | T
+                | {
+                    settings?:
+                      | T
+                      | {
+                          theme?: T;
+                          background?: T;
+                        };
+                    type?: T;
+                    addCheckmark?: T;
+                    content?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        blogContent?:
+          | T
+          | {
+              blogContentFields?:
+                | T
+                | {
+                    settings?:
+                      | T
+                      | {
+                          theme?: T;
+                          background?: T;
+                        };
+                    richText?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        code?:
+          | T
+          | {
+              codeFields?:
+                | T
+                | {
+                    settings?:
+                      | T
+                      | {
+                          theme?: T;
+                          background?: T;
+                        };
+                    language?: T;
+                    code?: T;
+                    codeBlips?:
+                      | T
+                      | {
+                          row?: T;
+                          label?: T;
+                          feature?: T;
+                          enableLink?: T;
+                          link?:
+                            | T
+                            | {
+                                type?: T;
+                                newTab?: T;
+                                reference?: T;
+                                url?: T;
+                                label?: T;
+                                customId?: T;
+                              };
+                          id?: T;
+                        };
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        blogMarkdown?:
+          | T
+          | {
+              blogMarkdownFields?:
+                | T
+                | {
+                    settings?:
+                      | T
+                      | {
+                          theme?: T;
+                          background?: T;
+                        };
+                    markdown?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        mediaBlock?:
+          | T
+          | {
+              mediaBlockFields?:
+                | T
+                | {
+                    settings?:
+                      | T
+                      | {
+                          theme?: T;
+                          background?: T;
+                        };
+                    position?: T;
+                    media?: T;
+                    caption?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        reusableContentBlock?:
+          | T
+          | {
+              reusableContentBlockFields?:
+                | T
+                | {
+                    settings?:
+                      | T
+                      | {
+                          theme?: T;
+                          background?: T;
+                        };
+                    reusableContent?: T;
+                    customId?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+      };
+  lexicalContent?: T;
+  relatedPosts?: T;
+  slug?: T;
+  authors?: T;
+  publishedOn?: T;
+  meta?:
+    | T
+    | {
+        overview?: T;
+        title?: T;
+        description?: T;
+        image?: T;
+        preview?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  _status?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "reusable-content_select".
+ */
+export interface ReusableContentSelect<T extends boolean = true> {
+  title?: T;
+  layout?:
+    | T
+    | {
+        banner?:
+          | T
+          | {
+              bannerFields?:
+                | T
+                | {
+                    settings?:
+                      | T
+                      | {
+                          theme?: T;
+                          background?: T;
+                        };
+                    type?: T;
+                    addCheckmark?: T;
+                    content?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        blogContent?:
+          | T
+          | {
+              blogContentFields?:
+                | T
+                | {
+                    settings?:
+                      | T
+                      | {
+                          theme?: T;
+                          background?: T;
+                        };
+                    richText?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        blogMarkdown?:
+          | T
+          | {
+              blogMarkdownFields?:
+                | T
+                | {
+                    settings?:
+                      | T
+                      | {
+                          theme?: T;
+                          background?: T;
+                        };
+                    markdown?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        callout?:
+          | T
+          | {
+              calloutFields?:
+                | T
+                | {
+                    settings?:
+                      | T
+                      | {
+                          theme?: T;
+                          background?: T;
+                        };
+                    richText?: T;
+                    logo?: T;
+                    author?: T;
+                    role?: T;
+                    images?:
+                      | T
+                      | {
+                          image?: T;
+                          id?: T;
+                        };
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        cta?:
+          | T
+          | {
+              ctaFields?:
+                | T
+                | {
+                    settings?:
+                      | T
+                      | {
+                          theme?: T;
+                          background?: T;
+                        };
+                    style?: T;
+                    richText?: T;
+                    commandLine?: T;
+                    links?:
+                      | T
+                      | {
+                          type?: T;
+                          npmCta?:
+                            | T
+                            | {
+                                label?: T;
+                              };
+                          link?:
+                            | T
+                            | {
+                                type?: T;
+                                newTab?: T;
+                                reference?: T;
+                                url?: T;
+                                label?: T;
+                                customId?: T;
+                              };
+                          id?: T;
+                        };
+                    bannerLink?:
+                      | T
+                      | {
+                          type?: T;
+                          newTab?: T;
+                          reference?: T;
+                          url?: T;
+                          label?: T;
+                          customId?: T;
+                        };
+                    bannerImage?: T;
+                    gradientBackground?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        cardGrid?:
+          | T
+          | {
+              cardGridFields?:
+                | T
+                | {
+                    settings?:
+                      | T
+                      | {
+                          theme?: T;
+                          background?: T;
+                        };
+                    richText?: T;
+                    links?:
+                      | T
+                      | {
+                          link?:
+                            | T
+                            | {
+                                type?: T;
+                                newTab?: T;
+                                reference?: T;
+                                url?: T;
+                                label?: T;
+                                customId?: T;
+                              };
+                          id?: T;
+                        };
+                    revealDescription?: T;
+                    cards?:
+                      | T
+                      | {
+                          title?: T;
+                          description?: T;
+                          enableLink?: T;
+                          link?:
+                            | T
+                            | {
+                                type?: T;
+                                newTab?: T;
+                                reference?: T;
+                                url?: T;
+                                customId?: T;
+                              };
+                          id?: T;
+                        };
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        caseStudyCards?:
+          | T
+          | {
+              caseStudyCardFields?:
+                | T
+                | {
+                    settings?:
+                      | T
+                      | {
+                          theme?: T;
+                          background?: T;
+                        };
+                    pixels?: T;
+                    cards?:
+                      | T
+                      | {
+                          richText?: T;
+                          caseStudy?: T;
+                          id?: T;
+                        };
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        caseStudiesHighlight?:
+          | T
+          | {
+              caseStudiesHighlightFields?:
+                | T
+                | {
+                    settings?:
+                      | T
+                      | {
+                          theme?: T;
+                          background?: T;
+                        };
+                    richText?: T;
+                    caseStudies?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        caseStudyParallax?:
+          | T
+          | {
+              caseStudyParallaxFields?:
+                | T
+                | {
+                    settings?:
+                      | T
+                      | {
+                          theme?: T;
+                          background?: T;
+                        };
+                    items?:
+                      | T
+                      | {
+                          quote?: T;
+                          author?: T;
+                          logo?: T;
+                          images?:
+                            | T
+                            | {
+                                image?: T;
+                                id?: T;
+                              };
+                          tabLabel?: T;
+                          caseStudy?: T;
+                          id?: T;
+                        };
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        code?:
+          | T
+          | {
+              codeFields?:
+                | T
+                | {
+                    settings?:
+                      | T
+                      | {
+                          theme?: T;
+                          background?: T;
+                        };
+                    language?: T;
+                    code?: T;
+                    codeBlips?:
+                      | T
+                      | {
+                          row?: T;
+                          label?: T;
+                          feature?: T;
+                          enableLink?: T;
+                          link?:
+                            | T
+                            | {
+                                type?: T;
+                                newTab?: T;
+                                reference?: T;
+                                url?: T;
+                                label?: T;
+                                customId?: T;
+                              };
+                          id?: T;
+                        };
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        codeFeature?:
+          | T
+          | {
+              codeFeatureFields?:
+                | T
+                | {
+                    settings?:
+                      | T
+                      | {
+                          theme?: T;
+                          background?: T;
+                        };
+                    forceDarkBackground?: T;
+                    alignment?: T;
+                    heading?: T;
+                    richText?: T;
+                    links?:
+                      | T
+                      | {
+                          link?:
+                            | T
+                            | {
+                                type?: T;
+                                newTab?: T;
+                                reference?: T;
+                                url?: T;
+                                label?: T;
+                                customId?: T;
+                              };
+                          id?: T;
+                        };
+                    codeTabs?:
+                      | T
+                      | {
+                          language?: T;
+                          label?: T;
+                          code?: T;
+                          codeBlips?:
+                            | T
+                            | {
+                                row?: T;
+                                label?: T;
+                                feature?: T;
+                                enableLink?: T;
+                                link?:
+                                  | T
+                                  | {
+                                      type?: T;
+                                      newTab?: T;
+                                      reference?: T;
+                                      url?: T;
+                                      label?: T;
+                                      customId?: T;
+                                    };
+                                id?: T;
+                              };
+                          id?: T;
+                        };
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        content?:
+          | T
+          | {
+              contentFields?:
+                | T
+                | {
+                    settings?:
+                      | T
+                      | {
+                          theme?: T;
+                          background?: T;
+                        };
+                    useLeadingHeader?: T;
+                    leadingHeader?: T;
+                    layout?: T;
+                    columnOne?: T;
+                    columnTwo?: T;
+                    columnThree?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        contentGrid?:
+          | T
+          | {
+              contentGridFields?:
+                | T
+                | {
+                    settings?:
+                      | T
+                      | {
+                          theme?: T;
+                          background?: T;
+                        };
+                    style?: T;
+                    showNumbers?: T;
+                    content?: T;
+                    links?:
+                      | T
+                      | {
+                          link?:
+                            | T
+                            | {
+                                type?: T;
+                                newTab?: T;
+                                reference?: T;
+                                url?: T;
+                                label?: T;
+                                customId?: T;
+                              };
+                          id?: T;
+                        };
+                    cells?:
+                      | T
+                      | {
+                          content?: T;
+                          id?: T;
+                        };
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        exampleTabs?:
+          | T
+          | {
+              content?: T;
+              tabs?:
+                | T
+                | {
+                    label?: T;
+                    content?: T;
+                    examples?:
+                      | T
+                      | {
+                          CodeExampleBlock?:
+                            | T
+                            | {
+                                code?: T;
+                                id?: T;
+                                blockName?: T;
+                              };
+                          MediaExampleBlock?:
+                            | T
+                            | {
+                                media?: T;
+                                id?: T;
+                                blockName?: T;
+                              };
+                        };
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        form?:
+          | T
+          | {
+              formFields?:
+                | T
+                | {
+                    settings?:
+                      | T
+                      | {
+                          theme?: T;
+                          background?: T;
+                        };
+                    richText?: T;
+                    form?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        hoverCards?:
+          | T
+          | {
+              hoverCardsFields?:
+                | T
+                | {
+                    settings?:
+                      | T
+                      | {
+                          theme?: T;
+                          background?: T;
+                        };
+                    hideBackground?: T;
+                    richText?: T;
+                    cards?:
+                      | T
+                      | {
+                          title?: T;
+                          description?: T;
+                          link?:
+                            | T
+                            | {
+                                type?: T;
+                                newTab?: T;
+                                reference?: T;
+                                url?: T;
+                                customId?: T;
+                              };
+                          id?: T;
+                        };
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        hoverHighlights?:
+          | T
+          | {
+              hoverHighlightsFields?:
+                | T
+                | {
+                    settings?:
+                      | T
+                      | {
+                          theme?: T;
+                          background?: T;
+                        };
+                    beforeHighlights?: T;
+                    highlights?:
+                      | T
+                      | {
+                          text?: T;
+                          media?:
+                            | T
+                            | {
+                                top?: T;
+                                bottom?: T;
+                              };
+                          link?:
+                            | T
+                            | {
+                                type?: T;
+                                newTab?: T;
+                                reference?: T;
+                                url?: T;
+                                customId?: T;
+                              };
+                          id?: T;
+                        };
+                    afterHighlights?: T;
+                    link?:
+                      | T
+                      | {
+                          type?: T;
+                          newTab?: T;
+                          reference?: T;
+                          url?: T;
+                          label?: T;
+                          customId?: T;
+                        };
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        linkGrid?:
+          | T
+          | {
+              linkGridFields?:
+                | T
+                | {
+                    settings?:
+                      | T
+                      | {
+                          theme?: T;
+                          background?: T;
+                        };
+                    links?:
+                      | T
+                      | {
+                          link?:
+                            | T
+                            | {
+                                type?: T;
+                                newTab?: T;
+                                reference?: T;
+                                url?: T;
+                                label?: T;
+                                customId?: T;
+                              };
+                          id?: T;
+                        };
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        logoGrid?:
+          | T
+          | {
+              logoGridFields?:
+                | T
+                | {
+                    settings?:
+                      | T
+                      | {
+                          theme?: T;
+                          background?: T;
+                        };
+                    richText?: T;
+                    enableLink?: T;
+                    link?:
+                      | T
+                      | {
+                          type?: T;
+                          newTab?: T;
+                          reference?: T;
+                          url?: T;
+                          label?: T;
+                          customId?: T;
+                        };
+                    logos?:
+                      | T
+                      | {
+                          logoMedia?: T;
+                          id?: T;
+                        };
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        mediaBlock?:
+          | T
+          | {
+              mediaBlockFields?:
+                | T
+                | {
+                    settings?:
+                      | T
+                      | {
+                          theme?: T;
+                          background?: T;
+                        };
+                    position?: T;
+                    media?: T;
+                    caption?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        mediaContent?:
+          | T
+          | {
+              mediaContentFields?:
+                | T
+                | {
+                    settings?:
+                      | T
+                      | {
+                          theme?: T;
+                          background?: T;
+                        };
+                    alignment?: T;
+                    mediaWidth?: T;
+                    richText?: T;
+                    enableLink?: T;
+                    link?:
+                      | T
+                      | {
+                          type?: T;
+                          newTab?: T;
+                          reference?: T;
+                          url?: T;
+                          label?: T;
+                          customId?: T;
+                        };
+                    images?:
+                      | T
+                      | {
+                          image?: T;
+                          id?: T;
+                        };
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        mediaContentAccordion?:
+          | T
+          | {
+              mediaContentAccordionFields?:
+                | T
+                | {
+                    settings?:
+                      | T
+                      | {
+                          theme?: T;
+                          background?: T;
+                        };
+                    alignment?: T;
+                    leader?: T;
+                    heading?: T;
+                    accordion?:
+                      | T
+                      | {
+                          position?: T;
+                          background?: T;
+                          mediaLabel?: T;
+                          mediaDescription?: T;
+                          enableLink?: T;
+                          link?:
+                            | T
+                            | {
+                                type?: T;
+                                newTab?: T;
+                                reference?: T;
+                                url?: T;
+                                label?: T;
+                                customId?: T;
+                              };
+                          media?: T;
+                          id?: T;
+                        };
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        pricing?:
+          | T
+          | {
+              pricingFields?:
+                | T
+                | {
+                    settings?:
+                      | T
+                      | {
+                          theme?: T;
+                          background?: T;
+                        };
+                    plans?:
+                      | T
+                      | {
+                          name?: T;
+                          hasPrice?: T;
+                          enableCreatePayload?: T;
+                          price?: T;
+                          title?: T;
+                          description?: T;
+                          enableLink?: T;
+                          link?:
+                            | T
+                            | {
+                                type?: T;
+                                newTab?: T;
+                                reference?: T;
+                                url?: T;
+                                label?: T;
+                                customId?: T;
+                              };
+                          features?:
+                            | T
+                            | {
+                                icon?: T;
+                                feature?: T;
+                                id?: T;
+                              };
+                          id?: T;
+                        };
+                    disclaimer?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        slider?:
+          | T
+          | {
+              sliderFields?:
+                | T
+                | {
+                    settings?:
+                      | T
+                      | {
+                          theme?: T;
+                          background?: T;
+                        };
+                    introContent?: T;
+                    links?:
+                      | T
+                      | {
+                          link?:
+                            | T
+                            | {
+                                type?: T;
+                                newTab?: T;
+                                reference?: T;
+                                url?: T;
+                                label?: T;
+                                customId?: T;
+                                appearance?: T;
+                              };
+                          id?: T;
+                        };
+                    quoteSlides?:
+                      | T
+                      | {
+                          quote?: T;
+                          author?: T;
+                          role?: T;
+                          logo?: T;
+                          enableLink?: T;
+                          link?:
+                            | T
+                            | {
+                                type?: T;
+                                newTab?: T;
+                                reference?: T;
+                                url?: T;
+                                label?: T;
+                                customId?: T;
+                              };
+                          id?: T;
+                        };
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        statement?:
+          | T
+          | {
+              statementFields?:
+                | T
+                | {
+                    settings?:
+                      | T
+                      | {
+                          theme?: T;
+                          background?: T;
+                        };
+                    richText?: T;
+                    links?:
+                      | T
+                      | {
+                          link?:
+                            | T
+                            | {
+                                type?: T;
+                                newTab?: T;
+                                reference?: T;
+                                url?: T;
+                                label?: T;
+                                customId?: T;
+                              };
+                          id?: T;
+                        };
+                    assetType?: T;
+                    media?: T;
+                    code?: T;
+                    mediaWidth?: T;
+                    backgroundGlow?: T;
+                    assetCaption?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        steps?:
+          | T
+          | {
+              stepsFields?:
+                | T
+                | {
+                    settings?:
+                      | T
+                      | {
+                          theme?: T;
+                          background?: T;
+                        };
+                    steps?:
+                      | T
+                      | {
+                          content?: T;
+                          media?: T;
+                          id?: T;
+                        };
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        stickyHighlights?:
+          | T
+          | {
+              stickyHighlightsFields?:
+                | T
+                | {
+                    settings?:
+                      | T
+                      | {
+                          theme?: T;
+                          background?: T;
+                        };
+                    highlights?:
+                      | T
+                      | {
+                          richText?: T;
+                          enableLink?: T;
+                          link?:
+                            | T
+                            | {
+                                type?: T;
+                                newTab?: T;
+                                reference?: T;
+                                url?: T;
+                                label?: T;
+                                customId?: T;
+                              };
+                          type?: T;
+                          code?: T;
+                          codeBlips?:
+                            | T
+                            | {
+                                row?: T;
+                                label?: T;
+                                feature?: T;
+                                enableLink?: T;
+                                link?:
+                                  | T
+                                  | {
+                                      type?: T;
+                                      newTab?: T;
+                                      reference?: T;
+                                      url?: T;
+                                      label?: T;
+                                      customId?: T;
+                                    };
+                                id?: T;
+                              };
+                          media?: T;
+                          id?: T;
+                        };
+                  };
+              id?: T;
+              blockName?: T;
+            };
+      };
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "users_select".
+ */
+export interface UsersSelect<T extends boolean = true> {
+  firstName?: T;
+  lastName?: T;
+  twitter?: T;
+  photo?: T;
+  roles?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  email?: T;
+  resetPasswordToken?: T;
+  resetPasswordExpiration?: T;
+  salt?: T;
+  hash?: T;
+  loginAttempts?: T;
+  lockUntil?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "partners_select".
+ */
+export interface PartnersSelect<T extends boolean = true> {
+  name?: T;
+  website?: T;
+  email?: T;
+  slug?: T;
+  agency_status?: T;
+  hubspotID?: T;
+  logo?: T;
+  featured?: T;
+  topContributor?: T;
+  content?:
+    | T
+    | {
+        bannerImage?: T;
+        overview?: T;
+        services?: T;
+        idealProject?: T;
+        caseStudy?: T;
+        contributions?:
+          | T
+          | {
+              type?: T;
+              repo?: T;
+              number?: T;
+              id?: T;
+            };
+        projects?:
+          | T
+          | {
+              year?: T;
+              name?: T;
+              link?: T;
+              id?: T;
+            };
+      };
+  city?: T;
+  regions?: T;
+  specialties?: T;
+  budgets?: T;
+  industries?: T;
+  social?:
+    | T
+    | {
+        platform?: T;
+        url?: T;
+        id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  _status?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "forms_select".
+ */
+export interface FormsSelect<T extends boolean = true> {
+  title?: T;
+  fields?:
+    | T
+    | {
+        checkbox?:
+          | T
+          | {
+              name?: T;
+              label?: T;
+              width?: T;
+              required?: T;
+              defaultValue?: T;
+              id?: T;
+              blockName?: T;
+            };
+        country?:
+          | T
+          | {
+              name?: T;
+              label?: T;
+              width?: T;
+              required?: T;
+              id?: T;
+              blockName?: T;
+            };
+        email?:
+          | T
+          | {
+              name?: T;
+              label?: T;
+              width?: T;
+              required?: T;
+              id?: T;
+              blockName?: T;
+            };
+        message?:
+          | T
+          | {
+              message?: T;
+              id?: T;
+              blockName?: T;
+            };
+        number?:
+          | T
+          | {
+              name?: T;
+              label?: T;
+              width?: T;
+              defaultValue?: T;
+              required?: T;
+              id?: T;
+              blockName?: T;
+            };
+        select?:
+          | T
+          | {
+              name?: T;
+              label?: T;
+              width?: T;
+              defaultValue?: T;
+              options?:
+                | T
+                | {
+                    label?: T;
+                    value?: T;
+                    id?: T;
+                  };
+              required?: T;
+              id?: T;
+              blockName?: T;
+            };
+        state?:
+          | T
+          | {
+              name?: T;
+              label?: T;
+              width?: T;
+              required?: T;
+              id?: T;
+              blockName?: T;
+            };
+        text?:
+          | T
+          | {
+              name?: T;
+              label?: T;
+              width?: T;
+              defaultValue?: T;
+              required?: T;
+              id?: T;
+              blockName?: T;
+            };
+        textarea?:
+          | T
+          | {
+              name?: T;
+              label?: T;
+              width?: T;
+              defaultValue?: T;
+              required?: T;
+              id?: T;
+              blockName?: T;
+            };
+      };
+  submitButtonLabel?: T;
+  confirmationType?: T;
+  confirmationMessage?: T;
+  redirect?:
+    | T
+    | {
+        url?: T;
+      };
+  emails?:
+    | T
+    | {
+        emailTo?: T;
+        cc?: T;
+        bcc?: T;
+        replyTo?: T;
+        emailFrom?: T;
+        subject?: T;
+        message?: T;
+        id?: T;
+      };
+  hubSpotFormID?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "form-submissions_select".
+ */
+export interface FormSubmissionsSelect<T extends boolean = true> {
+  form?: T;
+  submissionData?:
+    | T
+    | {
+        field?: T;
+        value?: T;
+        id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "redirects_select".
+ */
+export interface RedirectsSelect<T extends boolean = true> {
+  from?: T;
+  to?:
+    | T
+    | {
+        type?: T;
+        reference?: T;
+        url?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "payload-locked-documents_select".
+ */
+export interface PayloadLockedDocumentsSelect<T extends boolean = true> {
+  document?: T;
+  globalSlug?: T;
+  user?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "payload-preferences_select".
+ */
+export interface PayloadPreferencesSelect<T extends boolean = true> {
+  user?: T;
+  key?: T;
+  value?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "payload-migrations_select".
+ */
+export interface PayloadMigrationsSelect<T extends boolean = true> {
+  name?: T;
+  batch?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "footer".
  */
 export interface Footer {
@@ -5714,6 +8497,7 @@ export interface Footer {
                     } | null);
                 url?: string | null;
                 label: string;
+                customId?: string | null;
               };
               id?: string | null;
             }[]
@@ -5752,6 +8536,7 @@ export interface MainMenu {
                 value: string | CaseStudy;
               } | null);
           url?: string | null;
+          customId?: string | null;
         };
         description?: string | null;
         descriptionLinks?:
@@ -5774,6 +8559,7 @@ export interface MainMenu {
                     } | null);
                 url?: string | null;
                 label: string;
+                customId?: string | null;
               };
               id?: string | null;
             }[]
@@ -5800,6 +8586,7 @@ export interface MainMenu {
                       } | null);
                   url?: string | null;
                   label: string;
+                  customId?: string | null;
                 };
                 description?: string | null;
               };
@@ -5840,6 +8627,7 @@ export interface MainMenu {
                             } | null);
                         url?: string | null;
                         label: string;
+                        customId?: string | null;
                       };
                       id?: string | null;
                     }[]
@@ -5867,6 +8655,7 @@ export interface MainMenu {
                             } | null);
                         url?: string | null;
                         label: string;
+                        customId?: string | null;
                       };
                       id?: string | null;
                     }[]
@@ -5878,6 +8667,104 @@ export interface MainMenu {
         id?: string | null;
       }[]
     | null;
+  menuCta: {
+    type?: ('reference' | 'custom') | null;
+    newTab?: boolean | null;
+    reference?:
+      | ({
+          relationTo: 'pages';
+          value: string | Page;
+        } | null)
+      | ({
+          relationTo: 'posts';
+          value: string | Post;
+        } | null)
+      | ({
+          relationTo: 'case-studies';
+          value: string | CaseStudy;
+        } | null);
+    url?: string | null;
+    label: string;
+    customId?: string | null;
+  };
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "get-started".
+ */
+export interface GetStarted {
+  id: string;
+  heading?: string | null;
+  tabs?:
+    | {
+        label: string;
+        content: {
+          root: {
+            type: string;
+            children: {
+              type: string;
+              version: number;
+              [k: string]: unknown;
+            }[];
+            direction: ('ltr' | 'rtl') | null;
+            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+            indent: number;
+            version: number;
+          };
+          [k: string]: unknown;
+        };
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'richTextBlock';
+      }[]
+    | null;
+  sidebar?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  sidebarLinks?:
+    | {
+        link: {
+          type?: ('reference' | 'custom') | null;
+          newTab?: boolean | null;
+          reference?:
+            | ({
+                relationTo: 'pages';
+                value: string | Page;
+              } | null)
+            | ({
+                relationTo: 'posts';
+                value: string | Post;
+              } | null)
+            | ({
+                relationTo: 'case-studies';
+                value: string | CaseStudy;
+              } | null);
+          url?: string | null;
+          label: string;
+          customId?: string | null;
+        };
+        id?: string | null;
+      }[]
+    | null;
+  meta?: {
+    title?: string | null;
+    description?: string | null;
+    image?: (string | null) | Media;
+  };
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -5924,6 +8811,7 @@ export interface PartnerProgram {
                 } | null);
             url?: string | null;
             label: string;
+            customId?: string | null;
           };
           id?: string | null;
         }[]
@@ -5948,6 +8836,7 @@ export interface PartnerProgram {
                 } | null);
             url?: string | null;
             label: string;
+            customId?: string | null;
           };
           id?: string | null;
         }[]
@@ -5964,6 +8853,7 @@ export interface PartnerProgram {
               calloutFields: {
                 settings?: {
                   theme?: ('light' | 'dark') | null;
+                  background?: ('solid' | 'transparent' | 'gradientUp' | 'gradientDown') | null;
                 };
                 richText: {
                   root: {
@@ -5998,6 +8888,7 @@ export interface PartnerProgram {
               ctaFields: {
                 settings?: {
                   theme?: ('light' | 'dark') | null;
+                  background?: ('solid' | 'transparent' | 'gradientUp' | 'gradientDown') | null;
                 };
                 style?: ('buttons' | 'banner') | null;
                 richText: {
@@ -6015,6 +8906,7 @@ export interface PartnerProgram {
                   };
                   [k: string]: unknown;
                 };
+                commandLine?: string | null;
                 links?:
                   | {
                       type?: ('link' | 'npmCta') | null;
@@ -6039,6 +8931,7 @@ export interface PartnerProgram {
                             } | null);
                         url?: string | null;
                         label: string;
+                        customId?: string | null;
                       };
                       id?: string | null;
                     }[]
@@ -6061,8 +8954,10 @@ export interface PartnerProgram {
                       } | null);
                   url?: string | null;
                   label: string;
+                  customId?: string | null;
                 };
                 bannerImage?: (string | null) | Media;
+                gradientBackground?: boolean | null;
               };
               id?: string | null;
               blockName?: string | null;
@@ -6072,6 +8967,7 @@ export interface PartnerProgram {
               cardGridFields: {
                 settings?: {
                   theme?: ('light' | 'dark') | null;
+                  background?: ('solid' | 'transparent' | 'gradientUp' | 'gradientDown') | null;
                 };
                 richText: {
                   root: {
@@ -6108,6 +9004,7 @@ export interface PartnerProgram {
                             } | null);
                         url?: string | null;
                         label: string;
+                        customId?: string | null;
                       };
                       id?: string | null;
                     }[]
@@ -6135,6 +9032,7 @@ export interface PartnerProgram {
                               value: string | CaseStudy;
                             } | null);
                         url?: string | null;
+                        customId?: string | null;
                       };
                       id?: string | null;
                     }[]
@@ -6148,6 +9046,7 @@ export interface PartnerProgram {
               caseStudyCardFields?: {
                 settings?: {
                   theme?: ('light' | 'dark') | null;
+                  background?: ('solid' | 'transparent' | 'gradientUp' | 'gradientDown') | null;
                 };
                 pixels?: boolean | null;
                 cards?:
@@ -6180,6 +9079,7 @@ export interface PartnerProgram {
               caseStudiesHighlightFields: {
                 settings?: {
                   theme?: ('light' | 'dark') | null;
+                  background?: ('solid' | 'transparent' | 'gradientUp' | 'gradientDown') | null;
                 };
                 richText: {
                   root: {
@@ -6206,6 +9106,7 @@ export interface PartnerProgram {
               caseStudyParallaxFields?: {
                 settings?: {
                   theme?: ('light' | 'dark') | null;
+                  background?: ('solid' | 'transparent' | 'gradientUp' | 'gradientDown') | null;
                 };
                 items?:
                   | {
@@ -6232,6 +9133,7 @@ export interface PartnerProgram {
               codeFeatureFields: {
                 settings?: {
                   theme?: ('light' | 'dark') | null;
+                  background?: ('solid' | 'transparent' | 'gradientUp' | 'gradientDown') | null;
                 };
                 forceDarkBackground?: boolean | null;
                 alignment?: ('contentCode' | 'codeContent') | null;
@@ -6271,6 +9173,7 @@ export interface PartnerProgram {
                             } | null);
                         url?: string | null;
                         label: string;
+                        customId?: string | null;
                       };
                       id?: string | null;
                     }[]
@@ -6318,6 +9221,7 @@ export interface PartnerProgram {
                                   } | null);
                               url?: string | null;
                               label: string;
+                              customId?: string | null;
                             };
                             id?: string | null;
                           }[]
@@ -6334,6 +9238,7 @@ export interface PartnerProgram {
               contentFields: {
                 settings?: {
                   theme?: ('light' | 'dark') | null;
+                  background?: ('solid' | 'transparent' | 'gradientUp' | 'gradientDown') | null;
                 };
                 useLeadingHeader?: boolean | null;
                 leadingHeader?: {
@@ -6406,6 +9311,7 @@ export interface PartnerProgram {
               contentGridFields?: {
                 settings?: {
                   theme?: ('light' | 'dark') | null;
+                  background?: ('solid' | 'transparent' | 'gradientUp' | 'gradientDown') | null;
                 };
                 style?: ('gridBelow' | 'sideBySide') | null;
                 showNumbers?: boolean | null;
@@ -6444,6 +9350,7 @@ export interface PartnerProgram {
                             } | null);
                         url?: string | null;
                         label: string;
+                        customId?: string | null;
                       };
                       id?: string | null;
                     }[]
@@ -6477,6 +9384,7 @@ export interface PartnerProgram {
               formFields: {
                 settings?: {
                   theme?: ('light' | 'dark') | null;
+                  background?: ('solid' | 'transparent' | 'gradientUp' | 'gradientDown') | null;
                 };
                 richText: {
                   root: {
@@ -6503,7 +9411,9 @@ export interface PartnerProgram {
               hoverCardsFields: {
                 settings?: {
                   theme?: ('light' | 'dark') | null;
+                  background?: ('solid' | 'transparent' | 'gradientUp' | 'gradientDown') | null;
                 };
+                hideBackground?: boolean | null;
                 richText: {
                   root: {
                     type: string;
@@ -6540,6 +9450,7 @@ export interface PartnerProgram {
                               value: string | CaseStudy;
                             } | null);
                         url?: string | null;
+                        customId?: string | null;
                       };
                       id?: string | null;
                     }[]
@@ -6553,6 +9464,7 @@ export interface PartnerProgram {
               hoverHighlightsFields: {
                 settings?: {
                   theme?: ('light' | 'dark') | null;
+                  background?: ('solid' | 'transparent' | 'gradientUp' | 'gradientDown') | null;
                 };
                 beforeHighlights?: string | null;
                 highlights?:
@@ -6579,6 +9491,7 @@ export interface PartnerProgram {
                               value: string | CaseStudy;
                             } | null);
                         url?: string | null;
+                        customId?: string | null;
                       };
                       id?: string | null;
                     }[]
@@ -6602,6 +9515,7 @@ export interface PartnerProgram {
                       } | null);
                   url?: string | null;
                   label: string;
+                  customId?: string | null;
                 };
               };
               id?: string | null;
@@ -6612,6 +9526,7 @@ export interface PartnerProgram {
               linkGridFields?: {
                 settings?: {
                   theme?: ('light' | 'dark') | null;
+                  background?: ('solid' | 'transparent' | 'gradientUp' | 'gradientDown') | null;
                 };
                 links?:
                   | {
@@ -6633,6 +9548,7 @@ export interface PartnerProgram {
                             } | null);
                         url?: string | null;
                         label: string;
+                        customId?: string | null;
                       };
                       id?: string | null;
                     }[]
@@ -6646,6 +9562,7 @@ export interface PartnerProgram {
               logoGridFields: {
                 settings?: {
                   theme?: ('light' | 'dark') | null;
+                  background?: ('solid' | 'transparent' | 'gradientUp' | 'gradientDown') | null;
                 };
                 richText: {
                   root: {
@@ -6681,6 +9598,7 @@ export interface PartnerProgram {
                       } | null);
                   url?: string | null;
                   label: string;
+                  customId?: string | null;
                 };
                 logos?:
                   | {
@@ -6697,6 +9615,7 @@ export interface PartnerProgram {
               mediaBlockFields: {
                 settings?: {
                   theme?: ('light' | 'dark') | null;
+                  background?: ('solid' | 'transparent' | 'gradientUp' | 'gradientDown') | null;
                 };
                 position?: ('default' | 'wide') | null;
                 media: string | Media;
@@ -6724,6 +9643,7 @@ export interface PartnerProgram {
               mediaContentFields: {
                 settings?: {
                   theme?: ('light' | 'dark') | null;
+                  background?: ('solid' | 'transparent' | 'gradientUp' | 'gradientDown') | null;
                 };
                 alignment?: ('contentMedia' | 'mediaContent') | null;
                 mediaWidth?: ('stretch' | 'fit') | null;
@@ -6761,6 +9681,7 @@ export interface PartnerProgram {
                       } | null);
                   url?: string | null;
                   label: string;
+                  customId?: string | null;
                 };
                 images?:
                   | {
@@ -6777,6 +9698,7 @@ export interface PartnerProgram {
               mediaContentAccordionFields?: {
                 settings?: {
                   theme?: ('light' | 'dark') | null;
+                  background?: ('solid' | 'transparent' | 'gradientUp' | 'gradientDown') | null;
                 };
                 alignment?: ('contentMedia' | 'mediaContent') | null;
                 leader?: string | null;
@@ -6820,6 +9742,7 @@ export interface PartnerProgram {
                             } | null);
                         url?: string | null;
                         label: string;
+                        customId?: string | null;
                       };
                       media: string | Media;
                       id?: string | null;
@@ -6834,6 +9757,7 @@ export interface PartnerProgram {
               pricingFields?: {
                 settings?: {
                   theme?: ('light' | 'dark') | null;
+                  background?: ('solid' | 'transparent' | 'gradientUp' | 'gradientDown') | null;
                 };
                 plans?:
                   | {
@@ -6862,6 +9786,7 @@ export interface PartnerProgram {
                             } | null);
                         url?: string | null;
                         label: string;
+                        customId?: string | null;
                       };
                       features?:
                         | {
@@ -6883,6 +9808,7 @@ export interface PartnerProgram {
               reusableContentBlockFields: {
                 settings?: {
                   theme?: ('light' | 'dark') | null;
+                  background?: ('solid' | 'transparent' | 'gradientUp' | 'gradientDown') | null;
                 };
                 reusableContent: string | ReusableContent;
                 customId?: string | null;
@@ -6895,12 +9821,75 @@ export interface PartnerProgram {
               sliderFields: {
                 settings?: {
                   theme?: ('light' | 'dark') | null;
+                  background?: ('solid' | 'transparent' | 'gradientUp' | 'gradientDown') | null;
                 };
+                introContent?: {
+                  root: {
+                    type: string;
+                    children: {
+                      type: string;
+                      version: number;
+                      [k: string]: unknown;
+                    }[];
+                    direction: ('ltr' | 'rtl') | null;
+                    format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                    indent: number;
+                    version: number;
+                  };
+                  [k: string]: unknown;
+                } | null;
+                links?:
+                  | {
+                      link: {
+                        type?: ('reference' | 'custom') | null;
+                        newTab?: boolean | null;
+                        reference?:
+                          | ({
+                              relationTo: 'pages';
+                              value: string | Page;
+                            } | null)
+                          | ({
+                              relationTo: 'posts';
+                              value: string | Post;
+                            } | null)
+                          | ({
+                              relationTo: 'case-studies';
+                              value: string | CaseStudy;
+                            } | null);
+                        url?: string | null;
+                        label: string;
+                        customId?: string | null;
+                        appearance?: ('default' | 'primary' | 'secondary') | null;
+                      };
+                      id?: string | null;
+                    }[]
+                  | null;
                 quoteSlides: {
-                  leader?: string | null;
                   quote: string;
                   author: string;
                   role?: string | null;
+                  logo?: (string | null) | Media;
+                  enableLink?: boolean | null;
+                  link?: {
+                    type?: ('reference' | 'custom') | null;
+                    newTab?: boolean | null;
+                    reference?:
+                      | ({
+                          relationTo: 'pages';
+                          value: string | Page;
+                        } | null)
+                      | ({
+                          relationTo: 'posts';
+                          value: string | Post;
+                        } | null)
+                      | ({
+                          relationTo: 'case-studies';
+                          value: string | CaseStudy;
+                        } | null);
+                    url?: string | null;
+                    label: string;
+                    customId?: string | null;
+                  };
                   id?: string | null;
                 }[];
               };
@@ -6912,6 +9901,7 @@ export interface PartnerProgram {
               statementFields: {
                 settings?: {
                   theme?: ('light' | 'dark') | null;
+                  background?: ('solid' | 'transparent' | 'gradientUp' | 'gradientDown') | null;
                 };
                 richText: {
                   root: {
@@ -6948,6 +9938,7 @@ export interface PartnerProgram {
                             } | null);
                         url?: string | null;
                         label: string;
+                        customId?: string | null;
                       };
                       id?: string | null;
                     }[]
@@ -6963,357 +9954,12 @@ export interface PartnerProgram {
               blockName?: string | null;
               blockType: 'statement';
             }
-          | {
-              stepsFields: {
-                settings?: {
-                  theme?: ('light' | 'dark') | null;
-                };
-                steps: {
-                  layout?:
-                    | (
-                        | {
-                            codeFeatureFields: {
-                              settings?: {
-                                theme?: ('light' | 'dark') | null;
-                              };
-                              forceDarkBackground?: boolean | null;
-                              alignment?: ('contentCode' | 'codeContent') | null;
-                              heading?: string | null;
-                              richText: {
-                                root: {
-                                  type: string;
-                                  children: {
-                                    type: string;
-                                    version: number;
-                                    [k: string]: unknown;
-                                  }[];
-                                  direction: ('ltr' | 'rtl') | null;
-                                  format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-                                  indent: number;
-                                  version: number;
-                                };
-                                [k: string]: unknown;
-                              };
-                              links?:
-                                | {
-                                    link: {
-                                      type?: ('reference' | 'custom') | null;
-                                      newTab?: boolean | null;
-                                      reference?:
-                                        | ({
-                                            relationTo: 'pages';
-                                            value: string | Page;
-                                          } | null)
-                                        | ({
-                                            relationTo: 'posts';
-                                            value: string | Post;
-                                          } | null)
-                                        | ({
-                                            relationTo: 'case-studies';
-                                            value: string | CaseStudy;
-                                          } | null);
-                                      url?: string | null;
-                                      label: string;
-                                    };
-                                    id?: string | null;
-                                  }[]
-                                | null;
-                              codeTabs?:
-                                | {
-                                    language?: ('none' | 'js' | 'ts') | null;
-                                    label: string;
-                                    code: string;
-                                    codeBlips?:
-                                      | {
-                                          row: number;
-                                          label: string;
-                                          feature: {
-                                            root: {
-                                              type: string;
-                                              children: {
-                                                type: string;
-                                                version: number;
-                                                [k: string]: unknown;
-                                              }[];
-                                              direction: ('ltr' | 'rtl') | null;
-                                              format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-                                              indent: number;
-                                              version: number;
-                                            };
-                                            [k: string]: unknown;
-                                          };
-                                          enableLink?: boolean | null;
-                                          link?: {
-                                            type?: ('reference' | 'custom') | null;
-                                            newTab?: boolean | null;
-                                            reference?:
-                                              | ({
-                                                  relationTo: 'pages';
-                                                  value: string | Page;
-                                                } | null)
-                                              | ({
-                                                  relationTo: 'posts';
-                                                  value: string | Post;
-                                                } | null)
-                                              | ({
-                                                  relationTo: 'case-studies';
-                                                  value: string | CaseStudy;
-                                                } | null);
-                                            url?: string | null;
-                                            label: string;
-                                          };
-                                          id?: string | null;
-                                        }[]
-                                      | null;
-                                    id?: string | null;
-                                  }[]
-                                | null;
-                            };
-                            id?: string | null;
-                            blockName?: string | null;
-                            blockType: 'codeFeature';
-                          }
-                        | {
-                            contentFields: {
-                              settings?: {
-                                theme?: ('light' | 'dark') | null;
-                              };
-                              useLeadingHeader?: boolean | null;
-                              leadingHeader?: {
-                                root: {
-                                  type: string;
-                                  children: {
-                                    type: string;
-                                    version: number;
-                                    [k: string]: unknown;
-                                  }[];
-                                  direction: ('ltr' | 'rtl') | null;
-                                  format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-                                  indent: number;
-                                  version: number;
-                                };
-                                [k: string]: unknown;
-                              } | null;
-                              layout?:
-                                | ('oneColumn' | 'twoColumns' | 'twoThirdsOneThird' | 'halfAndHalf' | 'threeColumns')
-                                | null;
-                              columnOne: {
-                                root: {
-                                  type: string;
-                                  children: {
-                                    type: string;
-                                    version: number;
-                                    [k: string]: unknown;
-                                  }[];
-                                  direction: ('ltr' | 'rtl') | null;
-                                  format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-                                  indent: number;
-                                  version: number;
-                                };
-                                [k: string]: unknown;
-                              };
-                              columnTwo?: {
-                                root: {
-                                  type: string;
-                                  children: {
-                                    type: string;
-                                    version: number;
-                                    [k: string]: unknown;
-                                  }[];
-                                  direction: ('ltr' | 'rtl') | null;
-                                  format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-                                  indent: number;
-                                  version: number;
-                                };
-                                [k: string]: unknown;
-                              } | null;
-                              columnThree?: {
-                                root: {
-                                  type: string;
-                                  children: {
-                                    type: string;
-                                    version: number;
-                                    [k: string]: unknown;
-                                  }[];
-                                  direction: ('ltr' | 'rtl') | null;
-                                  format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-                                  indent: number;
-                                  version: number;
-                                };
-                                [k: string]: unknown;
-                              } | null;
-                            };
-                            id?: string | null;
-                            blockName?: string | null;
-                            blockType: 'content';
-                          }
-                        | {
-                            hoverHighlightsFields: {
-                              settings?: {
-                                theme?: ('light' | 'dark') | null;
-                              };
-                              beforeHighlights?: string | null;
-                              highlights?:
-                                | {
-                                    text: string;
-                                    media?: {
-                                      top?: (string | null) | Media;
-                                      bottom?: (string | null) | Media;
-                                    };
-                                    link?: {
-                                      type?: ('reference' | 'custom') | null;
-                                      newTab?: boolean | null;
-                                      reference?:
-                                        | ({
-                                            relationTo: 'pages';
-                                            value: string | Page;
-                                          } | null)
-                                        | ({
-                                            relationTo: 'posts';
-                                            value: string | Post;
-                                          } | null)
-                                        | ({
-                                            relationTo: 'case-studies';
-                                            value: string | CaseStudy;
-                                          } | null);
-                                      url?: string | null;
-                                    };
-                                    id?: string | null;
-                                  }[]
-                                | null;
-                              afterHighlights?: string | null;
-                              link: {
-                                type?: ('reference' | 'custom') | null;
-                                newTab?: boolean | null;
-                                reference?:
-                                  | ({
-                                      relationTo: 'pages';
-                                      value: string | Page;
-                                    } | null)
-                                  | ({
-                                      relationTo: 'posts';
-                                      value: string | Post;
-                                    } | null)
-                                  | ({
-                                      relationTo: 'case-studies';
-                                      value: string | CaseStudy;
-                                    } | null);
-                                url?: string | null;
-                                label: string;
-                              };
-                            };
-                            id?: string | null;
-                            blockName?: string | null;
-                            blockType: 'hoverHighlights';
-                          }
-                        | {
-                            stickyHighlightsFields?: {
-                              settings?: {
-                                theme?: ('light' | 'dark') | null;
-                              };
-                              highlights?:
-                                | {
-                                    richText: {
-                                      root: {
-                                        type: string;
-                                        children: {
-                                          type: string;
-                                          version: number;
-                                          [k: string]: unknown;
-                                        }[];
-                                        direction: ('ltr' | 'rtl') | null;
-                                        format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-                                        indent: number;
-                                        version: number;
-                                      };
-                                      [k: string]: unknown;
-                                    };
-                                    enableLink?: boolean | null;
-                                    link?: {
-                                      type?: ('reference' | 'custom') | null;
-                                      newTab?: boolean | null;
-                                      reference?:
-                                        | ({
-                                            relationTo: 'pages';
-                                            value: string | Page;
-                                          } | null)
-                                        | ({
-                                            relationTo: 'posts';
-                                            value: string | Post;
-                                          } | null)
-                                        | ({
-                                            relationTo: 'case-studies';
-                                            value: string | CaseStudy;
-                                          } | null);
-                                      url?: string | null;
-                                      label: string;
-                                    };
-                                    type?: ('code' | 'media') | null;
-                                    code?: string | null;
-                                    codeBlips?:
-                                      | {
-                                          row: number;
-                                          label: string;
-                                          feature: {
-                                            root: {
-                                              type: string;
-                                              children: {
-                                                type: string;
-                                                version: number;
-                                                [k: string]: unknown;
-                                              }[];
-                                              direction: ('ltr' | 'rtl') | null;
-                                              format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-                                              indent: number;
-                                              version: number;
-                                            };
-                                            [k: string]: unknown;
-                                          };
-                                          enableLink?: boolean | null;
-                                          link?: {
-                                            type?: ('reference' | 'custom') | null;
-                                            newTab?: boolean | null;
-                                            reference?:
-                                              | ({
-                                                  relationTo: 'pages';
-                                                  value: string | Page;
-                                                } | null)
-                                              | ({
-                                                  relationTo: 'posts';
-                                                  value: string | Post;
-                                                } | null)
-                                              | ({
-                                                  relationTo: 'case-studies';
-                                                  value: string | CaseStudy;
-                                                } | null);
-                                            url?: string | null;
-                                            label: string;
-                                          };
-                                          id?: string | null;
-                                        }[]
-                                      | null;
-                                    media?: (string | null) | Media;
-                                    id?: string | null;
-                                  }[]
-                                | null;
-                            };
-                            id?: string | null;
-                            blockName?: string | null;
-                            blockType: 'stickyHighlights';
-                          }
-                      )[]
-                    | null;
-                  id?: string | null;
-                }[];
-              };
-              id?: string | null;
-              blockName?: string | null;
-              blockType: 'steps';
-            }
+          | StepsBlock
           | {
               stickyHighlightsFields?: {
                 settings?: {
                   theme?: ('light' | 'dark') | null;
+                  background?: ('solid' | 'transparent' | 'gradientUp' | 'gradientDown') | null;
                 };
                 highlights?:
                   | {
@@ -7351,6 +9997,7 @@ export interface PartnerProgram {
                             } | null);
                         url?: string | null;
                         label: string;
+                        customId?: string | null;
                       };
                       type?: ('code' | 'media') | null;
                       code?: string | null;
@@ -7392,6 +10039,7 @@ export interface PartnerProgram {
                                   } | null);
                               url?: string | null;
                               label: string;
+                              customId?: string | null;
                             };
                             id?: string | null;
                           }[]
@@ -7414,6 +10062,7 @@ export interface PartnerProgram {
               calloutFields: {
                 settings?: {
                   theme?: ('light' | 'dark') | null;
+                  background?: ('solid' | 'transparent' | 'gradientUp' | 'gradientDown') | null;
                 };
                 richText: {
                   root: {
@@ -7448,6 +10097,7 @@ export interface PartnerProgram {
               ctaFields: {
                 settings?: {
                   theme?: ('light' | 'dark') | null;
+                  background?: ('solid' | 'transparent' | 'gradientUp' | 'gradientDown') | null;
                 };
                 style?: ('buttons' | 'banner') | null;
                 richText: {
@@ -7465,6 +10115,7 @@ export interface PartnerProgram {
                   };
                   [k: string]: unknown;
                 };
+                commandLine?: string | null;
                 links?:
                   | {
                       type?: ('link' | 'npmCta') | null;
@@ -7489,6 +10140,7 @@ export interface PartnerProgram {
                             } | null);
                         url?: string | null;
                         label: string;
+                        customId?: string | null;
                       };
                       id?: string | null;
                     }[]
@@ -7511,8 +10163,10 @@ export interface PartnerProgram {
                       } | null);
                   url?: string | null;
                   label: string;
+                  customId?: string | null;
                 };
                 bannerImage?: (string | null) | Media;
+                gradientBackground?: boolean | null;
               };
               id?: string | null;
               blockName?: string | null;
@@ -7522,6 +10176,7 @@ export interface PartnerProgram {
               cardGridFields: {
                 settings?: {
                   theme?: ('light' | 'dark') | null;
+                  background?: ('solid' | 'transparent' | 'gradientUp' | 'gradientDown') | null;
                 };
                 richText: {
                   root: {
@@ -7558,6 +10213,7 @@ export interface PartnerProgram {
                             } | null);
                         url?: string | null;
                         label: string;
+                        customId?: string | null;
                       };
                       id?: string | null;
                     }[]
@@ -7585,6 +10241,7 @@ export interface PartnerProgram {
                               value: string | CaseStudy;
                             } | null);
                         url?: string | null;
+                        customId?: string | null;
                       };
                       id?: string | null;
                     }[]
@@ -7598,6 +10255,7 @@ export interface PartnerProgram {
               caseStudyCardFields?: {
                 settings?: {
                   theme?: ('light' | 'dark') | null;
+                  background?: ('solid' | 'transparent' | 'gradientUp' | 'gradientDown') | null;
                 };
                 pixels?: boolean | null;
                 cards?:
@@ -7630,6 +10288,7 @@ export interface PartnerProgram {
               caseStudiesHighlightFields: {
                 settings?: {
                   theme?: ('light' | 'dark') | null;
+                  background?: ('solid' | 'transparent' | 'gradientUp' | 'gradientDown') | null;
                 };
                 richText: {
                   root: {
@@ -7656,6 +10315,7 @@ export interface PartnerProgram {
               caseStudyParallaxFields?: {
                 settings?: {
                   theme?: ('light' | 'dark') | null;
+                  background?: ('solid' | 'transparent' | 'gradientUp' | 'gradientDown') | null;
                 };
                 items?:
                   | {
@@ -7682,6 +10342,7 @@ export interface PartnerProgram {
               codeFeatureFields: {
                 settings?: {
                   theme?: ('light' | 'dark') | null;
+                  background?: ('solid' | 'transparent' | 'gradientUp' | 'gradientDown') | null;
                 };
                 forceDarkBackground?: boolean | null;
                 alignment?: ('contentCode' | 'codeContent') | null;
@@ -7721,6 +10382,7 @@ export interface PartnerProgram {
                             } | null);
                         url?: string | null;
                         label: string;
+                        customId?: string | null;
                       };
                       id?: string | null;
                     }[]
@@ -7768,6 +10430,7 @@ export interface PartnerProgram {
                                   } | null);
                               url?: string | null;
                               label: string;
+                              customId?: string | null;
                             };
                             id?: string | null;
                           }[]
@@ -7784,6 +10447,7 @@ export interface PartnerProgram {
               contentFields: {
                 settings?: {
                   theme?: ('light' | 'dark') | null;
+                  background?: ('solid' | 'transparent' | 'gradientUp' | 'gradientDown') | null;
                 };
                 useLeadingHeader?: boolean | null;
                 leadingHeader?: {
@@ -7856,6 +10520,7 @@ export interface PartnerProgram {
               contentGridFields?: {
                 settings?: {
                   theme?: ('light' | 'dark') | null;
+                  background?: ('solid' | 'transparent' | 'gradientUp' | 'gradientDown') | null;
                 };
                 style?: ('gridBelow' | 'sideBySide') | null;
                 showNumbers?: boolean | null;
@@ -7894,6 +10559,7 @@ export interface PartnerProgram {
                             } | null);
                         url?: string | null;
                         label: string;
+                        customId?: string | null;
                       };
                       id?: string | null;
                     }[]
@@ -7927,6 +10593,7 @@ export interface PartnerProgram {
               formFields: {
                 settings?: {
                   theme?: ('light' | 'dark') | null;
+                  background?: ('solid' | 'transparent' | 'gradientUp' | 'gradientDown') | null;
                 };
                 richText: {
                   root: {
@@ -7953,7 +10620,9 @@ export interface PartnerProgram {
               hoverCardsFields: {
                 settings?: {
                   theme?: ('light' | 'dark') | null;
+                  background?: ('solid' | 'transparent' | 'gradientUp' | 'gradientDown') | null;
                 };
+                hideBackground?: boolean | null;
                 richText: {
                   root: {
                     type: string;
@@ -7990,6 +10659,7 @@ export interface PartnerProgram {
                               value: string | CaseStudy;
                             } | null);
                         url?: string | null;
+                        customId?: string | null;
                       };
                       id?: string | null;
                     }[]
@@ -8003,6 +10673,7 @@ export interface PartnerProgram {
               hoverHighlightsFields: {
                 settings?: {
                   theme?: ('light' | 'dark') | null;
+                  background?: ('solid' | 'transparent' | 'gradientUp' | 'gradientDown') | null;
                 };
                 beforeHighlights?: string | null;
                 highlights?:
@@ -8029,6 +10700,7 @@ export interface PartnerProgram {
                               value: string | CaseStudy;
                             } | null);
                         url?: string | null;
+                        customId?: string | null;
                       };
                       id?: string | null;
                     }[]
@@ -8052,6 +10724,7 @@ export interface PartnerProgram {
                       } | null);
                   url?: string | null;
                   label: string;
+                  customId?: string | null;
                 };
               };
               id?: string | null;
@@ -8062,6 +10735,7 @@ export interface PartnerProgram {
               linkGridFields?: {
                 settings?: {
                   theme?: ('light' | 'dark') | null;
+                  background?: ('solid' | 'transparent' | 'gradientUp' | 'gradientDown') | null;
                 };
                 links?:
                   | {
@@ -8083,6 +10757,7 @@ export interface PartnerProgram {
                             } | null);
                         url?: string | null;
                         label: string;
+                        customId?: string | null;
                       };
                       id?: string | null;
                     }[]
@@ -8096,6 +10771,7 @@ export interface PartnerProgram {
               logoGridFields: {
                 settings?: {
                   theme?: ('light' | 'dark') | null;
+                  background?: ('solid' | 'transparent' | 'gradientUp' | 'gradientDown') | null;
                 };
                 richText: {
                   root: {
@@ -8131,6 +10807,7 @@ export interface PartnerProgram {
                       } | null);
                   url?: string | null;
                   label: string;
+                  customId?: string | null;
                 };
                 logos?:
                   | {
@@ -8147,6 +10824,7 @@ export interface PartnerProgram {
               mediaBlockFields: {
                 settings?: {
                   theme?: ('light' | 'dark') | null;
+                  background?: ('solid' | 'transparent' | 'gradientUp' | 'gradientDown') | null;
                 };
                 position?: ('default' | 'wide') | null;
                 media: string | Media;
@@ -8174,6 +10852,7 @@ export interface PartnerProgram {
               mediaContentFields: {
                 settings?: {
                   theme?: ('light' | 'dark') | null;
+                  background?: ('solid' | 'transparent' | 'gradientUp' | 'gradientDown') | null;
                 };
                 alignment?: ('contentMedia' | 'mediaContent') | null;
                 mediaWidth?: ('stretch' | 'fit') | null;
@@ -8211,6 +10890,7 @@ export interface PartnerProgram {
                       } | null);
                   url?: string | null;
                   label: string;
+                  customId?: string | null;
                 };
                 images?:
                   | {
@@ -8227,6 +10907,7 @@ export interface PartnerProgram {
               mediaContentAccordionFields?: {
                 settings?: {
                   theme?: ('light' | 'dark') | null;
+                  background?: ('solid' | 'transparent' | 'gradientUp' | 'gradientDown') | null;
                 };
                 alignment?: ('contentMedia' | 'mediaContent') | null;
                 leader?: string | null;
@@ -8270,6 +10951,7 @@ export interface PartnerProgram {
                             } | null);
                         url?: string | null;
                         label: string;
+                        customId?: string | null;
                       };
                       media: string | Media;
                       id?: string | null;
@@ -8284,6 +10966,7 @@ export interface PartnerProgram {
               pricingFields?: {
                 settings?: {
                   theme?: ('light' | 'dark') | null;
+                  background?: ('solid' | 'transparent' | 'gradientUp' | 'gradientDown') | null;
                 };
                 plans?:
                   | {
@@ -8312,6 +10995,7 @@ export interface PartnerProgram {
                             } | null);
                         url?: string | null;
                         label: string;
+                        customId?: string | null;
                       };
                       features?:
                         | {
@@ -8333,6 +11017,7 @@ export interface PartnerProgram {
               reusableContentBlockFields: {
                 settings?: {
                   theme?: ('light' | 'dark') | null;
+                  background?: ('solid' | 'transparent' | 'gradientUp' | 'gradientDown') | null;
                 };
                 reusableContent: string | ReusableContent;
                 customId?: string | null;
@@ -8345,12 +11030,75 @@ export interface PartnerProgram {
               sliderFields: {
                 settings?: {
                   theme?: ('light' | 'dark') | null;
+                  background?: ('solid' | 'transparent' | 'gradientUp' | 'gradientDown') | null;
                 };
+                introContent?: {
+                  root: {
+                    type: string;
+                    children: {
+                      type: string;
+                      version: number;
+                      [k: string]: unknown;
+                    }[];
+                    direction: ('ltr' | 'rtl') | null;
+                    format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                    indent: number;
+                    version: number;
+                  };
+                  [k: string]: unknown;
+                } | null;
+                links?:
+                  | {
+                      link: {
+                        type?: ('reference' | 'custom') | null;
+                        newTab?: boolean | null;
+                        reference?:
+                          | ({
+                              relationTo: 'pages';
+                              value: string | Page;
+                            } | null)
+                          | ({
+                              relationTo: 'posts';
+                              value: string | Post;
+                            } | null)
+                          | ({
+                              relationTo: 'case-studies';
+                              value: string | CaseStudy;
+                            } | null);
+                        url?: string | null;
+                        label: string;
+                        customId?: string | null;
+                        appearance?: ('default' | 'primary' | 'secondary') | null;
+                      };
+                      id?: string | null;
+                    }[]
+                  | null;
                 quoteSlides: {
-                  leader?: string | null;
                   quote: string;
                   author: string;
                   role?: string | null;
+                  logo?: (string | null) | Media;
+                  enableLink?: boolean | null;
+                  link?: {
+                    type?: ('reference' | 'custom') | null;
+                    newTab?: boolean | null;
+                    reference?:
+                      | ({
+                          relationTo: 'pages';
+                          value: string | Page;
+                        } | null)
+                      | ({
+                          relationTo: 'posts';
+                          value: string | Post;
+                        } | null)
+                      | ({
+                          relationTo: 'case-studies';
+                          value: string | CaseStudy;
+                        } | null);
+                    url?: string | null;
+                    label: string;
+                    customId?: string | null;
+                  };
                   id?: string | null;
                 }[];
               };
@@ -8362,6 +11110,7 @@ export interface PartnerProgram {
               statementFields: {
                 settings?: {
                   theme?: ('light' | 'dark') | null;
+                  background?: ('solid' | 'transparent' | 'gradientUp' | 'gradientDown') | null;
                 };
                 richText: {
                   root: {
@@ -8398,6 +11147,7 @@ export interface PartnerProgram {
                             } | null);
                         url?: string | null;
                         label: string;
+                        customId?: string | null;
                       };
                       id?: string | null;
                     }[]
@@ -8413,357 +11163,12 @@ export interface PartnerProgram {
               blockName?: string | null;
               blockType: 'statement';
             }
-          | {
-              stepsFields: {
-                settings?: {
-                  theme?: ('light' | 'dark') | null;
-                };
-                steps: {
-                  layout?:
-                    | (
-                        | {
-                            codeFeatureFields: {
-                              settings?: {
-                                theme?: ('light' | 'dark') | null;
-                              };
-                              forceDarkBackground?: boolean | null;
-                              alignment?: ('contentCode' | 'codeContent') | null;
-                              heading?: string | null;
-                              richText: {
-                                root: {
-                                  type: string;
-                                  children: {
-                                    type: string;
-                                    version: number;
-                                    [k: string]: unknown;
-                                  }[];
-                                  direction: ('ltr' | 'rtl') | null;
-                                  format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-                                  indent: number;
-                                  version: number;
-                                };
-                                [k: string]: unknown;
-                              };
-                              links?:
-                                | {
-                                    link: {
-                                      type?: ('reference' | 'custom') | null;
-                                      newTab?: boolean | null;
-                                      reference?:
-                                        | ({
-                                            relationTo: 'pages';
-                                            value: string | Page;
-                                          } | null)
-                                        | ({
-                                            relationTo: 'posts';
-                                            value: string | Post;
-                                          } | null)
-                                        | ({
-                                            relationTo: 'case-studies';
-                                            value: string | CaseStudy;
-                                          } | null);
-                                      url?: string | null;
-                                      label: string;
-                                    };
-                                    id?: string | null;
-                                  }[]
-                                | null;
-                              codeTabs?:
-                                | {
-                                    language?: ('none' | 'js' | 'ts') | null;
-                                    label: string;
-                                    code: string;
-                                    codeBlips?:
-                                      | {
-                                          row: number;
-                                          label: string;
-                                          feature: {
-                                            root: {
-                                              type: string;
-                                              children: {
-                                                type: string;
-                                                version: number;
-                                                [k: string]: unknown;
-                                              }[];
-                                              direction: ('ltr' | 'rtl') | null;
-                                              format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-                                              indent: number;
-                                              version: number;
-                                            };
-                                            [k: string]: unknown;
-                                          };
-                                          enableLink?: boolean | null;
-                                          link?: {
-                                            type?: ('reference' | 'custom') | null;
-                                            newTab?: boolean | null;
-                                            reference?:
-                                              | ({
-                                                  relationTo: 'pages';
-                                                  value: string | Page;
-                                                } | null)
-                                              | ({
-                                                  relationTo: 'posts';
-                                                  value: string | Post;
-                                                } | null)
-                                              | ({
-                                                  relationTo: 'case-studies';
-                                                  value: string | CaseStudy;
-                                                } | null);
-                                            url?: string | null;
-                                            label: string;
-                                          };
-                                          id?: string | null;
-                                        }[]
-                                      | null;
-                                    id?: string | null;
-                                  }[]
-                                | null;
-                            };
-                            id?: string | null;
-                            blockName?: string | null;
-                            blockType: 'codeFeature';
-                          }
-                        | {
-                            contentFields: {
-                              settings?: {
-                                theme?: ('light' | 'dark') | null;
-                              };
-                              useLeadingHeader?: boolean | null;
-                              leadingHeader?: {
-                                root: {
-                                  type: string;
-                                  children: {
-                                    type: string;
-                                    version: number;
-                                    [k: string]: unknown;
-                                  }[];
-                                  direction: ('ltr' | 'rtl') | null;
-                                  format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-                                  indent: number;
-                                  version: number;
-                                };
-                                [k: string]: unknown;
-                              } | null;
-                              layout?:
-                                | ('oneColumn' | 'twoColumns' | 'twoThirdsOneThird' | 'halfAndHalf' | 'threeColumns')
-                                | null;
-                              columnOne: {
-                                root: {
-                                  type: string;
-                                  children: {
-                                    type: string;
-                                    version: number;
-                                    [k: string]: unknown;
-                                  }[];
-                                  direction: ('ltr' | 'rtl') | null;
-                                  format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-                                  indent: number;
-                                  version: number;
-                                };
-                                [k: string]: unknown;
-                              };
-                              columnTwo?: {
-                                root: {
-                                  type: string;
-                                  children: {
-                                    type: string;
-                                    version: number;
-                                    [k: string]: unknown;
-                                  }[];
-                                  direction: ('ltr' | 'rtl') | null;
-                                  format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-                                  indent: number;
-                                  version: number;
-                                };
-                                [k: string]: unknown;
-                              } | null;
-                              columnThree?: {
-                                root: {
-                                  type: string;
-                                  children: {
-                                    type: string;
-                                    version: number;
-                                    [k: string]: unknown;
-                                  }[];
-                                  direction: ('ltr' | 'rtl') | null;
-                                  format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-                                  indent: number;
-                                  version: number;
-                                };
-                                [k: string]: unknown;
-                              } | null;
-                            };
-                            id?: string | null;
-                            blockName?: string | null;
-                            blockType: 'content';
-                          }
-                        | {
-                            hoverHighlightsFields: {
-                              settings?: {
-                                theme?: ('light' | 'dark') | null;
-                              };
-                              beforeHighlights?: string | null;
-                              highlights?:
-                                | {
-                                    text: string;
-                                    media?: {
-                                      top?: (string | null) | Media;
-                                      bottom?: (string | null) | Media;
-                                    };
-                                    link?: {
-                                      type?: ('reference' | 'custom') | null;
-                                      newTab?: boolean | null;
-                                      reference?:
-                                        | ({
-                                            relationTo: 'pages';
-                                            value: string | Page;
-                                          } | null)
-                                        | ({
-                                            relationTo: 'posts';
-                                            value: string | Post;
-                                          } | null)
-                                        | ({
-                                            relationTo: 'case-studies';
-                                            value: string | CaseStudy;
-                                          } | null);
-                                      url?: string | null;
-                                    };
-                                    id?: string | null;
-                                  }[]
-                                | null;
-                              afterHighlights?: string | null;
-                              link: {
-                                type?: ('reference' | 'custom') | null;
-                                newTab?: boolean | null;
-                                reference?:
-                                  | ({
-                                      relationTo: 'pages';
-                                      value: string | Page;
-                                    } | null)
-                                  | ({
-                                      relationTo: 'posts';
-                                      value: string | Post;
-                                    } | null)
-                                  | ({
-                                      relationTo: 'case-studies';
-                                      value: string | CaseStudy;
-                                    } | null);
-                                url?: string | null;
-                                label: string;
-                              };
-                            };
-                            id?: string | null;
-                            blockName?: string | null;
-                            blockType: 'hoverHighlights';
-                          }
-                        | {
-                            stickyHighlightsFields?: {
-                              settings?: {
-                                theme?: ('light' | 'dark') | null;
-                              };
-                              highlights?:
-                                | {
-                                    richText: {
-                                      root: {
-                                        type: string;
-                                        children: {
-                                          type: string;
-                                          version: number;
-                                          [k: string]: unknown;
-                                        }[];
-                                        direction: ('ltr' | 'rtl') | null;
-                                        format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-                                        indent: number;
-                                        version: number;
-                                      };
-                                      [k: string]: unknown;
-                                    };
-                                    enableLink?: boolean | null;
-                                    link?: {
-                                      type?: ('reference' | 'custom') | null;
-                                      newTab?: boolean | null;
-                                      reference?:
-                                        | ({
-                                            relationTo: 'pages';
-                                            value: string | Page;
-                                          } | null)
-                                        | ({
-                                            relationTo: 'posts';
-                                            value: string | Post;
-                                          } | null)
-                                        | ({
-                                            relationTo: 'case-studies';
-                                            value: string | CaseStudy;
-                                          } | null);
-                                      url?: string | null;
-                                      label: string;
-                                    };
-                                    type?: ('code' | 'media') | null;
-                                    code?: string | null;
-                                    codeBlips?:
-                                      | {
-                                          row: number;
-                                          label: string;
-                                          feature: {
-                                            root: {
-                                              type: string;
-                                              children: {
-                                                type: string;
-                                                version: number;
-                                                [k: string]: unknown;
-                                              }[];
-                                              direction: ('ltr' | 'rtl') | null;
-                                              format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-                                              indent: number;
-                                              version: number;
-                                            };
-                                            [k: string]: unknown;
-                                          };
-                                          enableLink?: boolean | null;
-                                          link?: {
-                                            type?: ('reference' | 'custom') | null;
-                                            newTab?: boolean | null;
-                                            reference?:
-                                              | ({
-                                                  relationTo: 'pages';
-                                                  value: string | Page;
-                                                } | null)
-                                              | ({
-                                                  relationTo: 'posts';
-                                                  value: string | Post;
-                                                } | null)
-                                              | ({
-                                                  relationTo: 'case-studies';
-                                                  value: string | CaseStudy;
-                                                } | null);
-                                            url?: string | null;
-                                            label: string;
-                                          };
-                                          id?: string | null;
-                                        }[]
-                                      | null;
-                                    media?: (string | null) | Media;
-                                    id?: string | null;
-                                  }[]
-                                | null;
-                            };
-                            id?: string | null;
-                            blockName?: string | null;
-                            blockType: 'stickyHighlights';
-                          }
-                      )[]
-                    | null;
-                  id?: string | null;
-                }[];
-              };
-              id?: string | null;
-              blockName?: string | null;
-              blockType: 'steps';
-            }
+          | StepsBlock
           | {
               stickyHighlightsFields?: {
                 settings?: {
                   theme?: ('light' | 'dark') | null;
+                  background?: ('solid' | 'transparent' | 'gradientUp' | 'gradientDown') | null;
                 };
                 highlights?:
                   | {
@@ -8801,6 +11206,7 @@ export interface PartnerProgram {
                             } | null);
                         url?: string | null;
                         label: string;
+                        customId?: string | null;
                       };
                       type?: ('code' | 'media') | null;
                       code?: string | null;
@@ -8842,6 +11248,7 @@ export interface PartnerProgram {
                                   } | null);
                               url?: string | null;
                               label: string;
+                              customId?: string | null;
                             };
                             id?: string | null;
                           }[]
@@ -8861,6 +11268,1964 @@ export interface PartnerProgram {
   };
   updatedAt?: string | null;
   createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "footer_select".
+ */
+export interface FooterSelect<T extends boolean = true> {
+  columns?:
+    | T
+    | {
+        label?: T;
+        navItems?:
+          | T
+          | {
+              link?:
+                | T
+                | {
+                    type?: T;
+                    newTab?: T;
+                    reference?: T;
+                    url?: T;
+                    label?: T;
+                    customId?: T;
+                  };
+              id?: T;
+            };
+        id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "main-menu_select".
+ */
+export interface MainMenuSelect<T extends boolean = true> {
+  tabs?:
+    | T
+    | {
+        label?: T;
+        enableDirectLink?: T;
+        enableDropdown?: T;
+        link?:
+          | T
+          | {
+              type?: T;
+              newTab?: T;
+              reference?: T;
+              url?: T;
+              customId?: T;
+            };
+        description?: T;
+        descriptionLinks?:
+          | T
+          | {
+              link?:
+                | T
+                | {
+                    type?: T;
+                    newTab?: T;
+                    reference?: T;
+                    url?: T;
+                    label?: T;
+                    customId?: T;
+                  };
+              id?: T;
+            };
+        navItems?:
+          | T
+          | {
+              style?: T;
+              defaultLink?:
+                | T
+                | {
+                    link?:
+                      | T
+                      | {
+                          type?: T;
+                          newTab?: T;
+                          reference?: T;
+                          url?: T;
+                          label?: T;
+                          customId?: T;
+                        };
+                    description?: T;
+                  };
+              featuredLink?:
+                | T
+                | {
+                    tag?: T;
+                    label?: T;
+                    links?:
+                      | T
+                      | {
+                          link?:
+                            | T
+                            | {
+                                type?: T;
+                                newTab?: T;
+                                reference?: T;
+                                url?: T;
+                                label?: T;
+                                customId?: T;
+                              };
+                          id?: T;
+                        };
+                  };
+              listLinks?:
+                | T
+                | {
+                    tag?: T;
+                    links?:
+                      | T
+                      | {
+                          link?:
+                            | T
+                            | {
+                                type?: T;
+                                newTab?: T;
+                                reference?: T;
+                                url?: T;
+                                label?: T;
+                                customId?: T;
+                              };
+                          id?: T;
+                        };
+                  };
+              id?: T;
+            };
+        id?: T;
+      };
+  menuCta?:
+    | T
+    | {
+        type?: T;
+        newTab?: T;
+        reference?: T;
+        url?: T;
+        label?: T;
+        customId?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "get-started_select".
+ */
+export interface GetStartedSelect<T extends boolean = true> {
+  heading?: T;
+  tabs?:
+    | T
+    | {
+        richTextBlock?:
+          | T
+          | {
+              label?: T;
+              content?: T;
+              id?: T;
+              blockName?: T;
+            };
+      };
+  sidebar?: T;
+  sidebarLinks?:
+    | T
+    | {
+        link?:
+          | T
+          | {
+              type?: T;
+              newTab?: T;
+              reference?: T;
+              url?: T;
+              label?: T;
+              customId?: T;
+            };
+        id?: T;
+      };
+  meta?:
+    | T
+    | {
+        overview?: T;
+        title?: T;
+        description?: T;
+        image?: T;
+        preview?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "partner-program_select".
+ */
+export interface PartnerProgramSelect<T extends boolean = true> {
+  contactForm?: T;
+  hero?:
+    | T
+    | {
+        richText?: T;
+        breadcrumbBarLinks?:
+          | T
+          | {
+              link?:
+                | T
+                | {
+                    type?: T;
+                    newTab?: T;
+                    reference?: T;
+                    url?: T;
+                    label?: T;
+                    customId?: T;
+                  };
+              id?: T;
+            };
+        heroLinks?:
+          | T
+          | {
+              link?:
+                | T
+                | {
+                    type?: T;
+                    newTab?: T;
+                    reference?: T;
+                    url?: T;
+                    label?: T;
+                    customId?: T;
+                  };
+              id?: T;
+            };
+      };
+  featuredPartners?:
+    | T
+    | {
+        description?: T;
+        partners?: T;
+      };
+  contentBlocks?:
+    | T
+    | {
+        beforeDirectory?:
+          | T
+          | {
+              callout?:
+                | T
+                | {
+                    calloutFields?:
+                      | T
+                      | {
+                          settings?:
+                            | T
+                            | {
+                                theme?: T;
+                                background?: T;
+                              };
+                          richText?: T;
+                          logo?: T;
+                          author?: T;
+                          role?: T;
+                          images?:
+                            | T
+                            | {
+                                image?: T;
+                                id?: T;
+                              };
+                        };
+                    id?: T;
+                    blockName?: T;
+                  };
+              cta?:
+                | T
+                | {
+                    ctaFields?:
+                      | T
+                      | {
+                          settings?:
+                            | T
+                            | {
+                                theme?: T;
+                                background?: T;
+                              };
+                          style?: T;
+                          richText?: T;
+                          commandLine?: T;
+                          links?:
+                            | T
+                            | {
+                                type?: T;
+                                npmCta?:
+                                  | T
+                                  | {
+                                      label?: T;
+                                    };
+                                link?:
+                                  | T
+                                  | {
+                                      type?: T;
+                                      newTab?: T;
+                                      reference?: T;
+                                      url?: T;
+                                      label?: T;
+                                      customId?: T;
+                                    };
+                                id?: T;
+                              };
+                          bannerLink?:
+                            | T
+                            | {
+                                type?: T;
+                                newTab?: T;
+                                reference?: T;
+                                url?: T;
+                                label?: T;
+                                customId?: T;
+                              };
+                          bannerImage?: T;
+                          gradientBackground?: T;
+                        };
+                    id?: T;
+                    blockName?: T;
+                  };
+              cardGrid?:
+                | T
+                | {
+                    cardGridFields?:
+                      | T
+                      | {
+                          settings?:
+                            | T
+                            | {
+                                theme?: T;
+                                background?: T;
+                              };
+                          richText?: T;
+                          links?:
+                            | T
+                            | {
+                                link?:
+                                  | T
+                                  | {
+                                      type?: T;
+                                      newTab?: T;
+                                      reference?: T;
+                                      url?: T;
+                                      label?: T;
+                                      customId?: T;
+                                    };
+                                id?: T;
+                              };
+                          revealDescription?: T;
+                          cards?:
+                            | T
+                            | {
+                                title?: T;
+                                description?: T;
+                                enableLink?: T;
+                                link?:
+                                  | T
+                                  | {
+                                      type?: T;
+                                      newTab?: T;
+                                      reference?: T;
+                                      url?: T;
+                                      customId?: T;
+                                    };
+                                id?: T;
+                              };
+                        };
+                    id?: T;
+                    blockName?: T;
+                  };
+              caseStudyCards?:
+                | T
+                | {
+                    caseStudyCardFields?:
+                      | T
+                      | {
+                          settings?:
+                            | T
+                            | {
+                                theme?: T;
+                                background?: T;
+                              };
+                          pixels?: T;
+                          cards?:
+                            | T
+                            | {
+                                richText?: T;
+                                caseStudy?: T;
+                                id?: T;
+                              };
+                        };
+                    id?: T;
+                    blockName?: T;
+                  };
+              caseStudiesHighlight?:
+                | T
+                | {
+                    caseStudiesHighlightFields?:
+                      | T
+                      | {
+                          settings?:
+                            | T
+                            | {
+                                theme?: T;
+                                background?: T;
+                              };
+                          richText?: T;
+                          caseStudies?: T;
+                        };
+                    id?: T;
+                    blockName?: T;
+                  };
+              caseStudyParallax?:
+                | T
+                | {
+                    caseStudyParallaxFields?:
+                      | T
+                      | {
+                          settings?:
+                            | T
+                            | {
+                                theme?: T;
+                                background?: T;
+                              };
+                          items?:
+                            | T
+                            | {
+                                quote?: T;
+                                author?: T;
+                                logo?: T;
+                                images?:
+                                  | T
+                                  | {
+                                      image?: T;
+                                      id?: T;
+                                    };
+                                tabLabel?: T;
+                                caseStudy?: T;
+                                id?: T;
+                              };
+                        };
+                    id?: T;
+                    blockName?: T;
+                  };
+              codeFeature?:
+                | T
+                | {
+                    codeFeatureFields?:
+                      | T
+                      | {
+                          settings?:
+                            | T
+                            | {
+                                theme?: T;
+                                background?: T;
+                              };
+                          forceDarkBackground?: T;
+                          alignment?: T;
+                          heading?: T;
+                          richText?: T;
+                          links?:
+                            | T
+                            | {
+                                link?:
+                                  | T
+                                  | {
+                                      type?: T;
+                                      newTab?: T;
+                                      reference?: T;
+                                      url?: T;
+                                      label?: T;
+                                      customId?: T;
+                                    };
+                                id?: T;
+                              };
+                          codeTabs?:
+                            | T
+                            | {
+                                language?: T;
+                                label?: T;
+                                code?: T;
+                                codeBlips?:
+                                  | T
+                                  | {
+                                      row?: T;
+                                      label?: T;
+                                      feature?: T;
+                                      enableLink?: T;
+                                      link?:
+                                        | T
+                                        | {
+                                            type?: T;
+                                            newTab?: T;
+                                            reference?: T;
+                                            url?: T;
+                                            label?: T;
+                                            customId?: T;
+                                          };
+                                      id?: T;
+                                    };
+                                id?: T;
+                              };
+                        };
+                    id?: T;
+                    blockName?: T;
+                  };
+              content?:
+                | T
+                | {
+                    contentFields?:
+                      | T
+                      | {
+                          settings?:
+                            | T
+                            | {
+                                theme?: T;
+                                background?: T;
+                              };
+                          useLeadingHeader?: T;
+                          leadingHeader?: T;
+                          layout?: T;
+                          columnOne?: T;
+                          columnTwo?: T;
+                          columnThree?: T;
+                        };
+                    id?: T;
+                    blockName?: T;
+                  };
+              contentGrid?:
+                | T
+                | {
+                    contentGridFields?:
+                      | T
+                      | {
+                          settings?:
+                            | T
+                            | {
+                                theme?: T;
+                                background?: T;
+                              };
+                          style?: T;
+                          showNumbers?: T;
+                          content?: T;
+                          links?:
+                            | T
+                            | {
+                                link?:
+                                  | T
+                                  | {
+                                      type?: T;
+                                      newTab?: T;
+                                      reference?: T;
+                                      url?: T;
+                                      label?: T;
+                                      customId?: T;
+                                    };
+                                id?: T;
+                              };
+                          cells?:
+                            | T
+                            | {
+                                content?: T;
+                                id?: T;
+                              };
+                        };
+                    id?: T;
+                    blockName?: T;
+                  };
+              form?:
+                | T
+                | {
+                    formFields?:
+                      | T
+                      | {
+                          settings?:
+                            | T
+                            | {
+                                theme?: T;
+                                background?: T;
+                              };
+                          richText?: T;
+                          form?: T;
+                        };
+                    id?: T;
+                    blockName?: T;
+                  };
+              hoverCards?:
+                | T
+                | {
+                    hoverCardsFields?:
+                      | T
+                      | {
+                          settings?:
+                            | T
+                            | {
+                                theme?: T;
+                                background?: T;
+                              };
+                          hideBackground?: T;
+                          richText?: T;
+                          cards?:
+                            | T
+                            | {
+                                title?: T;
+                                description?: T;
+                                link?:
+                                  | T
+                                  | {
+                                      type?: T;
+                                      newTab?: T;
+                                      reference?: T;
+                                      url?: T;
+                                      customId?: T;
+                                    };
+                                id?: T;
+                              };
+                        };
+                    id?: T;
+                    blockName?: T;
+                  };
+              hoverHighlights?:
+                | T
+                | {
+                    hoverHighlightsFields?:
+                      | T
+                      | {
+                          settings?:
+                            | T
+                            | {
+                                theme?: T;
+                                background?: T;
+                              };
+                          beforeHighlights?: T;
+                          highlights?:
+                            | T
+                            | {
+                                text?: T;
+                                media?:
+                                  | T
+                                  | {
+                                      top?: T;
+                                      bottom?: T;
+                                    };
+                                link?:
+                                  | T
+                                  | {
+                                      type?: T;
+                                      newTab?: T;
+                                      reference?: T;
+                                      url?: T;
+                                      customId?: T;
+                                    };
+                                id?: T;
+                              };
+                          afterHighlights?: T;
+                          link?:
+                            | T
+                            | {
+                                type?: T;
+                                newTab?: T;
+                                reference?: T;
+                                url?: T;
+                                label?: T;
+                                customId?: T;
+                              };
+                        };
+                    id?: T;
+                    blockName?: T;
+                  };
+              linkGrid?:
+                | T
+                | {
+                    linkGridFields?:
+                      | T
+                      | {
+                          settings?:
+                            | T
+                            | {
+                                theme?: T;
+                                background?: T;
+                              };
+                          links?:
+                            | T
+                            | {
+                                link?:
+                                  | T
+                                  | {
+                                      type?: T;
+                                      newTab?: T;
+                                      reference?: T;
+                                      url?: T;
+                                      label?: T;
+                                      customId?: T;
+                                    };
+                                id?: T;
+                              };
+                        };
+                    id?: T;
+                    blockName?: T;
+                  };
+              logoGrid?:
+                | T
+                | {
+                    logoGridFields?:
+                      | T
+                      | {
+                          settings?:
+                            | T
+                            | {
+                                theme?: T;
+                                background?: T;
+                              };
+                          richText?: T;
+                          enableLink?: T;
+                          link?:
+                            | T
+                            | {
+                                type?: T;
+                                newTab?: T;
+                                reference?: T;
+                                url?: T;
+                                label?: T;
+                                customId?: T;
+                              };
+                          logos?:
+                            | T
+                            | {
+                                logoMedia?: T;
+                                id?: T;
+                              };
+                        };
+                    id?: T;
+                    blockName?: T;
+                  };
+              mediaBlock?:
+                | T
+                | {
+                    mediaBlockFields?:
+                      | T
+                      | {
+                          settings?:
+                            | T
+                            | {
+                                theme?: T;
+                                background?: T;
+                              };
+                          position?: T;
+                          media?: T;
+                          caption?: T;
+                        };
+                    id?: T;
+                    blockName?: T;
+                  };
+              mediaContent?:
+                | T
+                | {
+                    mediaContentFields?:
+                      | T
+                      | {
+                          settings?:
+                            | T
+                            | {
+                                theme?: T;
+                                background?: T;
+                              };
+                          alignment?: T;
+                          mediaWidth?: T;
+                          richText?: T;
+                          enableLink?: T;
+                          link?:
+                            | T
+                            | {
+                                type?: T;
+                                newTab?: T;
+                                reference?: T;
+                                url?: T;
+                                label?: T;
+                                customId?: T;
+                              };
+                          images?:
+                            | T
+                            | {
+                                image?: T;
+                                id?: T;
+                              };
+                        };
+                    id?: T;
+                    blockName?: T;
+                  };
+              mediaContentAccordion?:
+                | T
+                | {
+                    mediaContentAccordionFields?:
+                      | T
+                      | {
+                          settings?:
+                            | T
+                            | {
+                                theme?: T;
+                                background?: T;
+                              };
+                          alignment?: T;
+                          leader?: T;
+                          heading?: T;
+                          accordion?:
+                            | T
+                            | {
+                                position?: T;
+                                background?: T;
+                                mediaLabel?: T;
+                                mediaDescription?: T;
+                                enableLink?: T;
+                                link?:
+                                  | T
+                                  | {
+                                      type?: T;
+                                      newTab?: T;
+                                      reference?: T;
+                                      url?: T;
+                                      label?: T;
+                                      customId?: T;
+                                    };
+                                media?: T;
+                                id?: T;
+                              };
+                        };
+                    id?: T;
+                    blockName?: T;
+                  };
+              pricing?:
+                | T
+                | {
+                    pricingFields?:
+                      | T
+                      | {
+                          settings?:
+                            | T
+                            | {
+                                theme?: T;
+                                background?: T;
+                              };
+                          plans?:
+                            | T
+                            | {
+                                name?: T;
+                                hasPrice?: T;
+                                enableCreatePayload?: T;
+                                price?: T;
+                                title?: T;
+                                description?: T;
+                                enableLink?: T;
+                                link?:
+                                  | T
+                                  | {
+                                      type?: T;
+                                      newTab?: T;
+                                      reference?: T;
+                                      url?: T;
+                                      label?: T;
+                                      customId?: T;
+                                    };
+                                features?:
+                                  | T
+                                  | {
+                                      icon?: T;
+                                      feature?: T;
+                                      id?: T;
+                                    };
+                                id?: T;
+                              };
+                          disclaimer?: T;
+                        };
+                    id?: T;
+                    blockName?: T;
+                  };
+              reusableContentBlock?:
+                | T
+                | {
+                    reusableContentBlockFields?:
+                      | T
+                      | {
+                          settings?:
+                            | T
+                            | {
+                                theme?: T;
+                                background?: T;
+                              };
+                          reusableContent?: T;
+                          customId?: T;
+                        };
+                    id?: T;
+                    blockName?: T;
+                  };
+              slider?:
+                | T
+                | {
+                    sliderFields?:
+                      | T
+                      | {
+                          settings?:
+                            | T
+                            | {
+                                theme?: T;
+                                background?: T;
+                              };
+                          introContent?: T;
+                          links?:
+                            | T
+                            | {
+                                link?:
+                                  | T
+                                  | {
+                                      type?: T;
+                                      newTab?: T;
+                                      reference?: T;
+                                      url?: T;
+                                      label?: T;
+                                      customId?: T;
+                                      appearance?: T;
+                                    };
+                                id?: T;
+                              };
+                          quoteSlides?:
+                            | T
+                            | {
+                                quote?: T;
+                                author?: T;
+                                role?: T;
+                                logo?: T;
+                                enableLink?: T;
+                                link?:
+                                  | T
+                                  | {
+                                      type?: T;
+                                      newTab?: T;
+                                      reference?: T;
+                                      url?: T;
+                                      label?: T;
+                                      customId?: T;
+                                    };
+                                id?: T;
+                              };
+                        };
+                    id?: T;
+                    blockName?: T;
+                  };
+              statement?:
+                | T
+                | {
+                    statementFields?:
+                      | T
+                      | {
+                          settings?:
+                            | T
+                            | {
+                                theme?: T;
+                                background?: T;
+                              };
+                          richText?: T;
+                          links?:
+                            | T
+                            | {
+                                link?:
+                                  | T
+                                  | {
+                                      type?: T;
+                                      newTab?: T;
+                                      reference?: T;
+                                      url?: T;
+                                      label?: T;
+                                      customId?: T;
+                                    };
+                                id?: T;
+                              };
+                          assetType?: T;
+                          media?: T;
+                          code?: T;
+                          mediaWidth?: T;
+                          backgroundGlow?: T;
+                          assetCaption?: T;
+                        };
+                    id?: T;
+                    blockName?: T;
+                  };
+              steps?:
+                | T
+                | {
+                    stepsFields?:
+                      | T
+                      | {
+                          settings?:
+                            | T
+                            | {
+                                theme?: T;
+                                background?: T;
+                              };
+                          steps?:
+                            | T
+                            | {
+                                content?: T;
+                                media?: T;
+                                id?: T;
+                              };
+                        };
+                    id?: T;
+                    blockName?: T;
+                  };
+              stickyHighlights?:
+                | T
+                | {
+                    stickyHighlightsFields?:
+                      | T
+                      | {
+                          settings?:
+                            | T
+                            | {
+                                theme?: T;
+                                background?: T;
+                              };
+                          highlights?:
+                            | T
+                            | {
+                                richText?: T;
+                                enableLink?: T;
+                                link?:
+                                  | T
+                                  | {
+                                      type?: T;
+                                      newTab?: T;
+                                      reference?: T;
+                                      url?: T;
+                                      label?: T;
+                                      customId?: T;
+                                    };
+                                type?: T;
+                                code?: T;
+                                codeBlips?:
+                                  | T
+                                  | {
+                                      row?: T;
+                                      label?: T;
+                                      feature?: T;
+                                      enableLink?: T;
+                                      link?:
+                                        | T
+                                        | {
+                                            type?: T;
+                                            newTab?: T;
+                                            reference?: T;
+                                            url?: T;
+                                            label?: T;
+                                            customId?: T;
+                                          };
+                                      id?: T;
+                                    };
+                                media?: T;
+                                id?: T;
+                              };
+                        };
+                    id?: T;
+                    blockName?: T;
+                  };
+              exampleTabs?:
+                | T
+                | {
+                    content?: T;
+                    tabs?:
+                      | T
+                      | {
+                          label?: T;
+                          content?: T;
+                          examples?:
+                            | T
+                            | {
+                                CodeExampleBlock?:
+                                  | T
+                                  | {
+                                      code?: T;
+                                      id?: T;
+                                      blockName?: T;
+                                    };
+                                MediaExampleBlock?:
+                                  | T
+                                  | {
+                                      media?: T;
+                                      id?: T;
+                                      blockName?: T;
+                                    };
+                              };
+                          id?: T;
+                        };
+                    id?: T;
+                    blockName?: T;
+                  };
+            };
+        afterDirectory?:
+          | T
+          | {
+              callout?:
+                | T
+                | {
+                    calloutFields?:
+                      | T
+                      | {
+                          settings?:
+                            | T
+                            | {
+                                theme?: T;
+                                background?: T;
+                              };
+                          richText?: T;
+                          logo?: T;
+                          author?: T;
+                          role?: T;
+                          images?:
+                            | T
+                            | {
+                                image?: T;
+                                id?: T;
+                              };
+                        };
+                    id?: T;
+                    blockName?: T;
+                  };
+              cta?:
+                | T
+                | {
+                    ctaFields?:
+                      | T
+                      | {
+                          settings?:
+                            | T
+                            | {
+                                theme?: T;
+                                background?: T;
+                              };
+                          style?: T;
+                          richText?: T;
+                          commandLine?: T;
+                          links?:
+                            | T
+                            | {
+                                type?: T;
+                                npmCta?:
+                                  | T
+                                  | {
+                                      label?: T;
+                                    };
+                                link?:
+                                  | T
+                                  | {
+                                      type?: T;
+                                      newTab?: T;
+                                      reference?: T;
+                                      url?: T;
+                                      label?: T;
+                                      customId?: T;
+                                    };
+                                id?: T;
+                              };
+                          bannerLink?:
+                            | T
+                            | {
+                                type?: T;
+                                newTab?: T;
+                                reference?: T;
+                                url?: T;
+                                label?: T;
+                                customId?: T;
+                              };
+                          bannerImage?: T;
+                          gradientBackground?: T;
+                        };
+                    id?: T;
+                    blockName?: T;
+                  };
+              cardGrid?:
+                | T
+                | {
+                    cardGridFields?:
+                      | T
+                      | {
+                          settings?:
+                            | T
+                            | {
+                                theme?: T;
+                                background?: T;
+                              };
+                          richText?: T;
+                          links?:
+                            | T
+                            | {
+                                link?:
+                                  | T
+                                  | {
+                                      type?: T;
+                                      newTab?: T;
+                                      reference?: T;
+                                      url?: T;
+                                      label?: T;
+                                      customId?: T;
+                                    };
+                                id?: T;
+                              };
+                          revealDescription?: T;
+                          cards?:
+                            | T
+                            | {
+                                title?: T;
+                                description?: T;
+                                enableLink?: T;
+                                link?:
+                                  | T
+                                  | {
+                                      type?: T;
+                                      newTab?: T;
+                                      reference?: T;
+                                      url?: T;
+                                      customId?: T;
+                                    };
+                                id?: T;
+                              };
+                        };
+                    id?: T;
+                    blockName?: T;
+                  };
+              caseStudyCards?:
+                | T
+                | {
+                    caseStudyCardFields?:
+                      | T
+                      | {
+                          settings?:
+                            | T
+                            | {
+                                theme?: T;
+                                background?: T;
+                              };
+                          pixels?: T;
+                          cards?:
+                            | T
+                            | {
+                                richText?: T;
+                                caseStudy?: T;
+                                id?: T;
+                              };
+                        };
+                    id?: T;
+                    blockName?: T;
+                  };
+              caseStudiesHighlight?:
+                | T
+                | {
+                    caseStudiesHighlightFields?:
+                      | T
+                      | {
+                          settings?:
+                            | T
+                            | {
+                                theme?: T;
+                                background?: T;
+                              };
+                          richText?: T;
+                          caseStudies?: T;
+                        };
+                    id?: T;
+                    blockName?: T;
+                  };
+              caseStudyParallax?:
+                | T
+                | {
+                    caseStudyParallaxFields?:
+                      | T
+                      | {
+                          settings?:
+                            | T
+                            | {
+                                theme?: T;
+                                background?: T;
+                              };
+                          items?:
+                            | T
+                            | {
+                                quote?: T;
+                                author?: T;
+                                logo?: T;
+                                images?:
+                                  | T
+                                  | {
+                                      image?: T;
+                                      id?: T;
+                                    };
+                                tabLabel?: T;
+                                caseStudy?: T;
+                                id?: T;
+                              };
+                        };
+                    id?: T;
+                    blockName?: T;
+                  };
+              codeFeature?:
+                | T
+                | {
+                    codeFeatureFields?:
+                      | T
+                      | {
+                          settings?:
+                            | T
+                            | {
+                                theme?: T;
+                                background?: T;
+                              };
+                          forceDarkBackground?: T;
+                          alignment?: T;
+                          heading?: T;
+                          richText?: T;
+                          links?:
+                            | T
+                            | {
+                                link?:
+                                  | T
+                                  | {
+                                      type?: T;
+                                      newTab?: T;
+                                      reference?: T;
+                                      url?: T;
+                                      label?: T;
+                                      customId?: T;
+                                    };
+                                id?: T;
+                              };
+                          codeTabs?:
+                            | T
+                            | {
+                                language?: T;
+                                label?: T;
+                                code?: T;
+                                codeBlips?:
+                                  | T
+                                  | {
+                                      row?: T;
+                                      label?: T;
+                                      feature?: T;
+                                      enableLink?: T;
+                                      link?:
+                                        | T
+                                        | {
+                                            type?: T;
+                                            newTab?: T;
+                                            reference?: T;
+                                            url?: T;
+                                            label?: T;
+                                            customId?: T;
+                                          };
+                                      id?: T;
+                                    };
+                                id?: T;
+                              };
+                        };
+                    id?: T;
+                    blockName?: T;
+                  };
+              content?:
+                | T
+                | {
+                    contentFields?:
+                      | T
+                      | {
+                          settings?:
+                            | T
+                            | {
+                                theme?: T;
+                                background?: T;
+                              };
+                          useLeadingHeader?: T;
+                          leadingHeader?: T;
+                          layout?: T;
+                          columnOne?: T;
+                          columnTwo?: T;
+                          columnThree?: T;
+                        };
+                    id?: T;
+                    blockName?: T;
+                  };
+              contentGrid?:
+                | T
+                | {
+                    contentGridFields?:
+                      | T
+                      | {
+                          settings?:
+                            | T
+                            | {
+                                theme?: T;
+                                background?: T;
+                              };
+                          style?: T;
+                          showNumbers?: T;
+                          content?: T;
+                          links?:
+                            | T
+                            | {
+                                link?:
+                                  | T
+                                  | {
+                                      type?: T;
+                                      newTab?: T;
+                                      reference?: T;
+                                      url?: T;
+                                      label?: T;
+                                      customId?: T;
+                                    };
+                                id?: T;
+                              };
+                          cells?:
+                            | T
+                            | {
+                                content?: T;
+                                id?: T;
+                              };
+                        };
+                    id?: T;
+                    blockName?: T;
+                  };
+              form?:
+                | T
+                | {
+                    formFields?:
+                      | T
+                      | {
+                          settings?:
+                            | T
+                            | {
+                                theme?: T;
+                                background?: T;
+                              };
+                          richText?: T;
+                          form?: T;
+                        };
+                    id?: T;
+                    blockName?: T;
+                  };
+              hoverCards?:
+                | T
+                | {
+                    hoverCardsFields?:
+                      | T
+                      | {
+                          settings?:
+                            | T
+                            | {
+                                theme?: T;
+                                background?: T;
+                              };
+                          hideBackground?: T;
+                          richText?: T;
+                          cards?:
+                            | T
+                            | {
+                                title?: T;
+                                description?: T;
+                                link?:
+                                  | T
+                                  | {
+                                      type?: T;
+                                      newTab?: T;
+                                      reference?: T;
+                                      url?: T;
+                                      customId?: T;
+                                    };
+                                id?: T;
+                              };
+                        };
+                    id?: T;
+                    blockName?: T;
+                  };
+              hoverHighlights?:
+                | T
+                | {
+                    hoverHighlightsFields?:
+                      | T
+                      | {
+                          settings?:
+                            | T
+                            | {
+                                theme?: T;
+                                background?: T;
+                              };
+                          beforeHighlights?: T;
+                          highlights?:
+                            | T
+                            | {
+                                text?: T;
+                                media?:
+                                  | T
+                                  | {
+                                      top?: T;
+                                      bottom?: T;
+                                    };
+                                link?:
+                                  | T
+                                  | {
+                                      type?: T;
+                                      newTab?: T;
+                                      reference?: T;
+                                      url?: T;
+                                      customId?: T;
+                                    };
+                                id?: T;
+                              };
+                          afterHighlights?: T;
+                          link?:
+                            | T
+                            | {
+                                type?: T;
+                                newTab?: T;
+                                reference?: T;
+                                url?: T;
+                                label?: T;
+                                customId?: T;
+                              };
+                        };
+                    id?: T;
+                    blockName?: T;
+                  };
+              linkGrid?:
+                | T
+                | {
+                    linkGridFields?:
+                      | T
+                      | {
+                          settings?:
+                            | T
+                            | {
+                                theme?: T;
+                                background?: T;
+                              };
+                          links?:
+                            | T
+                            | {
+                                link?:
+                                  | T
+                                  | {
+                                      type?: T;
+                                      newTab?: T;
+                                      reference?: T;
+                                      url?: T;
+                                      label?: T;
+                                      customId?: T;
+                                    };
+                                id?: T;
+                              };
+                        };
+                    id?: T;
+                    blockName?: T;
+                  };
+              logoGrid?:
+                | T
+                | {
+                    logoGridFields?:
+                      | T
+                      | {
+                          settings?:
+                            | T
+                            | {
+                                theme?: T;
+                                background?: T;
+                              };
+                          richText?: T;
+                          enableLink?: T;
+                          link?:
+                            | T
+                            | {
+                                type?: T;
+                                newTab?: T;
+                                reference?: T;
+                                url?: T;
+                                label?: T;
+                                customId?: T;
+                              };
+                          logos?:
+                            | T
+                            | {
+                                logoMedia?: T;
+                                id?: T;
+                              };
+                        };
+                    id?: T;
+                    blockName?: T;
+                  };
+              mediaBlock?:
+                | T
+                | {
+                    mediaBlockFields?:
+                      | T
+                      | {
+                          settings?:
+                            | T
+                            | {
+                                theme?: T;
+                                background?: T;
+                              };
+                          position?: T;
+                          media?: T;
+                          caption?: T;
+                        };
+                    id?: T;
+                    blockName?: T;
+                  };
+              mediaContent?:
+                | T
+                | {
+                    mediaContentFields?:
+                      | T
+                      | {
+                          settings?:
+                            | T
+                            | {
+                                theme?: T;
+                                background?: T;
+                              };
+                          alignment?: T;
+                          mediaWidth?: T;
+                          richText?: T;
+                          enableLink?: T;
+                          link?:
+                            | T
+                            | {
+                                type?: T;
+                                newTab?: T;
+                                reference?: T;
+                                url?: T;
+                                label?: T;
+                                customId?: T;
+                              };
+                          images?:
+                            | T
+                            | {
+                                image?: T;
+                                id?: T;
+                              };
+                        };
+                    id?: T;
+                    blockName?: T;
+                  };
+              mediaContentAccordion?:
+                | T
+                | {
+                    mediaContentAccordionFields?:
+                      | T
+                      | {
+                          settings?:
+                            | T
+                            | {
+                                theme?: T;
+                                background?: T;
+                              };
+                          alignment?: T;
+                          leader?: T;
+                          heading?: T;
+                          accordion?:
+                            | T
+                            | {
+                                position?: T;
+                                background?: T;
+                                mediaLabel?: T;
+                                mediaDescription?: T;
+                                enableLink?: T;
+                                link?:
+                                  | T
+                                  | {
+                                      type?: T;
+                                      newTab?: T;
+                                      reference?: T;
+                                      url?: T;
+                                      label?: T;
+                                      customId?: T;
+                                    };
+                                media?: T;
+                                id?: T;
+                              };
+                        };
+                    id?: T;
+                    blockName?: T;
+                  };
+              pricing?:
+                | T
+                | {
+                    pricingFields?:
+                      | T
+                      | {
+                          settings?:
+                            | T
+                            | {
+                                theme?: T;
+                                background?: T;
+                              };
+                          plans?:
+                            | T
+                            | {
+                                name?: T;
+                                hasPrice?: T;
+                                enableCreatePayload?: T;
+                                price?: T;
+                                title?: T;
+                                description?: T;
+                                enableLink?: T;
+                                link?:
+                                  | T
+                                  | {
+                                      type?: T;
+                                      newTab?: T;
+                                      reference?: T;
+                                      url?: T;
+                                      label?: T;
+                                      customId?: T;
+                                    };
+                                features?:
+                                  | T
+                                  | {
+                                      icon?: T;
+                                      feature?: T;
+                                      id?: T;
+                                    };
+                                id?: T;
+                              };
+                          disclaimer?: T;
+                        };
+                    id?: T;
+                    blockName?: T;
+                  };
+              reusableContentBlock?:
+                | T
+                | {
+                    reusableContentBlockFields?:
+                      | T
+                      | {
+                          settings?:
+                            | T
+                            | {
+                                theme?: T;
+                                background?: T;
+                              };
+                          reusableContent?: T;
+                          customId?: T;
+                        };
+                    id?: T;
+                    blockName?: T;
+                  };
+              slider?:
+                | T
+                | {
+                    sliderFields?:
+                      | T
+                      | {
+                          settings?:
+                            | T
+                            | {
+                                theme?: T;
+                                background?: T;
+                              };
+                          introContent?: T;
+                          links?:
+                            | T
+                            | {
+                                link?:
+                                  | T
+                                  | {
+                                      type?: T;
+                                      newTab?: T;
+                                      reference?: T;
+                                      url?: T;
+                                      label?: T;
+                                      customId?: T;
+                                      appearance?: T;
+                                    };
+                                id?: T;
+                              };
+                          quoteSlides?:
+                            | T
+                            | {
+                                quote?: T;
+                                author?: T;
+                                role?: T;
+                                logo?: T;
+                                enableLink?: T;
+                                link?:
+                                  | T
+                                  | {
+                                      type?: T;
+                                      newTab?: T;
+                                      reference?: T;
+                                      url?: T;
+                                      label?: T;
+                                      customId?: T;
+                                    };
+                                id?: T;
+                              };
+                        };
+                    id?: T;
+                    blockName?: T;
+                  };
+              statement?:
+                | T
+                | {
+                    statementFields?:
+                      | T
+                      | {
+                          settings?:
+                            | T
+                            | {
+                                theme?: T;
+                                background?: T;
+                              };
+                          richText?: T;
+                          links?:
+                            | T
+                            | {
+                                link?:
+                                  | T
+                                  | {
+                                      type?: T;
+                                      newTab?: T;
+                                      reference?: T;
+                                      url?: T;
+                                      label?: T;
+                                      customId?: T;
+                                    };
+                                id?: T;
+                              };
+                          assetType?: T;
+                          media?: T;
+                          code?: T;
+                          mediaWidth?: T;
+                          backgroundGlow?: T;
+                          assetCaption?: T;
+                        };
+                    id?: T;
+                    blockName?: T;
+                  };
+              steps?:
+                | T
+                | {
+                    stepsFields?:
+                      | T
+                      | {
+                          settings?:
+                            | T
+                            | {
+                                theme?: T;
+                                background?: T;
+                              };
+                          steps?:
+                            | T
+                            | {
+                                content?: T;
+                                media?: T;
+                                id?: T;
+                              };
+                        };
+                    id?: T;
+                    blockName?: T;
+                  };
+              stickyHighlights?:
+                | T
+                | {
+                    stickyHighlightsFields?:
+                      | T
+                      | {
+                          settings?:
+                            | T
+                            | {
+                                theme?: T;
+                                background?: T;
+                              };
+                          highlights?:
+                            | T
+                            | {
+                                richText?: T;
+                                enableLink?: T;
+                                link?:
+                                  | T
+                                  | {
+                                      type?: T;
+                                      newTab?: T;
+                                      reference?: T;
+                                      url?: T;
+                                      label?: T;
+                                      customId?: T;
+                                    };
+                                type?: T;
+                                code?: T;
+                                codeBlips?:
+                                  | T
+                                  | {
+                                      row?: T;
+                                      label?: T;
+                                      feature?: T;
+                                      enableLink?: T;
+                                      link?:
+                                        | T
+                                        | {
+                                            type?: T;
+                                            newTab?: T;
+                                            reference?: T;
+                                            url?: T;
+                                            label?: T;
+                                            customId?: T;
+                                          };
+                                      id?: T;
+                                    };
+                                media?: T;
+                                id?: T;
+                              };
+                        };
+                    id?: T;
+                    blockName?: T;
+                  };
+              exampleTabs?:
+                | T
+                | {
+                    content?: T;
+                    tabs?:
+                      | T
+                      | {
+                          label?: T;
+                          content?: T;
+                          examples?:
+                            | T
+                            | {
+                                CodeExampleBlock?:
+                                  | T
+                                  | {
+                                      code?: T;
+                                      id?: T;
+                                      blockName?: T;
+                                    };
+                                MediaExampleBlock?:
+                                  | T
+                                  | {
+                                      media?: T;
+                                      id?: T;
+                                      blockName?: T;
+                                    };
+                              };
+                          id?: T;
+                        };
+                    id?: T;
+                    blockName?: T;
+                  };
+            };
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -8906,6 +13271,60 @@ export interface BrBlock {
   id?: string | null;
   blockName?: string | null;
   blockType: 'br';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "CommandLineBlock".
+ */
+export interface CommandLineBlock {
+  command?: string | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'commandLine';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "TemplateCardsBlock".
+ */
+export interface TemplateCardsBlock {
+  templates?:
+    | {
+        name: string;
+        description: string;
+        image: string;
+        slug: string;
+        order: number;
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'templateCards';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "BannerBlock".
+ */
+export interface BannerBlock {
+  type?: ('default' | 'success' | 'warning' | 'error') | null;
+  content?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'banner';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
