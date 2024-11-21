@@ -15,6 +15,8 @@ import path from 'path'
 import { buildConfig } from 'payload'
 import { fileURLToPath } from 'url'
 
+import { s3Storage } from '@payloadcms/storage-s3'
+
 import { CaseStudies } from './collections/CaseStudies'
 import { CommunityHelp } from './collections/CommunityHelp'
 import { Docs } from './collections/Docs'
@@ -268,6 +270,24 @@ export default buildConfig({
       },
       enabled: Boolean(process.env.BLOB_STORAGE_ENABLED) || false,
       token: process.env.BLOB_READ_WRITE_TOKEN || '',
+    }),
+    s3Storage({
+      collections: {
+        'media': {
+          prefix: 'media',
+        },
+      },
+      bucket: process.env.S3_BUCKET,
+      config: {
+        credentials: {
+          accessKeyId: process.env.S3_ACCESS_KEY_ID,
+          secretAccessKey: process.env.S3_SECRET_ACCESS_KEY,
+        },
+        region: process.env.S3_REGION,
+        endpoint: process.env.S3_ENDPOINT,
+        forcePathStyle: true,
+        // ... Other S3 configuration
+      },
     }),
   ],
   secret: process.env.PAYLOAD_SECRET || '',

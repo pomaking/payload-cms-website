@@ -81,10 +81,6 @@ const nextConfig = withBundleAnalyzer({
         hostname: 'img.youtube.com',
         port: '',
       },
-      {
-        protocol: 'https',
-        hostname: process.env.BLOB_STORE_ID,
-      },
     ].filter(Boolean),
   },
   sassOptions: {

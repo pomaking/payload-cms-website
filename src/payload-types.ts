@@ -1556,6 +1556,7 @@ export interface Media {
   id: string;
   alt: string;
   darkModeFallback?: (string | null) | Media;
+  prefix?: string | null;
   updatedAt: string;
   createdAt: string;
   url?: string | null;
