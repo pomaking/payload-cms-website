@@ -153,6 +153,26 @@ export const fetchBlogPosts = async (): Promise<Post[]> => {
   return data.docs
 }
 
+export const fetchBlogPostsByTag = async (slug: string): Promise<Post[]> => {
+  const currentDate = new Date()
+  const payload = await getPayload({ config })
+
+  const data = await payload.find({
+    collection: 'posts',
+    depth: 1,
+    limit: 300,
+    sort: '-publishedOn',
+    where: {
+      and: [
+        { 'categories.slug': { in: slug }},
+        { publishedOn: { less_than_equal: currentDate } },
+        { _status: { equals: 'published' } },
+      ],
+    },
+  })
+  return data.docs
+}
+
 export const fetchBlogPost = async (slug: string): Promise<Post> => {
   const { isEnabled: draft } = await draftMode()
   const payload = await getPayload({ config })

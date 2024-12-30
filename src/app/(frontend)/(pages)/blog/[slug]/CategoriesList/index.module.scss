@@ -1,0 +1,59 @@
+@use '@scss/common' as *;
+
+.categorySlot {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+
+  @include mid-break {
+    padding: 0;
+  }
+}
+
+.label {
+  @include h6;
+}
+
+.categoryLink {
+  text-decoration: none;
+
+  &:focus {
+    outline: none;
+    text-decoration: underline;
+  }
+}
+
+.category {
+  display: flex;
+  align-items: center;
+  padding: 0 0 0.5rem 0;
+
+  span {
+    color: var(--theme-elevation-900);
+    margin: 0;
+    line-height: 1;
+    letter-spacing: 0;
+  }
+}
+
+.categoryInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.twitter {
+  @include small;
+  & {
+    color: var(--theme-elevation-500);
+  }
+}
+
+.categoryImage {
+  width: 30px;
+  height: 30px;
+  border-radius: 100%;
+  overflow: hidden;
+  margin-right: 0.75rem;
+  flex-shrink: 0;
+}

@@ -76,7 +76,6 @@ export const Signup: React.FC = () => {
     }
 
     try {
-      const hubspotCookie = getCookie('hubspotutk')
       const pageUri = `${process.env.NEXT_PUBLIC_SITE_URL}/signup`
       const pageName = 'Cloud Sign Up'
       const req = await fetch(
@@ -94,7 +93,6 @@ export const Signup: React.FC = () => {
               email
             }
           }`,
-            hubspotCookie,
             pageUri,
             pageName,
           }),

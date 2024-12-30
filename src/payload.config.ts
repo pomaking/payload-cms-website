@@ -28,12 +28,22 @@ import { Partners } from './collections/Partners'
 import { Posts } from './collections/Posts'
 import { ReusableContent } from './collections/ReusableContent'
 import { Users } from './collections/Users'
+
+import { Contacts } from './collections/Contacts'
+import { Companies } from './collections/Companies'
+import { Properties } from './collections/Properties'
+import { Parcels } from './collections/Parcels'
+import { Structures } from './collections/Structures'
+
 import { Footer } from './globals/Footer'
 import { GetStarted } from './globals/GetStarted'
 import { MainMenu } from './globals/MainMenu'
 import { PartnerProgram } from './globals/PartnerProgram'
 import redeployWebsite from './scripts/redeployWebsite'
 import syncDocs from './scripts/syncDocs'
+import connectDynamicWidgets from 'instantsearch.js/es/connectors/dynamic-widgets/connectDynamicWidgets'
+import { ST } from 'next/dist/shared/lib/utils'
+import { Categories } from './collections/Categories'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -62,6 +72,7 @@ export default buildConfig({
   collections: [
     CaseStudies,
     CommunityHelp,
+    Categories,
     Docs,
     Media,
     Pages,
@@ -73,6 +84,11 @@ export default buildConfig({
     Specialties,
     Regions,
     Budgets,
+    Contacts,
+    Companies,
+    Properties,
+    Parcels,
+    Structures,
   ],
   cors: [process.env.PAYLOAD_PUBLIC_APP_URL || '', 'https://payloadcms.com'].filter(Boolean),
   db: mongooseAdapter({

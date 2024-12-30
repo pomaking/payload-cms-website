@@ -32,13 +32,13 @@ export const Partners: CollectionConfig = {
     {
       name: 'name',
       type: 'text',
-      label: 'Agency Name',
+      label: 'Partner Name',
       required: true,
     },
     {
       name: 'website',
       type: 'text',
-      label: 'Website URL',
+      label: 'Partner URL',
       required: true,
     },
     {

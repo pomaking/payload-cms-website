@@ -13,17 +13,23 @@ export interface Config {
   collections: {
     'case-studies': CaseStudy;
     'community-help': CommunityHelp;
+    categories: Category;
     docs: Doc;
     media: Media;
     pages: Page;
-    industries: Industry;
-    specialties: Specialty;
-    regions: Region;
-    budgets: Budget;
     posts: Post;
     'reusable-content': ReusableContent;
     users: User;
     partners: Partner;
+    industries: Industry;
+    specialties: Specialty;
+    regions: Region;
+    budgets: Budget;
+    contacts: Contact;
+    companies: Company;
+    properties: Property;
+    parcels: Parcel;
+    structures: Structure;
     forms: Form;
     'form-submissions': FormSubmission;
     redirects: Redirect;
@@ -31,21 +37,31 @@ export interface Config {
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
   };
-  collectionsJoins: {};
+  collectionsJoins: {
+    companies: {
+      relatedContacts: 'contacts';
+    };
+  };
   collectionsSelect: {
     'case-studies': CaseStudiesSelect<false> | CaseStudiesSelect<true>;
     'community-help': CommunityHelpSelect<false> | CommunityHelpSelect<true>;
+    categories: CategoriesSelect<false> | CategoriesSelect<true>;
     docs: DocsSelect<false> | DocsSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
     pages: PagesSelect<false> | PagesSelect<true>;
-    industries: IndustriesSelect<false> | IndustriesSelect<true>;
-    specialties: SpecialtiesSelect<false> | SpecialtiesSelect<true>;
-    regions: RegionsSelect<false> | RegionsSelect<true>;
-    budgets: BudgetsSelect<false> | BudgetsSelect<true>;
     posts: PostsSelect<false> | PostsSelect<true>;
     'reusable-content': ReusableContentSelect<false> | ReusableContentSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
     partners: PartnersSelect<false> | PartnersSelect<true>;
+    industries: IndustriesSelect<false> | IndustriesSelect<true>;
+    specialties: SpecialtiesSelect<false> | SpecialtiesSelect<true>;
+    regions: RegionsSelect<false> | RegionsSelect<true>;
+    budgets: BudgetsSelect<false> | BudgetsSelect<true>;
+    contacts: ContactsSelect<false> | ContactsSelect<true>;
+    companies: CompaniesSelect<false> | CompaniesSelect<true>;
+    properties: PropertiesSelect<false> | PropertiesSelect<true>;
+    parcels: ParcelsSelect<false> | ParcelsSelect<true>;
+    structures: StructuresSelect<false> | StructuresSelect<true>;
     forms: FormsSelect<false> | FormsSelect<true>;
     'form-submissions': FormSubmissionsSelect<false> | FormSubmissionsSelect<true>;
     redirects: RedirectsSelect<false> | RedirectsSelect<true>;
@@ -3108,6 +3124,7 @@ export interface Post {
   slug?: string | null;
   authors: (string | User)[];
   publishedOn: string;
+  categories?: (string | Category)[] | null;
   meta?: {
     title?: string | null;
     description?: string | null;
@@ -4730,6 +4747,17 @@ export interface User {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "categories".
+ */
+export interface Category {
+  id: string;
+  title: string;
+  slug?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "community-help".
  */
 export interface CommunityHelp {
@@ -4778,50 +4806,6 @@ export interface Doc {
   slug?: string | null;
   label?: string | null;
   order?: number | null;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "industries".
- */
-export interface Industry {
-  id: string;
-  name: string;
-  value: string;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "specialties".
- */
-export interface Specialty {
-  id: string;
-  name: string;
-  value: string;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "regions".
- */
-export interface Region {
-  id: string;
-  name: string;
-  value: string;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "budgets".
- */
-export interface Budget {
-  id: string;
-  name: string;
-  value: string;
   updatedAt: string;
   createdAt: string;
 }
@@ -4923,6 +4907,256 @@ export interface Partner {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "regions".
+ */
+export interface Region {
+  id: string;
+  name: string;
+  value: string;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "specialties".
+ */
+export interface Specialty {
+  id: string;
+  name: string;
+  value: string;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "budgets".
+ */
+export interface Budget {
+  id: string;
+  name: string;
+  value: string;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "industries".
+ */
+export interface Industry {
+  id: string;
+  name: string;
+  value: string;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "contacts".
+ */
+export interface Contact {
+  id: string;
+  fullName?: string | null;
+  firstName: string;
+  lastName: string;
+  phone?: string | null;
+  email: string;
+  social?:
+    | {
+        platform: 'linkedin' | 'twitter' | 'facebook' | 'instagram' | 'youtube' | 'github';
+        url: string;
+        id?: string | null;
+      }[]
+    | null;
+  contactType?: ('prospect' | 'client' | 'partner' | 'agent' | 'inactive') | null;
+  companies?: (string | Company)[] | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "companies".
+ */
+export interface Company {
+  id: string;
+  name: string;
+  website: string;
+  phone?: string | null;
+  email: string;
+  social?:
+    | {
+        platform: 'linkedin' | 'twitter' | 'facebook' | 'instagram' | 'youtube' | 'github';
+        url: string;
+        id?: string | null;
+      }[]
+    | null;
+  companyType?: ('development' | 'construction' | 'investment' | 'agency' | 'inactive') | null;
+  relatedContacts?: {
+    docs?: (string | Contact)[] | null;
+    hasNextPage?: boolean | null;
+  } | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "properties".
+ */
+export interface Property {
+  id: string;
+  name: string;
+  addressNumber: string;
+  direction_left?:
+    | ('north' | 'northeast' | 'northwest' | 'south' | 'southeast' | 'southwest' | 'court' | 'east' | 'west')
+    | null;
+  streetName: string;
+  mode?:
+    | (
+        | 'street'
+        | 'drive'
+        | 'road'
+        | 'avenue'
+        | 'way'
+        | 'circle'
+        | 'court'
+        | 'highway'
+        | 'junction'
+        | 'loop'
+        | 'parkway'
+        | 'pike'
+        | 'place'
+        | 'plaza'
+        | 'trail'
+      )
+    | null;
+  direction_right?:
+    | ('north' | 'northeast' | 'northwest' | 'south' | 'southeast' | 'southwest' | 'court' | 'east' | 'west')
+    | null;
+  city: string;
+  state?: string | null;
+  postLCode: string;
+  country?: string | null;
+  latitude?: string | null;
+  longitude?: string | null;
+  parcels?: (string | Parcel)[] | null;
+  structures?: (string | Structure)[] | null;
+  spaces?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "parcels".
+ */
+export interface Parcel {
+  id: string;
+  apn_original?: string | null;
+  apn_unformatted: string;
+  fips_code?: string | null;
+  depth_ft?: number | null;
+  frontage_ft?: number | null;
+  area_sq_ft?: number | null;
+  area_acres?: number | null;
+  county_name?: string | null;
+  county_land_use_code?: string | null;
+  county_land_use_description?: string | null;
+  standardized_land_use_category?: string | null;
+  standardized_land_use_type?: string | null;
+  location_description?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  zoning_classification?: string | null;
+  buildingCount?: number | null;
+  tax_account_number?: string | null;
+  legal_description?: string | null;
+  lot_code?: string | null;
+  lot_number?: string | null;
+  subdivision?: string | null;
+  municipality?: string | null;
+  section_township_range?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "structures".
+ */
+export interface Structure {
+  id: string;
+  name?: string | null;
+  year_built?: number | null;
+  effective_year_built?: number | null;
+  stories?: number | null;
+  rooms_count?: number | null;
+  baths?: number | null;
+  partial_baths_count?: number | null;
+  units_count?: string | null;
+  parking_type?: string | null;
+  parking_spaces_count?: number | null;
+  pool_type?: string | null;
+  architecture_type?: string | null;
+  construction_type?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  exterior_wall_type?: string | null;
+  foundation_type?: string | null;
+  roof_material_type?: string | null;
+  roof_style_type?: string | null;
+  heating_type?: string | null;
+  heating_fuel_type?: string | null;
+  air_conditioning_type?: string | null;
+  fireplaces?: number | null;
+  basement_type?: string | null;
+  quality?: string | null;
+  flooring_types?: string | null;
+  plumbing_fixtures_count?: number | null;
+  interior_wall_type?: string | null;
+  water_type?: string | null;
+  sewer_type?: string | null;
+  total_area_sq_ft?: number | null;
+  typical_floor_sf?: string | null;
+  building_status?: string | null;
+  tenancy?: string | null;
+  ceiling_height?: string | null;
+  docks_int?: number | null;
+  docks_ext?: number | null;
+  elevators_passenger?: number | null;
+  elevators_freight?: number | null;
+  elevators_escalator?: number | null;
+  building_features?:
+    | {
+        feature_description?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "form-submissions".
  */
 export interface FormSubmission {
@@ -4981,6 +5215,10 @@ export interface PayloadLockedDocument {
         value: string | CommunityHelp;
       } | null)
     | ({
+        relationTo: 'categories';
+        value: string | Category;
+      } | null)
+    | ({
         relationTo: 'docs';
         value: string | Doc;
       } | null)
@@ -4991,6 +5229,22 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'pages';
         value: string | Page;
+      } | null)
+    | ({
+        relationTo: 'posts';
+        value: string | Post;
+      } | null)
+    | ({
+        relationTo: 'reusable-content';
+        value: string | ReusableContent;
+      } | null)
+    | ({
+        relationTo: 'users';
+        value: string | User;
+      } | null)
+    | ({
+        relationTo: 'partners';
+        value: string | Partner;
       } | null)
     | ({
         relationTo: 'industries';
@@ -5009,20 +5263,24 @@ export interface PayloadLockedDocument {
         value: string | Budget;
       } | null)
     | ({
-        relationTo: 'posts';
-        value: string | Post;
+        relationTo: 'contacts';
+        value: string | Contact;
       } | null)
     | ({
-        relationTo: 'reusable-content';
-        value: string | ReusableContent;
+        relationTo: 'companies';
+        value: string | Company;
       } | null)
     | ({
-        relationTo: 'users';
-        value: string | User;
+        relationTo: 'properties';
+        value: string | Property;
       } | null)
     | ({
-        relationTo: 'partners';
-        value: string | Partner;
+        relationTo: 'parcels';
+        value: string | Parcel;
+      } | null)
+    | ({
+        relationTo: 'structures';
+        value: string | Structure;
       } | null)
     | ({
         relationTo: 'forms';
@@ -5978,6 +6236,16 @@ export interface CommunityHelpSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "categories_select".
+ */
+export interface CategoriesSelect<T extends boolean = true> {
+  title?: T;
+  slug?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "docs_select".
  */
 export interface DocsSelect<T extends boolean = true> {
@@ -6001,6 +6269,7 @@ export interface DocsSelect<T extends boolean = true> {
 export interface MediaSelect<T extends boolean = true> {
   alt?: T;
   darkModeFallback?: T;
+  prefix?: T;
   updatedAt?: T;
   createdAt?: T;
   url?: T;
@@ -7062,46 +7331,6 @@ export interface PagesSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "industries_select".
- */
-export interface IndustriesSelect<T extends boolean = true> {
-  name?: T;
-  value?: T;
-  updatedAt?: T;
-  createdAt?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "specialties_select".
- */
-export interface SpecialtiesSelect<T extends boolean = true> {
-  name?: T;
-  value?: T;
-  updatedAt?: T;
-  createdAt?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "regions_select".
- */
-export interface RegionsSelect<T extends boolean = true> {
-  name?: T;
-  value?: T;
-  updatedAt?: T;
-  createdAt?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "budgets_select".
- */
-export interface BudgetsSelect<T extends boolean = true> {
-  name?: T;
-  value?: T;
-  updatedAt?: T;
-  createdAt?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "posts_select".
  */
 export interface PostsSelect<T extends boolean = true> {
@@ -7246,6 +7475,7 @@ export interface PostsSelect<T extends boolean = true> {
   slug?: T;
   authors?: T;
   publishedOn?: T;
+  categories?: T;
   meta?:
     | T
     | {
@@ -8270,6 +8500,194 @@ export interface PartnersSelect<T extends boolean = true> {
   updatedAt?: T;
   createdAt?: T;
   _status?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "industries_select".
+ */
+export interface IndustriesSelect<T extends boolean = true> {
+  name?: T;
+  value?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "specialties_select".
+ */
+export interface SpecialtiesSelect<T extends boolean = true> {
+  name?: T;
+  value?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "regions_select".
+ */
+export interface RegionsSelect<T extends boolean = true> {
+  name?: T;
+  value?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "budgets_select".
+ */
+export interface BudgetsSelect<T extends boolean = true> {
+  name?: T;
+  value?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "contacts_select".
+ */
+export interface ContactsSelect<T extends boolean = true> {
+  fullName?: T;
+  firstName?: T;
+  lastName?: T;
+  phone?: T;
+  email?: T;
+  social?:
+    | T
+    | {
+        platform?: T;
+        url?: T;
+        id?: T;
+      };
+  contactType?: T;
+  companies?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "companies_select".
+ */
+export interface CompaniesSelect<T extends boolean = true> {
+  name?: T;
+  website?: T;
+  phone?: T;
+  email?: T;
+  social?:
+    | T
+    | {
+        platform?: T;
+        url?: T;
+        id?: T;
+      };
+  companyType?: T;
+  relatedContacts?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "properties_select".
+ */
+export interface PropertiesSelect<T extends boolean = true> {
+  name?: T;
+  addressNumber?: T;
+  direction_left?: T;
+  streetName?: T;
+  mode?: T;
+  direction_right?: T;
+  city?: T;
+  state?: T;
+  postLCode?: T;
+  country?: T;
+  latitude?: T;
+  longitude?: T;
+  parcels?: T;
+  structures?: T;
+  spaces?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "parcels_select".
+ */
+export interface ParcelsSelect<T extends boolean = true> {
+  apn_original?: T;
+  apn_unformatted?: T;
+  fips_code?: T;
+  depth_ft?: T;
+  frontage_ft?: T;
+  area_sq_ft?: T;
+  area_acres?: T;
+  county_name?: T;
+  county_land_use_code?: T;
+  county_land_use_description?: T;
+  standardized_land_use_category?: T;
+  standardized_land_use_type?: T;
+  location_description?: T;
+  zoning_classification?: T;
+  buildingCount?: T;
+  tax_account_number?: T;
+  legal_description?: T;
+  lot_code?: T;
+  lot_number?: T;
+  subdivision?: T;
+  municipality?: T;
+  section_township_range?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "structures_select".
+ */
+export interface StructuresSelect<T extends boolean = true> {
+  name?: T;
+  year_built?: T;
+  effective_year_built?: T;
+  stories?: T;
+  rooms_count?: T;
+  baths?: T;
+  partial_baths_count?: T;
+  units_count?: T;
+  parking_type?: T;
+  parking_spaces_count?: T;
+  pool_type?: T;
+  architecture_type?: T;
+  construction_type?: T;
+  exterior_wall_type?: T;
+  foundation_type?: T;
+  roof_material_type?: T;
+  roof_style_type?: T;
+  heating_type?: T;
+  heating_fuel_type?: T;
+  air_conditioning_type?: T;
+  fireplaces?: T;
+  basement_type?: T;
+  quality?: T;
+  flooring_types?: T;
+  plumbing_fixtures_count?: T;
+  interior_wall_type?: T;
+  water_type?: T;
+  sewer_type?: T;
+  total_area_sq_ft?: T;
+  typical_floor_sf?: T;
+  building_status?: T;
+  tenancy?: T;
+  ceiling_height?: T;
+  docks_int?: T;
+  docks_ext?: T;
+  elevators_passenger?: T;
+  elevators_freight?: T;
+  elevators_escalator?: T;
+  building_features?:
+    | T
+    | {
+        feature_description?: T;
+        id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

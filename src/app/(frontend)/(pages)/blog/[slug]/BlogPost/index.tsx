@@ -13,6 +13,7 @@ import { Media } from '@components/Media/index.js'
 import { RenderBlocks } from '@components/RenderBlocks/index.js'
 import { RichText } from '@components/RichText/index.js'
 import { AuthorsList } from '../AuthorsList/index.js'
+import { CategoriesList } from '../CategoriesList/index.js'
 
 import classes from './index.module.scss'
 import { Video } from '@components/RichText/Video/index.js'
@@ -59,6 +60,7 @@ export const BlogPost: React.FC<Post> = props => {
                     </time>
                   </div>
                 )}
+                <CategoriesList categories={props.categories} />
               </div>
               <div className={classes.discordGitWrap}>
                 <DiscordGitCTA appearance="minimal" />
