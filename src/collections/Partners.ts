@@ -37,7 +37,7 @@ export const Partners: CollectionConfig = {
     {
       name: 'name',
       type: 'text',
-      label: 'Agency Name',
+      label: 'Partner Name',
       required: true,
     },
     {
