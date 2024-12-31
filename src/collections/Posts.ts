@@ -110,6 +110,15 @@ export const Posts: CollectionConfig = {
       },
       required: true,
     },
+    {
+      name: 'categories',
+      type: 'relationship',
+      admin: {
+        position: 'sidebar',
+      },
+      hasMany: true,
+      relationTo: 'categories',
+    },
   ],
   hooks: {
     afterChange: [
