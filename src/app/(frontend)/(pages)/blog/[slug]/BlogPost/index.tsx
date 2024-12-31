@@ -15,6 +15,7 @@ import { formatDate } from '@utilities/format-date-time.js'
 import React from 'react'
 
 import { AuthorsList } from '../AuthorsList/index.js'
+import { CategoriesList } from '../CategoriesList/index.js'
 import classes from './index.module.scss'
 export const BlogPost: React.FC<Post> = (props) => {
   const { content, excerpt, image, publishedOn, relatedPosts, title, useVideo, videoUrl } = props
@@ -61,6 +62,7 @@ export const BlogPost: React.FC<Post> = (props) => {
                     </time>
                   </div>
                 )}
+                <CategoriesList categories={props.categories} />
               </div>
               <div className={classes.discordGitWrap}>
                 <DiscordGitCTA appearance="minimal" />
