@@ -72,59 +72,6 @@ export const AgentProgram: GlobalConfig = {
       ],
     },
     {
-      name: 'featuredAgents',
-      type: 'group',
-      fields: [
-        {
-          name: 'description',
-          type: 'textarea',
-        },
-        {
-          name: 'agents',
-          type: 'relationship',
-          hasMany: true,
-          hooks: {
-            afterChange: [
-              async ({ previousValue, req, value }) => {
-                if (value !== previousValue) {
-                  const payload = await req.payload
-                  await payload
-                    .update({
-                      collection: 'agents',
-                      data: {
-                        featured: false,
-                      },
-                      where: {
-                        featured: {
-                          equals: true,
-                        },
-                      },
-                    })
-                    .then(async () => {
-                      await payload.update({
-                        collection: 'agents',
-                        data: {
-                          featured: true,
-                        },
-                        where: {
-                          id: {
-                            in: value,
-                          },
-                        },
-                      })
-                    })
-                }
-              },
-            ],
-          },
-          maxRows: 4,
-          minRows: 4,
-          relationTo: 'agents',
-          required: true,
-        },
-      ],
-    },
-    {
       name: 'contentBlocks',
       type: 'group',
       fields: [
