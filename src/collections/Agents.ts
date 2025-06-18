@@ -234,27 +234,6 @@ export const Agents: CollectionConfig = {
               required: true,
             },
             {
-              name: 'licenses',
-              type: 'relationship',
-              hasMany: true,
-              relationTo: 'licenses',
-              required: true,
-            },
-            {
-              name: 'sectors',
-              type: 'relationship',
-              hasMany: true,
-              relationTo: 'sectors',
-              required: true,
-            },
-            {
-              name: 'languages',
-              type: 'relationship',
-              hasMany: true,
-              relationTo: 'languages',
-              required: true,
-            },
-            {
               name: 'social',
               type: 'array',
               fields: [
