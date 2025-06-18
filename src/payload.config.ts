@@ -400,7 +400,7 @@ export default buildConfig({
       path: '/refresh/mdx-to-lexical',
     },
   ],
-  globals: [Footer, MainMenu, GetStarted, PartnerProgram],
+  globals: [Footer, MainMenu, GetStarted, PartnerProgram, AgentProgram],
   graphQL: {
     disablePlaygroundInProduction: false,
   },
