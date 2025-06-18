@@ -14,7 +14,7 @@ export const Contacts: CollectionConfig = {
   },
   admin: {
     group: 'CRM',
-    useAsTitle: 'fullName',
+    useAsTitle: 'email',
   },
   access: {
     create: isAdmin,
