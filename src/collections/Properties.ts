@@ -269,30 +269,7 @@ export const Properties: CollectionConfig = {
                     },
                 ],
             },
-            {
-                label: 'Parcels',
-                description: 'Parcels included in this property',
-                fields: [
-                    {
-                        name: 'parcels',
-                        type: 'relationship',
-                        hasMany: true,
-                        relationTo: 'parcels',
-                    },
-                ],
-            },
-            {
-                label: 'Structures',
-                description: 'Structures included in this property',
-                fields: [
-                    {
-                        name: 'structures',
-                        type: 'relationship',
-                        hasMany: true,
-                        relationTo: 'structures',
-                    },
-                ]
-            },
+
             {
                 label: 'Spaces',
                 description: 'Structures included in this property',
