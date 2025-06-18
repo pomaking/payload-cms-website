@@ -88,7 +88,7 @@ import { Parcels } from './collections/Parcels'
 import { Structures } from './collections/Structures'
 
 import { Agents } from './collections/Agents'
-import { Sectors, Languages, MSAS, Licenses } from './collections/AgentFilters'
+import { Sectors, Languages, Msas, Licenses } from './collections/AgentFilters'
 import { AgentProgram } from './globals/AgentProgram'
 
 const filename = fileURLToPath(import.meta.url)
@@ -307,7 +307,7 @@ export default buildConfig({
     Agents,
     Sectors,
     Languages,
-    MSAS,
+    Msas,
     Licenses,
   ],
   cors: [
