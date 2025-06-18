@@ -96,11 +96,11 @@ const dirname = path.dirname(filename)
 
 const sendGridAPIKey = process.env.SENDGRID_API_KEY
 
-const s3Bucket = process.env.S3_BUCKET
-const s3AccessKey = process.env.S3_ACCESS_KEY_ID
-const s3Secret = process.env.S3_SECRET_ACCESS_KEY
-const s3Region = process.env.S3_REGION
-const s3Endpoint = process.env.S3_ENDPOINT
+const s3Bucket = process.env.S3_BUCKET as string
+const s3AccessKey = process.env.S3_ACCESS_KEY_ID as string
+const s3Secret = process.env.S3_SECRET_ACCESS_KEY as string
+const s3Region = process.env.S3_REGION as string
+const s3Endpoint = process.env.S3_ENDPOINT as string
 
 const sendgridConfig = {
   transportOptions: nodemailerSendgrid({
