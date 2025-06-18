@@ -133,14 +133,5 @@ export const Contacts: CollectionConfig = {
         description: 'Set to inactive to hide this partner from the directory.',
       },
     },
-    {
-        name: 'companies',
-        type: 'relationship',
-        admin: {
-          position: 'sidebar',
-        },
-        hasMany: true,
-        relationTo: 'companies',
-    },
   ],
 }
