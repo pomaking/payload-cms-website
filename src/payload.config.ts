@@ -87,7 +87,6 @@ import { Properties } from './collections/Properties'
 import { Parcels } from './collections/Parcels'
 import { Structures } from './collections/Structures'
 
-import { Categories } from './collections/Categories'
 import { Agents } from './collections/Agents'
 import { Sectors, Languages, MSAS, Licenses } from './collections/AgentFilters'
 import { AgentProgram } from './globals/AgentProgram'
