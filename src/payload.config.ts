@@ -96,6 +96,12 @@ const dirname = path.dirname(filename)
 
 const sendGridAPIKey = process.env.SENDGRID_API_KEY
 
+const s3Bucket = process.env.S3_BUCKET
+const s3AccessKey = process.env.S3_ACCESS_KEY_ID
+const s3Secret = process.env.S3_SECRET_ACCESS_KEY
+const s3Region = process.env.S3_REGION
+const s3Endpoint = process.env.S3_ENDPOINT
+
 const sendgridConfig = {
   transportOptions: nodemailerSendgrid({
     apiKey: sendGridAPIKey,
@@ -558,11 +564,6 @@ export default buildConfig({
       token: process.env.BLOB_READ_WRITE_TOKEN || '',
     }),
     s3Storage({
-      const s3Bucket = process.env.S3_BUCKET,
-      const s3AccessKey = process.env.S3_ACCESS_KEY_ID,
-      const s3Secret = process.env.S3_SECRET_ACCESS_KEY,
-      const s3Region = process.env.S3_REGION,
-      const s3Endpoint = process.env.S3_ENDPOINT,
       collections: {
         'media': {
           prefix: 'media',
