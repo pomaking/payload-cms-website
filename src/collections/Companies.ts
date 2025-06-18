@@ -137,15 +137,5 @@ export const Companies: CollectionConfig = {
         description: 'Set to inactive to hide this company from the directory.',
       },
     },
-    {
-      name: 'relatedContacts',
-      type: 'join',
-      admin: {
-        position: 'sidebar',
-      },
-      hasMany: true,
-      collection: 'contacts',
-      on: 'companies',
-  },
   ],
 }
