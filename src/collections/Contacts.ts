@@ -24,28 +24,6 @@ export const Contacts: CollectionConfig = {
   },
   fields: [
     {
-      name: 'fullName',
-      type: 'text',
-      admin: {
-        hidden: true, // hides the field from the admin panel
-      },
-      hooks: {
-        beforeChange: [
-          ({ siblingData }) => {
-            // ensures data is not stored in DB
-            delete siblingData['fullName']
-          }
-        ],
-        afterRead: [
-          ({ data }) => {  
-            return `${data.firstName} ${data.lastName}`;
-          }
-        ],
-      },
-    },
-    
-    
-    {
       name: 'firstName',
       type: 'text',
       label: 'First Name',
