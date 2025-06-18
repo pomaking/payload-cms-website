@@ -45,46 +45,14 @@ const nextConfig = withBundleAnalyzer({
   images: {
     minimumCacheTTL: 60 * 60 * 24 * 365, // 1 year,
     remotePatterns: [
-      ...localhost,
-      {
-        protocol: 'https',
-        hostname: 'cms.payloadcms.com',
-        port: '',
-      },
-      {
-        protocol: 'https',
-        hostname: 'cloud-api.payloadcms.com',
-        port: '',
-      },
-      {
-        protocol: 'https',
-        hostname: 'cms.local.payloadcms.com',
-        port: '',
-      },
-      {
-        protocol: 'https',
-        hostname: 'stage.cms.payloadcms.com',
-        port: '',
-      },
-      {
-        protocol: 'https',
-        hostname: 'cdn.discordapp.com',
-        port: '',
-      },
-      {
-        protocol: 'https',
-        hostname: 'avatars.githubusercontent.com',
-        port: '',
-      },
-      {
-        protocol: 'https',
-        hostname: 'img.youtube.com',
-        port: '',
-      },
-      {
-        protocol: 'https',
-        hostname: process.env.BLOB_STORE_ID,
-      },
+      ...[NEXT_PUBLIC_SERVER_URL /* 'https://example.com' */].map((item) => {
+        const url = new URL(item)
+
+        return {
+          hostname: url.hostname,
+          protocol: url.protocol.replace(':', ''),
+        }
+      }),
     ].filter(Boolean),
   },
   sassOptions: {
