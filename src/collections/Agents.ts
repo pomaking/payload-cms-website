@@ -234,13 +234,6 @@ export const Agents: CollectionConfig = {
               required: true,
             },
             {
-              name: 'msas',
-              type: 'relationship',
-              hasMany: true,
-              relationTo: 'msas',
-              required: true,
-            },
-            {
               name: 'licenses',
               type: 'relationship',
               hasMany: true,
