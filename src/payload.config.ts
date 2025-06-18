@@ -22,6 +22,8 @@ import path from 'path'
 import { buildConfig, type TextField } from 'payload'
 import { fileURLToPath } from 'url'
 
+import { s3Storage } from '@payloadcms/storage-s3'
+
 import { BlogContent } from './blocks/BlogContent'
 import { BlogMarkdown } from './blocks/BlogMarkdown'
 import { Callout } from './blocks/Callout'
@@ -78,6 +80,17 @@ import { PartnerProgram } from './globals/PartnerProgram'
 import { opsCounterPlugin } from './plugins/opsCounter'
 import redeployWebsite from './scripts/redeployWebsite'
 import { refreshMdxToLexical, syncDocs } from './scripts/syncDocs'
+
+import { Contacts } from './collections/Contacts'
+import { Companies } from './collections/Companies'
+import { Properties } from './collections/Properties'
+import { Parcels } from './collections/Parcels'
+import { Structures } from './collections/Structures'
+
+import { Categories } from './collections/Categories'
+import { Agents } from './collections/Agents'
+import { Sectors, Languages, MSAS, Licenses } from './collections/AgentFilters'
+import { AgentProgram } from './globals/AgentProgram'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -534,6 +547,24 @@ export default buildConfig({
       },
       enabled: Boolean(process.env.BLOB_STORAGE_ENABLED) || false,
       token: process.env.BLOB_READ_WRITE_TOKEN || '',
+    }),
+    s3Storage({
+      collections: {
+        'media': {
+          prefix: 'media',
+        },
+      },
+      bucket: process.env.S3_BUCKET,
+      config: {
+        credentials: {
+          accessKeyId: process.env.S3_ACCESS_KEY_ID,
+          secretAccessKey: process.env.S3_SECRET_ACCESS_KEY,
+        },
+        region: process.env.S3_REGION,
+        endpoint: process.env.S3_ENDPOINT,
+        forcePathStyle: true,
+        // ... Other S3 configuration
+      },
     }),
   ],
   secret: process.env.PAYLOAD_SECRET || '',
