@@ -39,5 +39,5 @@ const Filter: (slug: string, label: string) => CollectionConfig = (slug, label) 
 
 export const Licenses = Filter('licenses', 'License')
 export const Languages = Filter('languages', 'Language')
-export const MSAS = Filter('msas', 'MSA')
+export const Msas = Filter('msas', 'MSA')
 export const Sectors = Filter('sectors', 'Sector')
