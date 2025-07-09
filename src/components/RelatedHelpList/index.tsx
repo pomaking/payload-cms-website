@@ -29,11 +29,11 @@ export const RelatedHelpList: React.FC<Props> = ({ relatedThreads }) => {
               <li key={i}>
                 {communityHelpType === 'discord' && <DiscordIcon className={classes.itemMarker} />}
                 {communityHelpType === 'github' && <GithubIcon className={classes.itemMarker} />}
-                <Link href={`/community-help/${communityHelpType}/${slug}`}>{title}</Link>
+                <Link href={`/community-help/${communityHelpType}/${slug}`} legacyBehavior>{title}</Link>
               </li>
-            )
+            );
           })}
       </ul>
     </div>
-  )
+  );
 }

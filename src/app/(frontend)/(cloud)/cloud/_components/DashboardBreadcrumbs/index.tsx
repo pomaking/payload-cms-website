@@ -59,7 +59,7 @@ export const DashboardBreadcrumbs = () => {
 
   return (
     <div className={classes.wrapper}>
-      <Link className={classes.logo} href="/">
+      <Link className={classes.logo} href="/" legacyBehavior>
         <FullLogo />
       </Link>
       <div className={classes.breadcrumbs}>
@@ -83,11 +83,11 @@ export const DashboardBreadcrumbs = () => {
           return (
             <React.Fragment key={segment}>
               <span className={classes.slash}>{' / '}</span>
-              <Link href={`/${urls[index]}`}>{segment}</Link>
+              <Link href={`/${urls[index]}`} legacyBehavior>{segment}</Link>
             </React.Fragment>
-          )
+          );
         })}
       </div>
     </div>
-  )
+  );
 }

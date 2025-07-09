@@ -34,13 +34,17 @@ export const Breadcrumbs: React.FC<Props> = ({ className, ellipsis = true, items
                   .filter(Boolean)
                   .join(' ')}
               >
-                <Link className={classes.labelContent} href={item.url} prefetch={false}>
+                <Link
+                  className={classes.labelContent}
+                  href={item.url}
+                  prefetch={false}
+                  legacyBehavior>
                   {item.label}
                 </Link>
               </div>
               {!isLast && <p className={classes.divider}>&nbsp;&#47;&nbsp;</p>}
             </React.Fragment>
-          )
+          );
         }
 
         return (
@@ -55,5 +59,5 @@ export const Breadcrumbs: React.FC<Props> = ({ className, ellipsis = true, items
         )
       })}
     </nav>
-  )
+  );
 }

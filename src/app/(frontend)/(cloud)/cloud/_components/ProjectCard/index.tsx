@@ -132,7 +132,7 @@ export const ProjectCard: React.FC<{
         .join(' ')}
       href={href}
       prefetch={false}
-    >
+      legacyBehavior>
       <BackgroundScanline className={classes.scanlines} />
       <div className={classes.titleWrapper}>
         <div className={classes.title}>
@@ -159,5 +159,5 @@ export const ProjectCard: React.FC<{
         )}
       </div>
     </Link>
-  )
+  );
 }

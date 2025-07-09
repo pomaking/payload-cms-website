@@ -76,18 +76,18 @@ export const CaseStudiesHighlightBlock: React.FC<Props> = ({
                           className={classes.image}
                           href={`/case-studies/${slug}`}
                           prefetch={false}
-                        >
+                          legacyBehavior>
                           <Image alt={alt} fill src={`${process.env.NEXT_PUBLIC_CMS_URL}${url}`} />
                         </Link>
                       </li>
-                    )
+                    );
                   })}
                 </ul>
-              )
+              );
             })}
           </div>
         </div>
       </div>
     </React.Fragment>
-  )
+  );
 }

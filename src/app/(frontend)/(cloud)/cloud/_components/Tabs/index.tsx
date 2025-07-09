@@ -75,7 +75,7 @@ export const Tabs: React.FC<{
           }
 
           const RenderTab = (
-            <Link className={classList} href={tabURL || ''} key={index}>
+            <Link className={classList} href={tabURL || ''} key={index} legacyBehavior>
               <TabContents {...tab} />
             </Link>
           )
@@ -84,5 +84,5 @@ export const Tabs: React.FC<{
         })}
       </EdgeScroll>
     </div>
-  )
+  );
 }

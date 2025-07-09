@@ -277,7 +277,7 @@ export const MobileNav: React.FC<NavItems> = (props) => {
                 className={classes.logo}
                 href="/"
                 prefetch={false}
-              >
+                legacyBehavior>
                 <FullLogo className="w-auto h-[30px]" />
               </Link>
               <div className={classes.icons}>
@@ -310,5 +310,5 @@ export const MobileNav: React.FC<NavItems> = (props) => {
       <MobileMenuModal {...props} setActiveTab={setActiveTab} theme={headerTheme} />
       <SubMenuModal {...props} activeTab={activeTab} theme={headerTheme} />
     </div>
-  )
+  );
 }

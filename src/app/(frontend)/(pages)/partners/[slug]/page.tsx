@@ -99,7 +99,10 @@ export default async function PartnerPage({ params }: { params: Promise<{ slug: 
             <RichText content={idealProject} />
           </div>
           {caseStudy && typeof caseStudy !== 'string' && (
-            <Link className={classes.caseStudy} href={`/case-studies/${caseStudy.slug}`}>
+            <Link
+              className={classes.caseStudy}
+              href={`/case-studies/${caseStudy.slug}`}
+              legacyBehavior>
               <div className={classes.caseStudyText}>
                 <h6>
                   Case Study <ArrowIcon className={classes.arrow} />
@@ -135,7 +138,7 @@ export default async function PartnerPage({ params }: { params: Promise<{ slug: 
                     key={index + project.name}
                     rel="noreferrer"
                     target="_blank"
-                  >
+                    legacyBehavior>
                     <span className={classes.projectYear}>{project.year}</span>
                     <span className={classes.projectName}>{project.name}</span>
                     <ArrowIcon className={classes.arrow} />
@@ -177,7 +180,7 @@ export default async function PartnerPage({ params }: { params: Promise<{ slug: 
       </Gutter>
       <BackgroundGrid wideGrid />
     </div>
-  )
+  );
 }
 
 const PartnerDetails = (partner) => {

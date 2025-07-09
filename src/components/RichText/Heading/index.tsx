@@ -56,11 +56,16 @@ export const Heading: React.FC<{
   })
 
   return (
-    <Link className={classes.node} href={`${pathname}/#${anchor}`} id={anchor} replace>
+    <Link
+      className={classes.node}
+      href={`${pathname}/#${anchor}`}
+      id={anchor}
+      replace
+      legacyBehavior>
       <HeadingElement>
         <ChainLinkIcon className={classes.linkedHeading} size="large" />
         {children}
       </HeadingElement>
     </Link>
-  )
+  );
 }

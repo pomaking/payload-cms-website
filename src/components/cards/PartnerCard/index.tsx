@@ -11,7 +11,10 @@ type PartnerCardProps = Partner
 
 export const PartnerCard = (partner: PartnerCardProps) => {
   return (
-    <Link className={classes.partnerCard} href={`/partners/${partner.slug}`}>
+    <Link
+      className={classes.partnerCard}
+      href={`/partners/${partner.slug}`}
+      legacyBehavior>
       <div className={classes.partnerCardImage}>
         {typeof partner.content.bannerImage !== 'string' && (
           <Media resource={partner.content.bannerImage} />
@@ -24,5 +27,5 @@ export const PartnerCard = (partner: PartnerCardProps) => {
         <ArrowIcon className={classes.arrow} />
       </div>
     </Link>
-  )
+  );
 }

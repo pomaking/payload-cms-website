@@ -78,7 +78,11 @@ export const ManageDomain: React.FC<Props> = ({ domain, environmentSlug, project
         className={classes.domainAccordion}
         label={
           <div className={classes.labelWrap}>
-            <Link className={classes.linkedDomain} href={`https://${domainURL}`} target="_blank">
+            <Link
+              className={classes.linkedDomain}
+              href={`https://${domainURL}`}
+              target="_blank"
+              legacyBehavior>
               <div className={classes.domainTitleName}>{domainURL}</div>
               <ExternalLinkIcon className={classes.externalLinkIcon} />
             </Link>
@@ -135,5 +139,5 @@ export const ManageDomain: React.FC<Props> = ({ domain, environmentSlug, project
         </div>
       </ModalWindow>
     </React.Fragment>
-  )
+  );
 }

@@ -43,7 +43,7 @@ export const CaseStudyCards: React.FC<Props> = (props) => {
                       href={`/case-studies/${card.caseStudy.slug}`}
                       key={i}
                       prefetch={false}
-                    >
+                      legacyBehavior>
                       <RichText className={classes.content} content={card.richText} />
                       <div className={classes.media}>
                         {typeof card.caseStudy.featuredImage !== 'string' && (
@@ -51,7 +51,7 @@ export const CaseStudyCards: React.FC<Props> = (props) => {
                         )}
                       </div>
                     </Link>
-                  )
+                  );
                 }
 
                 return null
@@ -60,7 +60,7 @@ export const CaseStudyCards: React.FC<Props> = (props) => {
           )}
         </Gutter>
       </BlockWrapper>
-    )
+    );
   }
 
   return null

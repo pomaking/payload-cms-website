@@ -14,7 +14,10 @@ const TemplateCard = (props: TemplateCardType) => {
   const { name, slug, description, image } = props
 
   return (
-    <Link className={classes.templateCard} href={`/new/clone/${slug}`}>
+    <Link
+      className={classes.templateCard}
+      href={`/new/clone/${slug}`}
+      legacyBehavior>
       <div className={classes.imageContainer}>
         <Image alt={`${name} template thumbnail image`} fill src={image} />
       </div>
@@ -25,7 +28,7 @@ const TemplateCard = (props: TemplateCardType) => {
         <p>{description}</p>
       </div>
     </Link>
-  )
+  );
 }
 
 export const TemplateCards: React.FC<{ templates: TemplateCardType[] }> = (props) => {

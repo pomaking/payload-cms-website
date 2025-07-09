@@ -43,7 +43,7 @@ function slugify(string: string): string {
     .replace(/[^\w\-]+/g, '') // Remove all non-word characters
     .replace(/-{2,}/g, '-') // Replace multiple - with single -
     .replace(/^-+/, '') // Trim - from start of text
-    .replace(/-+$/, '') // Trim - from end of text
+    .replace(/-+$/, ''); // Trim - from end of text
 }
 
 function getHeadings(source: string): Heading[] {
@@ -55,7 +55,7 @@ function getHeadings(source: string): Heading[] {
     if (insideCodeBlock) {
       return false
     }
-    return line.match(/^#{1,3}\s.+/gm)
+    return line.match(/^#{1,3}\s.+/gm);
   })
 
   return headingLines.map((raw) => {
@@ -64,7 +64,7 @@ function getHeadings(source: string): Heading[] {
     const level = raw.startsWith('###') ? 3 : 2
     const anchor = slugify(customAnchor ? customAnchor.trim() : text.trim())
     return { id: anchor, anchor, level, text: text.trim() }
-  })
+  });
 }
 
 function getLocalDocsPath(): string {

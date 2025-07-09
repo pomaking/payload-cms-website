@@ -129,117 +129,109 @@ export const DocsNavigation = ({
   const isActiveTopic = (topic: string) => topic === currentTopic
   const isActiveDoc = (topic: string, doc: string) => topic === currentTopic && doc === currentDoc
 
-  return (
-    openTopicPreferences && (
-      <aside
-        className={[classes.navWrap, 'cols-3 cols-m-8', navOpen ? classes.mobileNavOpen : '']
-          .filter(Boolean)
-          .join(' ')}
+  return (openTopicPreferences && (<aside
+    className={[classes.navWrap, 'cols-3 cols-m-8', navOpen ? classes.mobileNavOpen : '']
+      .filter(Boolean)
+      .join(' ')}
+  >
+    <nav className={classes.nav} onMouseLeave={() => setResetIndicator(true)}>
+      {!hideVersionSelector && (
+        <div className={classes.selector}>
+          <VersionSelector initialVersion={version ?? 'current'} />
+        </div>
+      )}
+      <Accordion.Root
+        onValueChange={(value) => {
+          // We only want to have one topic open at a time,
+          // so we'll always set the last value in the array
+          const newValue =
+            Array.isArray(value) && value.length > 0 ? [value[value.length - 1]] : value
+          window.localStorage.setItem(openTopicsLocalStorageKey, JSON.stringify(newValue))
+          setOpenTopicPreferences(newValue)
+        }}
+        type="multiple"
+        value={openTopicPreferences}
       >
-        <nav className={classes.nav} onMouseLeave={() => setResetIndicator(true)}>
-          {!hideVersionSelector && (
-            <div className={classes.selector}>
-              <VersionSelector initialVersion={version ?? 'current'} />
-            </div>
-          )}
-          <Accordion.Root
-            onValueChange={(value) => {
-              // We only want to have one topic open at a time,
-              // so we'll always set the last value in the array
-              const newValue =
-                Array.isArray(value) && value.length > 0 ? [value[value.length - 1]] : value
-              window.localStorage.setItem(openTopicsLocalStorageKey, JSON.stringify(newValue))
-              setOpenTopicPreferences(newValue)
-            }}
-            type="multiple"
-            value={openTopicPreferences}
-          >
-            {topics.map((tGroup, groupIndex) => (
-              <Fragment key={`group-${groupIndex}`}>
-                <span className={classes.groupLabel}>{tGroup.groupLabel}</span>
-                {tGroup.topics.map(
-                  (topic, index) =>
-                    topic && (
-                      <Accordion.Item key={topic.slug} value={topic.slug.toLowerCase()}>
-                        <Accordion.Trigger
-                          className={[
-                            classes.topic,
-                            isActiveTopic(topic.slug.toLowerCase()) && classes.active,
-                          ]
-                            .filter(Boolean)
-                            .join(' ')}
-                          onClick={() => handleMenuItemClick(topic.slug.toLowerCase())}
-                          onMouseEnter={() => handleIndicator(`${groupIndex}-${index}`)}
-                          ref={(ref) => {
-                            topicRefs.current[`${groupIndex}-${index}`] = ref
-                          }}
-                        >
-                          {(topic.label || topic.slug)?.replace('-', ' ')}
-                          <ChevronIcon aria-hidden className={classes.chevron} size="small" />
-                        </Accordion.Trigger>
-                        <Accordion.Content asChild>
-                          <ul className={classes.docs}>
-                            {topic.docs.map((doc, docIndex) => {
-                              const nestedIndex = `${groupIndex}-${index}-${docIndex}`
-                              return (
-                                doc && (
-                                  <Link
-                                    href={`/docs/${
-                                      version ? `${version}/` : ''
-                                    }${topic.slug.toLowerCase()}/${doc.slug.replace('.mdx', '')}`}
-                                    key={`${topic.slug}_${doc.slug}`}
-                                    prefetch={false}
-                                  >
-                                    <li
-                                      className={[
-                                        classes.doc,
-                                        isActiveDoc(
-                                          topic.slug.toLowerCase(),
-                                          doc.slug.replace('.mdx', ''),
-                                        ) && classes.active,
-                                      ]
-                                        .filter(Boolean)
-                                        .join(' ')}
-                                      onMouseEnter={() => handleIndicator(nestedIndex)}
-                                      ref={(ref) => {
-                                        topicRefs.current[nestedIndex] = ref
-                                      }}
-                                    >
-                                      {doc.label}
-                                    </li>
-                                  </Link>
-                                )
-                              )
-                            })}
-                          </ul>
-                        </Accordion.Content>
-                      </Accordion.Item>
-                    ),
-                )}
-                {groupIndex < topics.length - 1 && <div className={classes.divider} />}
-              </Fragment>
-            ))}
-          </Accordion.Root>
-          {indicatorTop || defaultIndicatorPosition ? (
-            <div
-              className={classes.indicator}
-              style={{ top: indicatorTop || defaultIndicatorPosition }}
-            />
-          ) : null}
-          <div aria-hidden className={classes.navOverlay} />
-          <Portal.Root className={classes.mobileNav}>
-            <button
-              className={classes.mobileNavButton}
-              onClick={() => setNavOpen((open) => !open)}
-              type="button"
-            >
-              Documentation
-              {!navOpen && <MenuIcon />}
-              {navOpen && <CloseIcon size="large" />}
-            </button>
-          </Portal.Root>
-        </nav>
-      </aside>
-    )
-  )
+        {topics.map((tGroup, groupIndex) => (
+          <Fragment key={`group-${groupIndex}`}>
+            <span className={classes.groupLabel}>{tGroup.groupLabel}</span>
+            {tGroup.topics.map(
+              (topic, index) =>
+                topic && (
+                  <Accordion.Item key={topic.slug} value={topic.slug.toLowerCase()}>
+                    <Accordion.Trigger
+                      className={[
+                        classes.topic,
+                        isActiveTopic(topic.slug.toLowerCase()) && classes.active,
+                      ]
+                        .filter(Boolean)
+                        .join(' ')}
+                      onClick={() => handleMenuItemClick(topic.slug.toLowerCase())}
+                      onMouseEnter={() => handleIndicator(`${groupIndex}-${index}`)}
+                      ref={(ref) => {
+                        topicRefs.current[`${groupIndex}-${index}`] = ref
+                      }}
+                    >
+                      {(topic.label || topic.slug)?.replace('-', ' ')}
+                      <ChevronIcon aria-hidden className={classes.chevron} size="small" />
+                    </Accordion.Trigger>
+                    <Accordion.Content asChild>
+                      <ul className={classes.docs}>
+                        {topic.docs.map((doc, docIndex) => {
+                          const nestedIndex = `${groupIndex}-${index}-${docIndex}`
+                          return (doc && (<Link
+                            href={`/docs/${
+                              version ? `${version}/` : ''
+                            }${topic.slug.toLowerCase()}/${doc.slug.replace('.mdx', '')}`}
+                            key={`${topic.slug}_${doc.slug}`}
+                            prefetch={false}
+                            legacyBehavior>
+                            <li
+                              className={[
+                                classes.doc,
+                                isActiveDoc(
+                                  topic.slug.toLowerCase(),
+                                  doc.slug.replace('.mdx', ''),
+                                ) && classes.active,
+                              ]
+                                .filter(Boolean)
+                                .join(' ')}
+                              onMouseEnter={() => handleIndicator(nestedIndex)}
+                              ref={(ref) => {
+                                topicRefs.current[nestedIndex] = ref
+                              }}
+                            >
+                              {doc.label}
+                            </li>
+                          </Link>));
+                        })}
+                      </ul>
+                    </Accordion.Content>
+                  </Accordion.Item>
+                ),
+            )}
+            {groupIndex < topics.length - 1 && <div className={classes.divider} />}
+          </Fragment>
+        ))}
+      </Accordion.Root>
+      {indicatorTop || defaultIndicatorPosition ? (
+        <div
+          className={classes.indicator}
+          style={{ top: indicatorTop || defaultIndicatorPosition }}
+        />
+      ) : null}
+      <div aria-hidden className={classes.navOverlay} />
+      <Portal.Root className={classes.mobileNav}>
+        <button
+          className={classes.mobileNavButton}
+          onClick={() => setNavOpen((open) => !open)}
+          type="button"
+        >
+          Documentation
+          {!navOpen && <MenuIcon />}
+          {navOpen && <CloseIcon size="large" />}
+        </button>
+      </Portal.Root>
+    </nav>
+  </aside>));
 }

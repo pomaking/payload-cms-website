@@ -113,7 +113,12 @@ export const DesktopNav: React.FC<DesktopNavType> = ({ hideBackground, menuCta, 
       >
         <div className={[classes.grid, 'grid'].join(' ')}>
           <div className={[classes.logo, 'cols-4'].join(' ')}>
-            <Link aria-label="Full Payload Logo" className={classes.logo} href="/" prefetch={false}>
+            <Link
+              aria-label="Full Payload Logo"
+              className={classes.logo}
+              href="/"
+              prefetch={false}
+              legacyBehavior>
               <FullLogo className="w-auto h-[30px]" />
             </Link>
           </div>
@@ -298,5 +303,5 @@ export const DesktopNav: React.FC<DesktopNavType> = ({ hideBackground, menuCta, 
         <div className={classes.background} style={{ ...backgroundStyles, ...bgHeight }} />
       </Gutter>
     </div>
-  )
+  );
 }

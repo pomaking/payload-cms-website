@@ -28,7 +28,7 @@ export const ContentMediaCard: React.FC<ContentMediaCardProps> = (props) => {
         .join(' ')}
       href={href}
       prefetch={false}
-    >
+      legacyBehavior>
       <div className={[classes.contentWrapper, className && className].filter(Boolean).join(' ')}>
         {typeof media === 'string' ? (
           <Image
@@ -61,5 +61,5 @@ export const ContentMediaCard: React.FC<ContentMediaCardProps> = (props) => {
       </div>
       <BackgroundScanline className={classes.scanline} />
     </Link>
-  )
+  );
 }

@@ -49,8 +49,8 @@ export const Heading: React.FC<Props> = (props) => {
   }
 
   return (
-    <Link className={classList} href={props.href} prefetch={false}>
+    <Link className={classList} href={props.href} prefetch={false} legacyBehavior>
       <HeadingElement {...props} className={undefined} margin={false} />
     </Link>
-  )
+  );
 }

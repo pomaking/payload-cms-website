@@ -52,7 +52,7 @@ export const AuthorsList: React.FC<{
                   href={`https://twitter.com/${author?.twitter}`}
                   rel="noopener noreferrer"
                   target="_blank"
-                >
+                  legacyBehavior>
                   <AuthorContent author={author} />
                 </Link>
               ) : (
@@ -63,7 +63,7 @@ export const AuthorsList: React.FC<{
         </Fragment>
       ))}
     </div>
-  )
+  );
 }
 
 export const GuestAuthorList: React.FC<{

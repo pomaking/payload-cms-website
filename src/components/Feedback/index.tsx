@@ -30,7 +30,7 @@ export const Feedback: React.FC<{ path: string; ref?: string }> = async ({
         className={classes.gitHubLink}
         href={`https://github.com/payloadcms/payload/blob/${ref}/docs/${path}.mdx`}
         target="_blank"
-      >
+        legacyBehavior>
         Edit this page on GitHub <ArrowIcon className={classes.arrow} />
       </Link>
       {form && typeof form !== 'string' && (
@@ -44,5 +44,5 @@ export const Feedback: React.FC<{ path: string; ref?: string }> = async ({
         </React.Fragment>
       )}
     </div>
-  )
+  );
 }

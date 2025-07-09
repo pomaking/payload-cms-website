@@ -12,6 +12,6 @@ function sanitizeSlug(string: string): string {
     .replace(/[^\w\-]+/g, '') // Remove all non-word characters
     .replace(/-{2,}/g, '-') // Replace multiple - with single -
     .replace(/^-+/, '') // Trim - from start of text
-    .replace(/-+$/, '') // Trim - from end of text
+    .replace(/-+$/, ''); // Trim - from end of text
 }
 export default sanitizeSlug

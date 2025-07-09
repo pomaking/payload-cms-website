@@ -50,7 +50,10 @@ export const ResourceBlock: React.FC<{ id: string }> = ({ id }) => {
   }, [id])
 
   return (
-    <Link href={`/posts/${resource?.category}/${resource?.slug}`} target="_blank">
+    <Link
+      href={`/posts/${resource?.category}/${resource?.slug}`}
+      target="_blank"
+      legacyBehavior>
       <Banner type="success">
         {resource === null ? (
           <span className={classes.skeleton} />
@@ -68,5 +71,5 @@ export const ResourceBlock: React.FC<{ id: string }> = ({ id }) => {
         )}
       </Banner>
     </Link>
-  )
+  );
 }

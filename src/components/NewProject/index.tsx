@@ -68,7 +68,7 @@ export const NewProjectBlock: React.FC<{
                   className={['cols-8', classes.templateCard].filter(Boolean).join(' ')}
                   href={`/new/clone/${template.slug}${teamSlug ? `?team=${teamSlug}` : ''}`}
                   key={slug}
-                >
+                  legacyBehavior>
                   {image && typeof image !== 'string' && (
                     <Media
                       alt={image.alt}
@@ -88,10 +88,10 @@ export const NewProjectBlock: React.FC<{
                     {adminOnly && <Pill color="warning" text="Admin Only" />}
                   </div>
                 </Link>
-              )
+              );
             })}
         </div>
       </Gutter>
     </Fragment>
-  )
+  );
 }

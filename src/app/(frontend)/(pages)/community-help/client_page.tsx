@@ -51,7 +51,7 @@ export const CommunityHelp: React.FC = () => {
                           href={`/community-help/${platform.toLowerCase()}/${slug}`}
                           prefetch={false}
                           style={{ textDecoration: 'none' }}
-                        >
+                          legacyBehavior>
                           <div>
                             <h5 className={classes.title}>{name}</h5>
                             <div className={classes.titleMeta}>
@@ -80,7 +80,7 @@ export const CommunityHelp: React.FC = () => {
                           </div>
                         </Link>
                       </li>
-                    )
+                    );
                   })}
               </ul>
             )}
@@ -105,7 +105,7 @@ export const CommunityHelp: React.FC = () => {
         </div>
       </Gutter>
     </div>
-  )
+  );
 }
 
 export const CommunityHelpPage = () => {

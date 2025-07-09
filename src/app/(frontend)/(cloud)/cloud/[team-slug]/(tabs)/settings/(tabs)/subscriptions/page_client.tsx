@@ -82,7 +82,7 @@ export const TeamSubscriptionsPage = (props: {
                               <div className={classes.subscriptionTitle}>
                                 <Heading element="h5" marginBottom={false} marginTop={false}>
                                   {project ? (
-                                    <Link href={`/cloud/${team.slug}/${project.slug}`}>
+                                    <Link href={`/cloud/${team.slug}/${project.slug}`} legacyBehavior>
                                       {project.name}
                                     </Link>
                                   ) : (
@@ -123,7 +123,7 @@ export const TeamSubscriptionsPage = (props: {
                             )}
                           </div>
                         </li>
-                      )
+                      );
                     })}
                   </ul>
                 </React.Fragment>
@@ -174,5 +174,5 @@ export const TeamSubscriptionsPage = (props: {
         </div>
       </ModalWindow>
     </React.Fragment>
-  )
+  );
 }

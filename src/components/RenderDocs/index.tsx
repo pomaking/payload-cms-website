@@ -153,7 +153,7 @@ export const RenderDocs = async ({
                 next.slug
               }`}
               prefetch={false}
-            >
+              legacyBehavior>
               <div className={classes.nextLabel}>
                 Next <ArrowIcon />
               </div>
@@ -179,7 +179,7 @@ export const RenderDocs = async ({
       </div>
       <BackgroundGrid wideGrid />
     </Gutter>
-  )
+  );
 }
 
 const DocsSkeleton = () => (

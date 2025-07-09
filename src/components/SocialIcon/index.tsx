@@ -21,10 +21,13 @@ type SocialIconProps = {
 export const SocialIcon: React.FC<SocialIconProps> = (props) => {
   const { className, platform, size = 'regular' } = props
   return (
-    <Link {...props} className={[classes.icon, classes[size], className].join(' ')}>
+    <Link
+      {...props}
+      className={[classes.icon, classes[size], className].join(' ')}
+      legacyBehavior>
       {icon[platform]}
     </Link>
-  )
+  );
 }
 
 const icon = {

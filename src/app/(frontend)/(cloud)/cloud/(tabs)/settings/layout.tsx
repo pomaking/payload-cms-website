@@ -48,14 +48,14 @@ export default ({ children }: ProjectSettingsLayoutType) => {
                     .join(' ')}
                   key={route.label}
                 >
-                  <Link href={route.url}>{route.label}</Link>
+                  <Link href={route.url} legacyBehavior>{route.label}</Link>
                 </p>
-              )
+              );
             })}
           </EdgeScroll>
         </div>
       </div>
       <div className="cols-12">{children}</div>
     </Gutter>
-  )
+  );
 }

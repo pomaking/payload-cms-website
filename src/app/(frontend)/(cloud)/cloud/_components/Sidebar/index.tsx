@@ -34,11 +34,11 @@ export const Sidebar: React.FC<{
                 .join(' ')}
               key={route.label}
             >
-              <Link href={url || ''}>{label}</Link>
+              <Link href={url || ''} legacyBehavior>{label}</Link>
             </p>
-          )
+          );
         })}
       </EdgeScroll>
     </div>
-  )
+  );
 }

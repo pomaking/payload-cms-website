@@ -1,28 +1,18 @@
-import type { Post } from '@root/payload-types'
+import type { Post } from '@root/payload-types.js'
 
-import { BackgroundScanline } from '@components/BackgroundScanline/index'
-import { Media } from '@components/Media/index'
-import { formatDate } from '@utilities/format-date-time'
+import { BackgroundScanline } from '@components/BackgroundScanline/index.js'
+import { Media } from '@components/Media/index.js'
+import { CrosshairIcon } from '@root/icons/CrosshairIcon/index.js'
+import { formatDate } from '@utilities/format-date-time.js'
 import Link from 'next/link'
 import * as React from 'react'
 
 import classes from './index.module.scss'
 
-export const FeaturedBlogPost: React.FC<{ category: string } & Partial<Post>> = (props) => {
-  const {
-    slug,
-    authors,
-    category,
-    dynamicThumbnail,
-    featuredMedia,
-    image,
-    meta,
-    publishedOn,
-    thumbnail,
-    title,
-  } = props
+export const FeaturedBlogPost: React.FC<Partial<Post>> = (props) => {
+  const { slug, authors, image: media, meta, publishedOn, title, ...rest } = props
 
-  const href = `/posts/${category}/${slug}`
+  const href = `/blog/${slug}`
 
   const author =
     authors && authors[0] && typeof authors[0] !== 'string'
@@ -33,20 +23,20 @@ export const FeaturedBlogPost: React.FC<{ category: string } & Partial<Post>> = 
   return (
     <Link className={classes.wrapper} href={href} prefetch={false}>
       <BackgroundScanline className={[classes.scanline].filter(Boolean).join(' ')} />
+      <CrosshairIcon
+        className={[classes.crosshair, classes.crosshairTopLeft].filter(Boolean).join(' ')}
+      />
+      <CrosshairIcon
+        className={[classes.crosshair, classes.crosshairTopRight].filter(Boolean).join(' ')}
+      />
+      <CrosshairIcon
+        className={[classes.crosshair, classes.crosshairBottomLeft].filter(Boolean).join(' ')}
+      />
+      <CrosshairIcon
+        className={[classes.crosshair, classes.crosshairBottomRight].filter(Boolean).join(' ')}
+      />
       <div className={classes.contentWrapper}>
-        {featuredMedia === 'upload' ? (
-          image && typeof image !== 'string' && <Media className={classes.media} resource={image} />
-        ) : dynamicThumbnail ? (
-          <Media
-            className={classes.media}
-            height={630}
-            src={`/api/og?type=${category}&title=${title}`}
-            width={1200}
-          />
-        ) : (
-          thumbnail &&
-          typeof thumbnail !== 'string' && <Media className={classes.media} resource={thumbnail} />
-        )}
+        {typeof media !== 'string' && <Media className={classes.media} resource={media} />}
         <div className={classes.content}>
           <h2 className={classes.title}>{title}</h2>
 

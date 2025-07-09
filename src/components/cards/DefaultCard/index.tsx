@@ -17,7 +17,7 @@ export const DefaultCard: React.FC<DefaultCardProps> = (props) => {
       className={[classes.defaultCard, className && className].filter(Boolean).join(' ')}
       href={href || ''}
       prefetch={false}
-    >
+      legacyBehavior>
       <div className={classes.content}>
         <div className={classes.leaderWrapper}>
           {leader && <div className={classes.leader}>{leader}</div>}
@@ -46,5 +46,5 @@ export const DefaultCard: React.FC<DefaultCardProps> = (props) => {
         />
       )}
     </Link>
-  )
+  );
 }

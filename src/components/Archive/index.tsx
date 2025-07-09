@@ -34,19 +34,22 @@ const Navigation = ({
               .join(' ')}
             href={`/posts/${slug}`}
             key={slug}
-          >
+            legacyBehavior>
             {name}
           </Link>
-        )
+        );
       })}
-      <Link href="/case-studies">
+      <Link href="/case-studies" legacyBehavior>
         Case Studies <ArrowIcon />
       </Link>
-      <Link href="https://www.github.com/payloadcms/payload/releases" target="_blank">
+      <Link
+        href="https://www.github.com/payloadcms/payload/releases"
+        target="_blank"
+        legacyBehavior>
         Releases <ArrowIcon />
       </Link>
     </nav>
-  )
+  );
 }
 
 export const Archive: React.FC<{ category: Category['slug'] }> = async ({ category }) => {

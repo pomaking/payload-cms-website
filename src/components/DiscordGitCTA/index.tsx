@@ -13,7 +13,7 @@ const discordURL = 'https://discord.gg/FSn5QRdsbC'
 export const DiscordGitCTA: React.FC<{ appearance?: 'default' | 'minimal' }> = ({ appearance }) => {
   return (
     <div className={classes.ctaWrap}>
-      <Link className={classes.cta} href={gitURL} target="_blank">
+      <Link className={classes.cta} href={gitURL} target="_blank" legacyBehavior>
         <div className={classes.message}>
           Star on GitHub
           <ArrowIcon className={classes.arrow} />
@@ -22,8 +22,12 @@ export const DiscordGitCTA: React.FC<{ appearance?: 'default' | 'minimal' }> = (
           <GithubStarsPill className={classes.ctaPill} />
         </div>
       </Link>
-
-      <Link aria-label="Chat on Discord" className={classes.cta} href={discordURL} target="_blank">
+      <Link
+        aria-label="Chat on Discord"
+        className={classes.cta}
+        href={discordURL}
+        target="_blank"
+        legacyBehavior>
         <div className={classes.message}>
           Chat on Discord
           <ArrowIcon className={classes.arrow} />
@@ -46,5 +50,5 @@ export const DiscordGitCTA: React.FC<{ appearance?: 'default' | 'minimal' }> = (
         </div>
       )}
     </div>
-  )
+  );
 }

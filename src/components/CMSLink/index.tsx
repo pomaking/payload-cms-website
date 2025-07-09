@@ -146,11 +146,11 @@ export const CMSLink: React.FC<CMSLinkType> = ({
           onMouseEnter={onMouseEnter}
           onMouseLeave={onMouseLeave}
           prefetch={false}
-        >
+          legacyBehavior>
           {label && label}
           {children && children}
         </Link>
-      )
+      );
     }
 
     return (

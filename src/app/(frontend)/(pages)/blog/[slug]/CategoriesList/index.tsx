@@ -22,7 +22,7 @@ export const CategoriesList: React.FC<{
                   className={classes.categoryLink}
                   href={`/blog/tag/${category?.slug}`}
                   rel="noopener noreferrer"
-                >
+                  legacyBehavior>
                   <div className={classes.category}>
 					<div className={classes.categoryInfo}>
 						<span>{`${category?.title || 'None'}`}</span>
@@ -34,5 +34,5 @@ export const CategoriesList: React.FC<{
         </Fragment>
       ))}
     </div>
-  )
+  );
 }

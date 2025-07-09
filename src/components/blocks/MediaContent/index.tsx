@@ -24,7 +24,7 @@ export const MediaContentBlock: React.FC<MediaContentProps> = ({ mediaContentFie
       <div className={['grid'].filter(Boolean).join(' ')}>
         {alignment === 'mediaContent' ? (
           // media-content
-          <React.Fragment>
+          (<React.Fragment>
             <div
               className={[
                 classes.media,
@@ -55,10 +55,10 @@ export const MediaContentBlock: React.FC<MediaContentProps> = ({ mediaContentFie
                 </div>
               )}
             </div>
-          </React.Fragment>
+          </React.Fragment>)
         ) : (
           // content-media
-          <React.Fragment>
+          (<React.Fragment>
             <div className={[classes.content, 'cols-4 start-1 cols-m-8'].filter(Boolean).join(' ')}>
               <RichText content={richText} />
               {enableLink && link && (
@@ -85,11 +85,11 @@ export const MediaContentBlock: React.FC<MediaContentProps> = ({ mediaContentFie
             >
               {images?.length && images.length > 0 ? <MediaParallax media={images} /> : null}
             </div>
-          </React.Fragment>
+          </React.Fragment>)
         )}
       </div>
     </Gutter>
-  )
+  );
 }
 
 export const MediaContent: React.FC<MediaContentProps> = (props) => {

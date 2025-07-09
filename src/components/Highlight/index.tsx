@@ -74,18 +74,17 @@ export const Highlight: React.FC<{
                   {isLastWord &&
                     InlineIcon &&
                     !reverseIcon && ( // the icon and the last word need to render together, to prevent the icon from widowing
-                      <span className={classes.iconWrapper}>
+                      (<span className={classes.iconWrapper}>
                         {word}
-                        &nbsp;
                         {InlineIcon}
-                      </span>
+                      </span>)
                     )}
                 </span>
               </span>
-            )
+            );
           })}
         </span>
-      )
+      );
     }
   }
 

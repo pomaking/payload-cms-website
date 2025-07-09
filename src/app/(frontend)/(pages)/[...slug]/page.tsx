@@ -49,7 +49,7 @@ export async function generateStaticParams() {
 
   return pages.map(({ breadcrumbs }) => ({
     slug: breadcrumbs?.[breadcrumbs.length - 1]?.url?.replace(/^\/|\/$/g, '').split('/'),
-  }))
+  }));
 }
 
 export async function generateMetadata({

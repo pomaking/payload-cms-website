@@ -70,7 +70,7 @@ export const CaseStudy: React.FC<CaseStudyT> = (props) => {
                     <Link
                       className={[classes.metaItem].filter(Boolean).join(' ')}
                       href={'/partners/' + partner.slug}
-                    >
+                      legacyBehavior>
                       <p className={[classes.metaLabel].filter(Boolean).join(' ')}>Partner</p>
                       <p className={[classes.metaValue].filter(Boolean).join(' ')}>
                         {partner.name}
@@ -89,10 +89,9 @@ export const CaseStudy: React.FC<CaseStudyT> = (props) => {
           </div>
         </Gutter>
       </BlockWrapper>
-
       {Array.isArray(layout) && <RenderBlocks blocks={layout} />}
     </React.Fragment>
-  )
+  );
 }
 
 export default CaseStudy

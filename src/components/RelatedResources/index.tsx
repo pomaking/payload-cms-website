@@ -30,15 +30,11 @@ export const RelatedResources: React.FC<RelatedResourcesProps> = ({ guides, rela
             <Accordion.Content asChild>
               <ul className={classes.list}>
                 {guides.map((guide) => {
-                  return (
-                    typeof guide !== 'string' && (
-                      <li className={classes.item} key={guide.slug}>
-                        <Link href={`/posts/guides/${guide.slug}`} prefetch={false}>
-                          {guide.title} <ArrowIcon className={classes.relatedPostsArrow} />
-                        </Link>
-                      </li>
-                    )
-                  )
+                  return (typeof guide !== 'string' && (<li className={classes.item} key={guide.slug}>
+                    <Link href={`/posts/guides/${guide.slug}`} prefetch={false} legacyBehavior>
+                      {guide.title} <ArrowIcon className={classes.relatedPostsArrow} />
+                    </Link>
+                  </li>));
                 })}
               </ul>
             </Accordion.Content>
@@ -55,7 +51,9 @@ export const RelatedResources: React.FC<RelatedResourcesProps> = ({ guides, rela
                   (thread) =>
                     typeof thread !== 'string' && (
                       <li className={classes.item} key={thread.slug}>
-                        <Link href={`/community-help/${thread.communityHelpType}/${thread.slug}`}>
+                        <Link
+                          href={`/community-help/${thread.communityHelpType}/${thread.slug}`}
+                          legacyBehavior>
                           {thread.title} <ArrowIcon className={classes.relatedPostsArrow} />
                         </Link>
                       </li>
@@ -67,5 +65,5 @@ export const RelatedResources: React.FC<RelatedResourcesProps> = ({ guides, rela
         )}
       </Accordion.Root>
     </div>
-  )
+  );
 }

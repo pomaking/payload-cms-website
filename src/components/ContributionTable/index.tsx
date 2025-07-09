@@ -29,7 +29,12 @@ export const ContributionTable = async ({ contributions }: ContributionTableProp
             return null
           }
           return (
-            <Link className={classes.contribution} href={url} key={number} target="_blank">
+            <Link
+              className={classes.contribution}
+              href={url}
+              key={number}
+              target="_blank"
+              legacyBehavior>
               <span className={classes.number}>#{number}</span>
               <span className={classes.title}>{title}</span>
               <Pill
@@ -38,9 +43,9 @@ export const ContributionTable = async ({ contributions }: ContributionTableProp
                 text={type === 'discussion' ? 'Discussion' : type === 'issue' ? 'Issue' : 'PR'}
               />
             </Link>
-          )
+          );
         })}
       </div>
     </Suspense>
-  )
+  );
 }
